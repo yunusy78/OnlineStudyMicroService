@@ -10,8 +10,6 @@
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
 </ItemGroup>
 
-<ItemGroup>
-  <ProjectReference Include="..\..\IdentityServer\OnlineStudyIdentityServer\OnlineStudyIdentityServer.csproj" />
-</ItemGroup>
+
 
 </Project>
