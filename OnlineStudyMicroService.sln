@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{232F0A15-CBDB-4961-928C-C4C375F9FC82}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{14FBC001-3B5C-4680-BA5B-243AD5065573}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatalogMicroServices", "Services\Catalog\CatalogMicroServices\CatalogMicroServices.csproj", "{4AF23CB8-B3D7-42A7-B94A-AE2ABDA04F10}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{63DDA443-96C6-4DD8-AB1E-7F0743ACD3A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineStudyShared", "Shared\OnlineStudyShared\OnlineStudyShared.csproj", "{76A4C384-C984-4095-88B2-1814BB8CCD40}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityServer", "IdentityServer", "{E4B9A81E-D3D0-4C49-BBE1-EF1325AE5293}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineStudyIdentityServer", "IdentityServer\OnlineStudyIdentityServer\OnlineStudyIdentityServer.csproj", "{70F15FEC-DF35-4F5B-AE19-47262A1B7732}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PhotoStock", "PhotoStock", "{F19760CF-F5D6-4A78-9202-164773E9D283}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoStockMicroServices", "Services\PhotoStock\PhotoStockMicroServices\PhotoStockMicroServices.csproj", "{BE4DCBDB-F552-4E27-BBA5-486291BA07E1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{14FBC001-3B5C-4680-BA5B-243AD5065573} = {232F0A15-CBDB-4961-928C-C4C375F9FC82}
+		{4AF23CB8-B3D7-42A7-B94A-AE2ABDA04F10} = {14FBC001-3B5C-4680-BA5B-243AD5065573}
+		{76A4C384-C984-4095-88B2-1814BB8CCD40} = {63DDA443-96C6-4DD8-AB1E-7F0743ACD3A3}
+		{70F15FEC-DF35-4F5B-AE19-47262A1B7732} = {E4B9A81E-D3D0-4C49-BBE1-EF1325AE5293}
+		{F19760CF-F5D6-4A78-9202-164773E9D283} = {232F0A15-CBDB-4961-928C-C4C375F9FC82}
+		{BE4DCBDB-F552-4E27-BBA5-486291BA07E1} = {F19760CF-F5D6-4A78-9202-164773E9D283}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4AF23CB8-B3D7-42A7-B94A-AE2ABDA04F10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AF23CB8-B3D7-42A7-B94A-AE2ABDA04F10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AF23CB8-B3D7-42A7-B94A-AE2ABDA04F10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AF23CB8-B3D7-42A7-B94A-AE2ABDA04F10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76A4C384-C984-4095-88B2-1814BB8CCD40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76A4C384-C984-4095-88B2-1814BB8CCD40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76A4C384-C984-4095-88B2-1814BB8CCD40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76A4C384-C984-4095-88B2-1814BB8CCD40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70F15FEC-DF35-4F5B-AE19-47262A1B7732}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70F15FEC-DF35-4F5B-AE19-47262A1B7732}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70F15FEC-DF35-4F5B-AE19-47262A1B7732}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70F15FEC-DF35-4F5B-AE19-47262A1B7732}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE4DCBDB-F552-4E27-BBA5-486291BA07E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE4DCBDB-F552-4E27-BBA5-486291BA07E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE4DCBDB-F552-4E27-BBA5-486291BA07E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE4DCBDB-F552-4E27-BBA5-486291BA07E1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
