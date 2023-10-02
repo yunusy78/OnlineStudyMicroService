@@ -17,6 +17,7 @@ namespace OnlineStudyIdentityServer
                 new ApiResource("resource_catalog"){Scopes={"catalog_fullpermission"}},
                 new ApiResource("resource_photo_stock"){Scopes={"photo_stock_fullpermission"}},
                 new ApiResource("resource_cart"){Scopes={"cart_fullpermission"}},
+                new ApiResource("resource_discount"){Scopes={"discount_fullpermission"}},
                 new ApiResource(IdentityServerConstants.LocalApi.ScopeName)
                
             };
@@ -35,6 +36,7 @@ namespace OnlineStudyIdentityServer
                 new ApiScope("catalog_fullpermission","Access full catalog API"),
                 new ApiScope("photo_stock_fullpermission","Access full photo stock API"),
                 new ApiScope("cart_fullpermission","Access full cart API"),
+                new ApiScope("discount_fullpermission","Access full discount API"),
                 new ApiScope(IdentityServerConstants.LocalApi.ScopeName),
             };
 
@@ -60,7 +62,7 @@ namespace OnlineStudyIdentityServer
                     AllowOfflineAccess = true,
                     ClientSecrets = {new Secret("secret".Sha256())},
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
-                    AllowedScopes = {"cart_fullpermission",IdentityServerConstants.LocalApi.ScopeName,IdentityServerConstants.StandardScopes.Email,
+                    AllowedScopes = {"cart_fullpermission","discount_fullpermission",IdentityServerConstants.LocalApi.ScopeName,IdentityServerConstants.StandardScopes.Email,
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         IdentityServerConstants.StandardScopes.OfflineAccess,"roles"},
