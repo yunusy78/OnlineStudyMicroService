@@ -20,6 +20,7 @@ namespace OnlineStudyIdentityServer
                 new ApiResource("resource_discount"){Scopes={"discount_fullpermission"}},
                 new ApiResource("resource_order"){Scopes={"order_fullpermission"}},
                 new ApiResource("resource_payment"){Scopes={"payment_fullpermission"}},
+                new ApiResource("resource_gateway"){Scopes={"gateway_fullpermission"}},
                 new ApiResource(IdentityServerConstants.LocalApi.ScopeName)
                
             };
@@ -41,6 +42,7 @@ namespace OnlineStudyIdentityServer
                 new ApiScope("discount_fullpermission","Access full discount API"),
                 new ApiScope("order_fullpermission","Access full order API"),
                 new ApiScope("payment_fullpermission","Access full payment API"),
+                new ApiScope("gateway_fullpermission","Access full gateway API"),
                 new ApiScope(IdentityServerConstants.LocalApi.ScopeName),
             };
 
@@ -54,7 +56,7 @@ namespace OnlineStudyIdentityServer
                     ClientName = "Client",
                     ClientSecrets = {new Secret("secret".Sha256())},
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
-                    AllowedScopes = {"catalog_fullpermission","photo_stock_fullpermission",
+                    AllowedScopes = {"catalog_fullpermission","photo_stock_fullpermission", "gateway_fullpermission",
                         IdentityServerConstants.LocalApi.ScopeName}
                 },
                 // interactive client using code flow + pkce
@@ -66,7 +68,7 @@ namespace OnlineStudyIdentityServer
                     AllowOfflineAccess = true,
                     ClientSecrets = {new Secret("secret".Sha256())},
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
-                    AllowedScopes = {"cart_fullpermission","discount_fullpermission","order_fullpermission","payment_fullpermission",IdentityServerConstants.LocalApi.ScopeName,IdentityServerConstants.StandardScopes.Email,
+                    AllowedScopes = {"cart_fullpermission","discount_fullpermission","order_fullpermission","payment_fullpermission","gateway_fullpermission",IdentityServerConstants.LocalApi.ScopeName,IdentityServerConstants.StandardScopes.Email,
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         IdentityServerConstants.StandardScopes.OfflineAccess,"roles"},
