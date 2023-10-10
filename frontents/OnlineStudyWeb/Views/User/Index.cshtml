@@ -1,0 +1,39 @@
+﻿@model Business.Models.UserViewModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_UserLayout";
+}
+
+<title>User List</title>
+<body>
+<div class="row">
+    <div class="col-md-9">
+        <div class="card">
+            <div class="card-body">
+            <h2>User List</h2>
+                <table>
+                    <tr>
+                        <td>UserName</td>
+                        <td>@Model.UserName</td>
+                        
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td>@Model.Email</td>
+                    </tr>
+                    <tr>
+                        <td>City</td>
+                        <td>@Model.City</td>
+                    </tr>
+                    
+                </table>
+                        </div>
+                    
+                </div>
+        </div>
+    
+</div>
+</body>
+
+
