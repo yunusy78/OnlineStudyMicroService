@@ -8,20 +8,17 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Content Include="..\.dockerignore">
-        <Link>.dockerignore</Link>
-      </Content>
+        <Content Include="..\.dockerignore">
+            <Link>.dockerignore</Link>
+        </Content>
     </ItemGroup>
-
 
     <ItemGroup>
-      <ProjectReference Include="..\Business\Business.csproj" />
+        <ProjectReference Include="..\Business\Business.csproj" />
     </ItemGroup>
 
-
-
-
-
-
+    <ItemGroup>
+        <Folder Include="Views\" />
+    </ItemGroup>
 
 </Project>

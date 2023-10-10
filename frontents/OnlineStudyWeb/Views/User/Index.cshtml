@@ -4,36 +4,40 @@
     ViewBag.Title = "title";
     Layout = "_UserLayout";
 }
-
-<title>User List</title>
-<body>
-<div class="row">
-    <div class="col-md-9">
-        <div class="card">
-            <div class="card-body">
-            <h2>User List</h2>
-                <table>
-                    <tr>
-                        <td>UserName</td>
-                        <td>@Model.UserName</td>
-                        
-                    </tr>
-                    <tr>
-                        <td>Email</td>
-                        <td>@Model.Email</td>
-                    </tr>
-                    <tr>
-                        <td>City</td>
-                        <td>@Model.City</td>
-                    </tr>
-                    
-                </table>
-                        </div>
-                    
-                </div>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body" >
+          <h4 class="card-title">Profile</h4>
+          <table class="table table-striped">
+            <tr>
+              <th>User</th>
+              <td class="py-1">
+                <img src="~/writerTemplate/assets/images/faces-clipart/pic-1.png" alt="image" />
+              </td>
+            </tr>
+            <tr>
+              <th>UserName</th>
+              <td>@Model.UserName</td>
+            </tr>
+            <tr>
+              <th>Email</th>
+              <td>@Model.Email</td>
+            </tr>
+            <tr>
+              <th>City</th>
+              <td>@Model.City</td>
+            </tr>
+          </table>
+          <div class="text-center">
+            <a asp-action="Index" asp-controller="Course" class="btn btn-primary" >My Courses</a>
+              </div>
         </div>
-    
+      </div>
+    </div>
+  </div>
 </div>
-</body>
+
 
 
