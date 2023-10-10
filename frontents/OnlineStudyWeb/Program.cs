@@ -10,10 +10,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 var serviceApiSettings = builder.Configuration.GetSection("ServiceApiSettings").Get<ServiceApiSettings>();
 builder.Services.AddHttpClient<IIdentityService, IdentityManager>();
+builder.Services.AddHttpClient<IClientCredentialTokenService, ClientCredentialTokenManager>();
 builder.Services.AddHttpClient<ICatalogService, CatalogManager>(opt =>
 {
     opt.BaseAddress = new Uri($"{serviceApiSettings!.GatewayBaseUri}/{serviceApiSettings.Catalog.Path}");
-});
+}).AddHttpMessageHandler<ClientCredentialTokenHandler>();
 
 
 builder.Services.AddHttpContextAccessor();
@@ -21,6 +22,8 @@ builder.Services.Configure<ServiceApiSettings>(builder.Configuration.GetSection(
 builder.Services.Configure<ClientSettings>(builder.Configuration.GetSection(nameof(ClientSettings)));
 builder.Services.AddScoped<ISharedIdentity, SharedIdentity>();
 builder.Services.AddScoped<ResourceOwnerPasswordTokenHandler>();
+builder.Services.AddAccessTokenManagement();
+builder.Services.AddScoped<ClientCredentialTokenHandler>();
 builder.Services.AddHttpClient<IUserService, UserManager>(opt =>
 {
     opt.BaseAddress = new Uri(builder.Configuration.GetSection(nameof(ServiceApiSettings)).Get<ServiceApiSettings>()!
