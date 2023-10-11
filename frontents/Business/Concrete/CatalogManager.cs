@@ -10,13 +10,14 @@ namespace Business.Concrete;
 public class CatalogManager : ICatalogService
 {
     private readonly HttpClient _httpClient;
+    private readonly IImageStockService _imageStockService;
     
-    public CatalogManager(HttpClient httpClient)
+    public CatalogManager(HttpClient httpClient, IImageStockService imageStockService)
     {
         _httpClient = httpClient;
+        _imageStockService = imageStockService;
     }
-    
-    
+   
     
     public async Task<List<CourseViewModel>> GetCourseAsync()
     {
@@ -69,6 +70,12 @@ public class CatalogManager : ICatalogService
 
     public async Task<bool> CreateCourseAsync(CreateCourseDto createCourseDto)
     {
+        var imageResult = await _imageStockService.UploadImageCourseAsync(createCourseDto.ImageFormFile);
+        if (imageResult != null)
+        {
+            createCourseDto.CourseImage= imageResult.Url;
+        }
+
         var response = await _httpClient.PostAsJsonAsync("course", createCourseDto);
         if (!response.IsSuccessStatusCode)
         {

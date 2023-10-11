@@ -36,12 +36,52 @@ public class CourseController : Controller
     [HttpPost]
     public async Task<IActionResult> Create(CreateCourseDto course)
     {
-        course.CourseImage = "default.jpg";
+        
         course.CourseCreatedDate = DateTime.Now;
         course.UserId = _sharedIdentity.GetUserId;
         await _catalogService.CreateCourseAsync(course);
         return RedirectToAction("Index");
-       
-       
+        
     }
+
+    public async Task<IActionResult> Update(string id)
+    {
+        var course = await _catalogService.GetCourseByIdAsync(id);
+        var categories = await _catalogService.GetCategoryAsync();
+        ViewBag.Category = new SelectList(categories, "CategoryId", "CategoryName", course.CategoryId);
+        if (course == null)
+        {
+            return NotFound();
+            
+        }
+        
+        UpdateCourseDto updateCourseDto = new UpdateCourseDto
+        {
+            CourseId = course.CourseId,
+            CourseName = course.CourseName,
+            CoursePrice = course.CoursePrice,
+            CourseDescription = course.CourseDescription,
+            Feature = course.Feature,
+            CourseImage = course.CourseImage,
+            CategoryId = course.CategoryId,
+            UserId = course.UserId
+        };
+        return View(updateCourseDto);
+        
+    }
+    
+    [HttpPost]
+    public async Task<IActionResult> Update(UpdateCourseDto updateCourseDto)
+    {
+        await _catalogService.UpdateCourseAsync(updateCourseDto);
+        return RedirectToAction("Index");
+    }
+    
+    public async Task<IActionResult> Delete(string id)
+    {
+        await _catalogService.DeleteCourseAsync(id);
+        return RedirectToAction("Index");
+    }
+    
+    
 }
