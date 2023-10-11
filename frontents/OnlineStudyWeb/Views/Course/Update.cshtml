@@ -1,8 +1,8 @@
-﻿@model Business.Dtos.Catalog.Course.CreateCourseDto
+﻿@model Business.Dtos.Catalog.Course.UpdateCourseDto
 
 @{
     ViewBag.Title = "title";
-    Layout = "_UserLayout";
+    Layout = "_Layout";
 }
 
 <div class="container">
@@ -10,9 +10,13 @@
         <div class="col-lg-6 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title text-center" >Create Course</h4> <!-- Form başlığı -->
-                    <form asp-controller="Course" asp-action="Create" method="post" enctype="multipart/form-data"> <!-- Form -->
+                    <h4 class="card-title text-center" >Update Course</h4> <!-- Form başlığı -->
+                    <form asp-controller="Course" asp-action="Update" method="post" enctype="multipart/form-data"> <!-- Form -->
                         <div asp-validation-summary="ModelOnly"></div>
+                        
+                        <input type="hidden" asp-for="CourseId"></input>
+                        <input type="hidden" asp-for="UserId"></input>
+                        <input type="hidden" asp-for="CourseImage"></input>
                         <!-- Course Name -->
                         <div class="mb-3">
                             <label  class="form-label">Course Name:</label>
@@ -37,16 +41,11 @@
                         <div class="mb-3">
                             <label  class="form-label" asp-for="CategoryId">Category:</label>
                             <select asp-for="CategoryId" class="form-control" asp-items="@ViewBag.Category">
-                                <option value="">Select Category</option>
                             </select>
                             <span class="text-danger" asp-validation-for="CategoryId"></span>
                         </div>
-                        <div class="mb-3">
-                            <label asp-for="ImageFormFile" class="form-label">Course Image:</label>
-                            <input type="file" class="form-control" asp-for="ImageFormFile">
-                        </div>
-                        <div class="text-center">
-                        <button type="submit" class="btn btn-primary">Create</button> 
+                         <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Update</button> 
                           </div>
                     </form>
                 </div>

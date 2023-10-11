@@ -26,7 +26,7 @@ namespace PhotoStockMicroServices.Controllers
            
            using var stream = new FileStream(path,FileMode.Create);
            await file.CopyToAsync(stream,cancellationToken);
-           var returnPath = "Images/" + file.FileName;
+           var returnPath = file.FileName;
            
            ImageDto imageDto = new ImageDto()
            {

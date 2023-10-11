@@ -11,10 +11,15 @@ var builder = WebApplication.CreateBuilder(args);
 var serviceApiSettings = builder.Configuration.GetSection("ServiceApiSettings").Get<ServiceApiSettings>();
 builder.Services.AddHttpClient<IIdentityService, IdentityManager>();
 builder.Services.AddHttpClient<IClientCredentialTokenService, ClientCredentialTokenManager>();
+builder.Services.AddHttpClient<IImageStockService, ImageStockManager>(opt =>
+{
+    opt.BaseAddress = new Uri($"{serviceApiSettings!.GatewayBaseUri}/{serviceApiSettings.PhotoStock.Path}");
+}).AddHttpMessageHandler<ClientCredentialTokenHandler>();
 builder.Services.AddHttpClient<ICatalogService, CatalogManager>(opt =>
 {
     opt.BaseAddress = new Uri($"{serviceApiSettings!.GatewayBaseUri}/{serviceApiSettings.Catalog.Path}");
 }).AddHttpMessageHandler<ClientCredentialTokenHandler>();
+
 
 
 builder.Services.AddHttpContextAccessor();

@@ -1,4 +1,5 @@
 ﻿using Business.Models.Catalog;
+using Microsoft.AspNetCore.Http;
 
 namespace Business.Dtos.Catalog.Course;
 
@@ -13,4 +14,7 @@ public class CreateCourseDto
     public DateTime CourseCreatedDate { get; set; }
     public string CategoryId { get; set; }
     public FeatureViewModel Feature { get; set; }
+    
+    public IFormFile ImageFormFile { get; set; }
+    
 }
