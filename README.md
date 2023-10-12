@@ -90,7 +90,7 @@ Feel free to copy and paste this extended template into your README.md file and 
 
 ![MVC](frontents/OnlineStudyWeb/wwwroot/Project/mvc.png)
 
-![Database](frontents/OnlineStudyWeb/wwwroot/Project/databaseimg.png)
+![Database](frontents/OnlineStudyWeb/wwwroot/Project/database.png)
 
 ![Microservices](frontents/OnlineStudyWeb/wwwroot/Project/project.png)
 
