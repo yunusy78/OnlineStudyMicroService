@@ -2,118 +2,39 @@
     ViewData["Title"] = "Home Page";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
-
+@model List<Business.Models.Catalog.CourseViewModel>
  <div class="w3l-index-block4 pb-5">
-        <div class="features-bg pb-lg-5 pt-lg-4 py-4">
-            <div class="container">
-                <div class="title-main text-center mx-auto mb-md-4">
-                    <h3 class="title-big">Our Special Courses</h3>
-                    <p class="sub-title mt-2">Cum doctus civibus efficiantur in imperdiet deterruisset. Cras efficitur,
-                        metus
-                        gravida suscipit cursus, dui diam pre lorem id
-                        lectus.</p>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 features15-col-text">
-                        <a href="~/starter/courses.html" class="d-flex feature-unit align-items-center">
-                            <div class="col-4">
-                                <div class="features15-info">
-                                    <img class="img-fluid" src="~/starter/assets/images/c2.png" alt=" ">
-                                </div>
-                            </div>
-                            <div class="col-8">
-                                <div class="features15-para">
-                                    <h6>$100</h6>
-                                    <h4>Learn Code</h4>
-                                    <p>Ras effic itur metusga via suscipit</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-md-6 features15-col-text">
-                        <a href="courses.html" class="d-flex feature-unit align-items-center active">
-                            <div class="col-4">
-                                <div class="features15-info">
-                                    <img class="img-fluid" src="~/starter/assets/images/c3.png" alt=" ">
-                                </div>
-                            </div>
-                            <div class="col-8">
-                                <div class="features15-para">
-                                    <h6>Free</h6>
-                                    <h4>Science</h4>
-                                    <p>Ras effic itur metusga via suscipit</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-md-6 features15-col-text">
-                        <a href="courses.html" class="d-flex feature-unit align-items-center">
-                            <div class="col-4">
-                                <div class="features15-info">
-                                    <img class="img-fluid" src="~/starter/assets/images/c4.png" alt=" ">
-                                </div>
-                            </div>
-                            <div class="col-8">
-                                <div class="features15-para">
-                                    <h6>$100</h6>
-                                    <h4>Mathematics</h4>
-                                    <p>Ras effic itur metusga via suscipit</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-md-6 features15-col-text">
-                        <a href="~/starter/courses.html" class="d-flex feature-unit align-items-center">
-                            <div class="col-4">
-                                <div class="features15-info">
-                                    <img class="img-fluid" src="~/starter/assets/images/c5.png" alt=" ">
-                                </div>
-                            </div>
-                            <div class="col-8">
-                                <div class="features15-para">
-                                    <h6>Free</h6>
-                                    <h4>Ww Recognize</h4>
-                                    <p>Ras effic itur metusga via suscipit</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-md-6 features15-col-text">
-                        <a href="~/starter/courses.html" class="d-flex feature-unit align-items-center">
-                            <div class="col-4">
-                                <div class="features15-info">
-                                    <img class="img-fluid" src="~/starter/assets/images/c6.png" alt=" ">
-                                </div>
-                            </div>
-                            <div class="col-8">
-                                <div class="features15-para">
-                                    <h6>$100</h6>
-                                    <h4>Online Learning</h4>
-                                    <p>Ras effic itur metusga via suscipit</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-md-6 features15-col-text">
-                        <a href="~/starter/courses.html" class="d-flex feature-unit align-items-center">
-                            <div class="col-4">
-                                <div class="features15-info">
-                                    <img class="img-fluid" src="~/starter/assets/images/c1.png" alt=" ">
-                                </div>
-                            </div>
-                            <div class="col-8">
-                                <div class="features15-para">
-                                    <h6>$100</h6>
-                                    <h4>Astrology</h4>
-                                    <p>Ras effic itur metusga via suscipit</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+   <div class="features-bg pb-lg-5 pt-lg-4 py-4">
+       <div class="container">
+           <div class="title-main text-center mx-auto mb-md-4">
+               <h3 class="title-big">Discover Our Special Courses</h3>
+               <p class="sub-title mt-2">Unlock your potential with our expert-led specialized courses. Join us to excel in your field and transform your future.</p>
+           </div>
+           <div class="row">
+               @foreach(var item in Model)
+               {
+                   <div class="col-lg-4 col-md-6 features15-col-text">
+                       <div class="d-flex feature-unit align-items-center">
+                           <div class="col-4">
+                               <div class="features15-info">
+                                   <img class="img-fluid full-width" src="@item.StockImageUrl" alt=" ">
+                               </div>
+                           </div>
+                           <div class="col-8">
+                               <div class="features15-para">
+                                   <h6>NOK @item.CoursePrice</h6>
+                                   <h4>@item.CourseName</h4>
+                                   <p style="font-size: 10pt;">@item.CourseShortDescription</p>
+                                   <a asp-action="CourseDetail" asp-controller="Home" asp-route-id="@item.CourseId" class="btn btn-secondary">Details</a>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               }
+           </div>
+       </div>
+   </div>
+</div>
     <!-- //banner bottom section -->
     <!-- middle section -->
     <section class="w3l-servicesblock py-md-5 py-4">

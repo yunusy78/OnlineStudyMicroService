@@ -37,8 +37,8 @@ namespace PhotoStockMicroServices.Controllers
            
         }
         
-        [HttpGet]
         
+        [HttpDelete]
         public IActionResult Delete(string fileNameUrl)
         {
             var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images", fileNameUrl);
