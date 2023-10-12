@@ -88,10 +88,12 @@ Feel free to copy and paste this extended template into your README.md file and 
 
 ## Images
 
-![MVC](resim_yolu.png)
+![MVC](frontents/OnlineStudyWeb/wwwroot/Project/mvc.png)
 
-![Database](resim_yolu.png)
+![Database](frontents/OnlineStudyWeb/wwwroot/Project/databaseimg.png)
 
-![Microservices](resim_yolu.png)
+![Microservices](frontents/OnlineStudyWeb/wwwroot/Project/project.png)
 
-![DDD](resim_yolu.png)
+![DDD](frontents/OnlineStudyWeb/wwwroot/Project/ddd.png)
+
+![IdentityServer](frontents/OnlineStudyWeb/wwwroot/Project/identityserver.png)
