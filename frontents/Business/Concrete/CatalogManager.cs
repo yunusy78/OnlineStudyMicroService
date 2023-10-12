@@ -1,6 +1,7 @@
 ﻿using System.Net.Http.Json;
 using Business.Abstract;
 using Business.Dtos.Catalog.Course;
+using Business.Helpers;
 using Business.Models;
 using Business.Models.Catalog;
 using OnlineStudyShared;
@@ -11,13 +12,15 @@ public class CatalogManager : ICatalogService
 {
     private readonly HttpClient _httpClient;
     private readonly IImageStockService _imageStockService;
+    private readonly PhotoStockHelper _photoStockHelper;
     
-    public CatalogManager(HttpClient httpClient, IImageStockService imageStockService)
+    public CatalogManager(HttpClient httpClient, IImageStockService imageStockService ,PhotoStockHelper photoStockHelper)
     {
         _httpClient = httpClient;
         _imageStockService = imageStockService;
+        _photoStockHelper = photoStockHelper;
     }
-   
+    
     
     public async Task<List<CourseViewModel>> GetCourseAsync()
     {
@@ -28,6 +31,12 @@ public class CatalogManager : ICatalogService
         }
         
         var responseSuccess = await response.Content.ReadFromJsonAsync<ResponseDto<List<CourseViewModel>>>();
+        
+        responseSuccess!.Data.ForEach(x =>
+        {
+            x.StockImageUrl = _photoStockHelper.GetPhotoStockUrl(x.CourseImage);
+        });
+        
         return responseSuccess!.Data;
     }
     
@@ -41,6 +50,11 @@ public class CatalogManager : ICatalogService
         }
         
         var responseSuccess = await response.Content.ReadFromJsonAsync<ResponseDto<List<CourseViewModel>>>();
+        
+        responseSuccess!.Data.ForEach(x =>
+        {
+            x.StockImageUrl = _photoStockHelper.GetPhotoStockUrl(x.CourseImage);
+        });
         return responseSuccess!.Data;
     }
 
@@ -65,6 +79,7 @@ public class CatalogManager : ICatalogService
         }
         
         var responseSuccess = await response.Content.ReadFromJsonAsync<ResponseDto<CourseViewModel>>();
+        responseSuccess!.Data.StockImageUrl= _photoStockHelper.GetPhotoStockUrl(responseSuccess!.Data.CourseImage);
         return responseSuccess!.Data;
     }
 
@@ -87,6 +102,14 @@ public class CatalogManager : ICatalogService
 
     public async Task<bool> UpdateCourseAsync(UpdateCourseDto updateCourseDto)
     {
+        
+        var imageResult = await _imageStockService.UploadImageCourseAsync(updateCourseDto.ImageFormFile);
+        if (imageResult != null)
+        {
+            _imageStockService.DeleteImageCourseAsync(updateCourseDto.CourseImage);
+            updateCourseDto.CourseImage= imageResult.Url;
+        }
+        
         var response = await _httpClient.PutAsJsonAsync("course", updateCourseDto);
         if (!response.IsSuccessStatusCode)
         {

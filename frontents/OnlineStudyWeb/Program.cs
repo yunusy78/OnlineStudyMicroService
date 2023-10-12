@@ -1,6 +1,7 @@
 using Business.Abstract;
 using Business.Concrete;
 using Business.Handler;
+using Business.Helpers;
 using Business.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using OnlineStudyShared.Services;
@@ -27,6 +28,7 @@ builder.Services.Configure<ServiceApiSettings>(builder.Configuration.GetSection(
 builder.Services.Configure<ClientSettings>(builder.Configuration.GetSection(nameof(ClientSettings)));
 builder.Services.AddScoped<ISharedIdentity, SharedIdentity>();
 builder.Services.AddScoped<ResourceOwnerPasswordTokenHandler>();
+builder.Services.AddSingleton<PhotoStockHelper>();
 builder.Services.AddAccessTokenManagement();
 builder.Services.AddScoped<ClientCredentialTokenHandler>();
 builder.Services.AddHttpClient<IUserService, UserManager>(opt =>

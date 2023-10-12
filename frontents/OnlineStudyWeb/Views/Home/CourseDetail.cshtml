@@ -1,0 +1,27 @@
+﻿@model Business.Models.Catalog.CourseViewModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_UserLayout";
+}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="course-details">
+                        <h1 class="course-title">@Model.CourseName</h1>
+                        <p class="course-description">@Model.CourseDescription</p>
+                        <img class="course-image" src="@Model.StockImageUrl" alt="Course Image">
+                        <p class="course-price">Price: NOK @Model.CoursePrice</p>
+                        
+                        <form method="post" action="/Cart/AddToCart/@Model.CourseId">
+                            <button type="submit" class="btn btn-primary">Add to Cart</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
