@@ -22,7 +22,7 @@
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul class="navbar-nav ml-lg-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="~/starter/index.html">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="/Home/Index">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="~/starter/about.html">About</a>
@@ -61,8 +61,8 @@
                                             {
                                                 <ul>
                                                     <li><h6 class="about-block-3">Hei @User.Identity.Name</h6></li>
-                                                    <a asp-area="" asp-controller="User" asp-action="Index"
-                                                       class="btn btn-outline-success">Profile</a>
+                                                    
+                                                    <a asp-area="Instructor" asp-controller="Profile" asp-action="Index" class="btn btn-outline-success">Profile</a>
                                                     
                                                     <a asp-area="" asp-controller="Auth" asp-action="SignUp" class="btn btn-outline-warning"><i class="fas fa-sign-out-alt"></i> Logout</a>
                                                     

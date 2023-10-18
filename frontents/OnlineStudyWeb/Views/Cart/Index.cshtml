@@ -1,0 +1,106 @@
+﻿@model Business.Models.Cart.CartViewModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_UserLayout";
+}
+<div class="inner-banner">
+        <section class="w3l-breadcrumb">
+            <div class="container">
+                <h4 class="inner-text-title font-weight-bold mb-sm-3 mb-2">Online Courses</h4>
+                <ul class="breadcrumbs-custom-path">
+                    <li><a href="/Home/Index">Home</a></li>
+                    <li class="active"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span>Cart</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+<form method="post">
+	<br />
+	<div class="container">
+		<div class="card">
+			<div class="card-header bg-dark text-light ml-0">
+				<div class="row">
+					<div class="col-6  pt-2">
+						<i class="fa fa-shopping-cart"></i> &nbsp;
+						OnlineStudy Cart
+					</div>
+					<div class="col-6 text-end">
+						<a  asp-controller="Home" asp-area="" asp-action="Index" class="btn btn-outline-info btn-sm">Continue searching for courses</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="card-body">
+				@if(Model !=null && Model.CartItems.Any())
+				{
+				@foreach (var item in Model.CartItems)
+				{
+					<div class="row">
+						<div class="d-none d-lg-block col-lg-1 text-center py-2">
+							<img src="@item.PictureUrl" class="rounded" width="100%"/>
+						</div>
+						<div class="col-12 col-lg-6 pt-md-3">
+							<h5><strong>@item.CourseName</strong></h5>
+						</div>
+						<div class="col-12  col-lg-5 text-center row">
+							<div class="col-4 text-md-right pt-4">
+								<h6><span class="text-info"> NOK </span>
+									<strong>@item.GetCurrentPrice.ToString("0")
+										<span class="text-muted">&nbsp;x&nbsp;</span>@item.Quantity </strong></h6>
+							</div>
+							<div class="col-6 col-sm-4 col-lg-6 pt-2">
+								<div class="w-75 btn-group" role="group">&nbsp;
+									<a asp-action="RemoveCartItem" asp-controller="Cart" asp-area="" asp-route-cartId="@item.CourseId" class="btn btn-danger">
+										<i class="fa fa-trash"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<hr/>
+				}
+					@if (Model.HasDiscount)
+					{
+						<div class="alert alert-success">You have % @Model.DiscountRate!.Value discount applied!</div>
+					}
+					
+					<div class="row">
+                        <div class="col-12 col-md-6 offset-md-6 col-lg-4 offset-lg-8 pr-4">
+                            <ul class="list-group">
+                                <li class="list-group-item d-flex justify-content-between bg-light">
+                                    <span class="text-info">@if (Model.HasDiscount)
+                                                                {
+                                                                    <strong>After Discount Price NOK</strong>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <em>NOK</em>
+                                                                }</span>
+                                    <strong class="text-info">@Model.TotalPrice.ToString("0.00")</strong>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+					
+					}
+				 else
+                    {
+	                    <div class="alert alert-info">Your cart is empty.</div>
+                        
+                    }
+				
+			</div>
+
+			<div class="card-footer">
+				<div class="card-footer row">
+					<div class="col-sm-12 col-lg-4 col-md-6 offset-lg-8 offset-md-6 ">
+						<a asp-action="" class="btn btn-success form-control">Checkout</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>

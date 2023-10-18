@@ -31,6 +31,7 @@ namespace CartMicroServices.Controllers
         [HttpPost]
         public async Task<IActionResult> SaveOrUpdateCart(CartDto cartDto)
         {
+            cartDto.UserId = _sharedIdentity.GetUserId;
             var response = await _cartService.SaveOrUpdateCart(cartDto);
             return CreateActionResultInstance(response);
         }

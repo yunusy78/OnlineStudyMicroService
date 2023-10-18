@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using Business.Abstract;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using OnlineStudyWeb.Models;
 
@@ -38,6 +39,12 @@ public class HomeController : Controller
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
+        var exceptionHandlerPathFeature =
+            HttpContext.Features.Get<IExceptionHandlerPathFeature>();
+        if (exceptionHandlerPathFeature != null && exceptionHandlerPathFeature.Error is UnauthorizedAccessException)
+        {
+            return RedirectToAction("SignUp", "Auth");
+        }
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }

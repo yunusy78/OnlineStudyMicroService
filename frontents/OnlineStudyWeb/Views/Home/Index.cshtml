@@ -3,193 +3,54 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 @model List<Business.Models.Catalog.CourseViewModel>
- <div class="w3l-index-block4 pb-5">
-   <div class="features-bg pb-lg-5 pt-lg-4 py-4">
-       <div class="container">
-           <div class="title-main text-center mx-auto mb-md-4">
-               <h3 class="title-big">Discover Our Special Courses</h3>
-               <p class="sub-title mt-2">Unlock your potential with our expert-led specialized courses. Join us to excel in your field and transform your future.</p>
-           </div>
-           <div class="row">
-               @foreach(var item in Model)
-               {
-                   <div class="col-lg-4 col-md-6 features15-col-text">
-                       <div class="d-flex feature-unit align-items-center">
-                           <div class="col-4">
-                               <div class="features15-info">
-                                   <img class="img-fluid full-width" src="@item.StockImageUrl" alt=" ">
-                               </div>
-                           </div>
-                           <div class="col-8">
-                               <div class="features15-para">
-                                   <h6>NOK @item.CoursePrice</h6>
-                                   <h4>@item.CourseName</h4>
-                                   <p style="font-size: 10pt;">@item.CourseShortDescription</p>
-                                   <a asp-action="CourseDetail" asp-controller="Home" asp-route-id="@item.CourseId" class="btn btn-secondary">Details</a>
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-               }
-           </div>
-       </div>
-   </div>
+
+@await Html.PartialAsync("~/Views/HomeIndexPartial/HeaderPartial.cshtml")
+
+
+<div class="w3l-index-block4 pb-5">
+    <div class="features-bg pb-lg-5 pt-lg-4 py-4">
+        <div class="container">
+            <div class="title-main text-center mx-auto mb-md-4">
+                <h3 class="title-big">Discover Our Special Courses</h3>
+                <p class="sub-title mt-2">Unlock your potential with our expert-led specialized courses. Join us to excel in your field and transform your future.</p>
+            </div>
+            <div class="row">
+                @foreach(var item in Model)
+                {
+                    <div class="col-lg-4 col-md-6 features15-col-text">
+                        <div class="d-flex feature-unit align-items-center">
+                            <div class="col-4">
+                                <div class="features15-info">
+                                    <img style="width: 105px; height: 175px;" src="@item.StockImageUrl" alt=" ">
+                                </div>
+                            </div>
+                            <div class="col-8">
+                                <div class="features15-para">
+                                    <h6>NOK @item.CoursePrice</h6>
+                                    <h4>@item.CourseName</h4>
+                                    <p style="font-size: 10pt;">@item.CourseShortDescription</p>
+                                    <br/>
+                                    <div style="text-align: center">
+                                        <a asp-action="CourseDetail" asp-controller="Home" asp-route-id="@item.CourseId" class="btn btn-secondary">Details</a>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
 </div>
-    <!-- //banner bottom section -->
-    <!-- middle section -->
-    <section class="w3l-servicesblock py-md-5 py-4">
-        <div class="container pb-2">
-            <div class="row align-items-center">
-                <div class="col-lg-6 left-wthree-img pr-lg-4">
-                    <img src="~/starter/assets/images/img1.jpg" alt="" class="img-fluid">
-                </div>
-                <div class="col-lg-6 about-right-faq align-self mb-lg-0 mb-5 pl-xl-5">
-                    <h6>About Us</h6>
-                    <h3 class="title-big mb-3">We provide the best <br>Online Courses</h3>
-                    <p class="">Lorem ipsum viverra feugiat. Pellen tesque libero ut justo,
-                        ultrices in ligula. Semper at tempufddfel. Lorem ipsum dolor sit amet.
-                        Lorem ipsum viverra feugiat.</p>
-                    <div class="row mt-lg-5 mt-4 mb-2">
-                        <div class="col-sm-6">
-                            <div class="d-flex align-items-center left-insp-art">
-                                <img src="~/starter/assets/images/book.png" alt="" class="img-fluid mr-3">
-                                <h6>Enhance your Skills</h6>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 mt-sm-0 mt-4">
-                            <div class="d-flex align-items-center left-insp-art">
-                                <img src="~/starter/assets/images/book2.png" alt="" class="img-fluid mr-3">
-                                <h6>Start Online Learning</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <a class="btn button-style button-2 mt-lg-5 mt-4" href="~/starter/about.html">Read More<i
-                            class="fa fa-angle-double-right" aria-hidden="true"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- //middle section -->
-    <!-- teams 32 block -->
-    <section class="w3l-teams-32-main py-5">
-        <div class="teams-32 py-md-4">
-            <div class="container">
-                <div class="title-main text-center mx-auto mb-4">
-                    <h3 class="title-big">Our Expert Teachers</h3>
-                    <p class="sub-title mt-2">Cum doctus civibus efficiantur in imperdiet deterruisset. Cras efficitur,
-                        metus
-                        gravida suscipit cursus, dui diam pre lorem id
-                        lectus.</p>
-                </div>
-                <div class="row main-contteam-32 mt-sm-5 pt-lg-2">
-                    <div class="col-lg-3 col-6 team-main-19">
-                        <div class="column-19">
-                            <a href="#team"><img class="img-fluid" src="~/starter/assets/images/team1.jpg" alt=" "></a>
-                        </div>
-                        <div class="right-team-9">
-                            <h6><a href="#team" class="title-team-32">Chris Tina</a></h6>
-                            <p class="sm-text-32">Web Designer</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-6 team-main-19">
-                        <div class="column-19">
-                            <a href="#team"><img class="img-fluid" src="~/starter/assets/images/team2.jpg" alt=" "></a>
-                        </div>
-                        <div class="right-team-9">
-                            <h6><a href="#team" class="title-team-32">Diego Mota</a></h6>
-                            <p class="sm-text-32">CSS, HTML</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-6 team-main-19">
-                        <div class="column-19">
-                            <a href="#team"><img class="img-fluid" src="~/starter/assets/images/team3.jpg" alt=" "></a>
-                        </div>
-                        <div class="right-team-9">
-                            <h6><a href="#team" class="title-team-32">Anton Bone</a></h6>
-                            <p class="sm-text-32">UI/UX Designer</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-6 team-main-19">
-                        <div class="column-19">
-                            <a href="#team"><img class="img-fluid" src="~/starter/assets/images/team4.jpg" alt=" "></a>
-                        </div>
-                        <div class="right-team-9">
-                            <h6><a href="#team" class="title-team-32">Neoye Achi</a></h6>
-                            <p class="sm-text-32">Web Developer</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- //teams 32 block -->
+
+
+
+    @await Html.PartialAsync("~/Views/HomeIndexPartial/AboutUsPartial.cshtml")
+    
+    @await Html.PartialAsync("~/Views/HomeIndexPartial/TeachersPartial.cshtml")
+
     <!-- testimonials -->
-    <section class="w3l-companies-hny-6 position-relative">
-        <div class="cusrtomer-layout py-5">
-            <div class="container py-md-4 py-3">
-                <div class="title-heading-w3 text-center mx-auto">
-                    <h3 class="title-big">What Our People Say</h3>
-                </div>
-                <div id="owl-demo1" class="owl-carousel owl-theme mt-5">
-                    <div class="item">
-                        <div class="testimonial-content">
-                            <div class="testimonial">
-                                <div class="testi-des">
-                                    <div class="test-img"><img src="~/starter/assets/images/testi2.jpg" class="img-fluid" alt="/">
-                                    </div>
-                                    <div class="peopl">
-                                        <h3>Jenna John</h3>
-                                        <p class="indentity">Washington</p>
-                                    </div>
-                                </div>
-                                <blockquote>
-                                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-                                        doloremque laudantium, totam rem aperiam.</p>
-                                </blockquote>
-                                <quote></quote>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="testimonial-content">
-                            <div class="testimonial">
-                                <div class="testi-des">
-                                    <div class="test-img"><img src="~/starter/assets/images/testi1.jpg" class="img-fluid" alt="/">
-                                    </div>
-                                    <div class="peopl">
-                                        <h3>Theo Hall</h3>
-                                        <p class="indentity">Washington</p>
-                                    </div>
-                                </div>
-                                <blockquote>
-                                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-                                        doloremque laudantium, totam rem aperiam.</p>
-                                </blockquote>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="testimonial-content">
-                            <div class="testimonial">
-                                <div class="testi-des">
-                                    <div class="test-img"><img src="~/starter/assets/images/testi3.jpg" class="img-fluid" alt="/">
-                                    </div>
-                                    <div class="peopl">
-                                        <h3>Linda Carini</h3>
-                                        <p class="indentity">Washington</p>
-                                    </div>
-                                </div>
-                                <blockquote>
-                                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-                                        doloremque laudantium, totam rem aperiam,.</p>
-                                </blockquote>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="quote-special">
-                <i class="fa fa-quote-left" aria-hidden="true"></i>
-            </div>
-        </div>
-    </section>
+    @await Html.PartialAsync("~/Views/HomeIndexPartial/TestimonialsPartial.cshtml")
+
+    @await Html.PartialAsync("~/Views/HomeIndexPartial/ArticlesPartial.cshtml")

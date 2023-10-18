@@ -9,6 +9,8 @@ public class ServiceApiSettings
     public ServiceApi Catalog { get; set; }
     public ServiceApi PhotoStock { get; set; }
     
+    public ServiceApi Cart { get; set; }
+    
     
 }
 

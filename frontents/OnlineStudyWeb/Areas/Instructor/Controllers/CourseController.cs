@@ -1,12 +1,12 @@
 ﻿using Business.Abstract;
 using Business.Dtos.Catalog.Course;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using OnlineStudyShared.Services;
 
-namespace OnlineStudyWeb.Controllers;
-[Authorize]
+namespace OnlineStudyWeb.Areas.Instructor.Controllers;
+
+[Area("Instructor")]
 public class CourseController : Controller
 {
     private readonly ICatalogService _catalogService;
@@ -82,6 +82,4 @@ public class CourseController : Controller
         await _catalogService.DeleteCourseAsync(id);
         return RedirectToAction("Index");
     }
-    
-    
 }
