@@ -1,14 +1,13 @@
 ﻿using Business.Abstract;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace OnlineStudyWeb.Controllers;
-
-public class UserController : Controller
+namespace OnlineStudyWeb.Areas.Instructor.Controllers;
+[Area("Instructor")]
+public class ProfileController : Controller
 {
     private readonly IUserService _userService;
     
-    public UserController(IUserService userService)
+    public ProfileController(IUserService userService)
     {
         _userService = userService;
     }
@@ -19,4 +18,5 @@ public class UserController : Controller
         var result = await _userService.GetUser();
         return View(result);
     }
+    
 }

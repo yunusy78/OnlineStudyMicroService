@@ -1,5 +1,6 @@
 using Business.Abstract;
 using Business.Concrete;
+using Business.Extensions;
 using Business.Handler;
 using Business.Helpers;
 using Business.Models;
@@ -9,18 +10,9 @@ using OnlineStudyShared.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var serviceApiSettings = builder.Configuration.GetSection("ServiceApiSettings").Get<ServiceApiSettings>();
+
 builder.Services.AddHttpClient<IIdentityService, IdentityManager>();
 builder.Services.AddHttpClient<IClientCredentialTokenService, ClientCredentialTokenManager>();
-builder.Services.AddHttpClient<IImageStockService, ImageStockManager>(opt =>
-{
-    opt.BaseAddress = new Uri($"{serviceApiSettings!.GatewayBaseUri}/{serviceApiSettings.PhotoStock.Path}");
-}).AddHttpMessageHandler<ClientCredentialTokenHandler>();
-builder.Services.AddHttpClient<ICatalogService, CatalogManager>(opt =>
-{
-    opt.BaseAddress = new Uri($"{serviceApiSettings!.GatewayBaseUri}/{serviceApiSettings.Catalog.Path}");
-}).AddHttpMessageHandler<ClientCredentialTokenHandler>();
-
 
 
 builder.Services.AddHttpContextAccessor();
@@ -31,12 +23,8 @@ builder.Services.AddScoped<ResourceOwnerPasswordTokenHandler>();
 builder.Services.AddSingleton<PhotoStockHelper>();
 builder.Services.AddAccessTokenManagement();
 builder.Services.AddScoped<ClientCredentialTokenHandler>();
-builder.Services.AddHttpClient<IUserService, UserManager>(opt =>
-{
-    opt.BaseAddress = new Uri(builder.Configuration.GetSection(nameof(ServiceApiSettings)).Get<ServiceApiSettings>()!
-        .IdentityBaseUri);
-}).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
 
+builder.Services.AddHttpClientServices(builder.Configuration);
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
 {
@@ -56,6 +44,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
@@ -63,6 +52,13 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name : "areas",
+        pattern : "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+    );
+});
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

@@ -4,24 +4,45 @@
     ViewBag.Title = "title";
     Layout = "_UserLayout";
 }
+<div class="inner-banner">
+        <section class="w3l-breadcrumb">
+            <div class="container">
+                <h4 class="inner-text-title font-weight-bold mb-sm-3 mb-2">Online Courses</h4>
+                <ul class="breadcrumbs-custom-path">
+                    <li><a href="/Home/Index">Home</a></li>
+                    <li class="active"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span>Course Details</li>
+                </ul>
+            </div>
+        </section>
+    </div>
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-lg-8 grid-margin stretch-card">
+        <div class="col-lg-6 grid-margin stretch-card">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body" style="text-align: center">
                     <div class="course-details">
-                        <h1 class="course-title">@Model.CourseName</h1>
-                        <p class="course-description">@Model.CourseDescription</p>
+                        <h3 class="course-title" style="color: red">@Model.CourseName</h3>
+                        <br/>
+                        <p class="course-description" style="color: mediumblue">@Model.CourseDescription</p>
+                        <br/>
                         <img class="course-image" src="@Model.StockImageUrl" alt="Course Image">
-                        <p class="course-price">Price: NOK @Model.CoursePrice</p>
-                        
-                        <form method="post" action="/Cart/AddToCart/@Model.CourseId">
-                            <button type="submit" class="btn btn-primary">Add to Cart</button>
-                        </form>
+                        <br/>
+                        <br/>
+                        <p class="course-price" style="color:goldenrod">Price: NOK @Model.CoursePrice</p>
+                        <br/>
+                        <a asp-controller="Cart" asp-action="AddToCart" asp-route-courseId="@Model.CourseId" class="btn btn-outline-primary"><i class="fa fa-shopping-cart"></i> Add Cart</a>
+                        <br/>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
