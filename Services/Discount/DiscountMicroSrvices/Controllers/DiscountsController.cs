@@ -58,7 +58,8 @@ namespace DiscountMicroSrvices.Controllers
         [HttpGet("GetByUser/{code}")]
         public async Task<IActionResult> GetByCodeAndUserId(string code)
         {
-            var response = await _discountService.GetByCodeAndUserAsync(code, _sharedIdentity.GetUserId);
+            var userid = _sharedIdentity.GetUserId;
+            var response = await _discountService.GetByCodeAndUserAsync(code, userid);
             return CreateActionResultInstance(response);
         }
     }

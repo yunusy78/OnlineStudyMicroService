@@ -12,4 +12,6 @@ public class SharedIdentity : ISharedIdentity
     }
     
     public string GetUserId => _httpContextAccessor.HttpContext.User.FindFirst("sub")?.Value;
+    
+    public string Email => _httpContextAccessor.HttpContext.User.FindFirst("email")?.Value;
 }

@@ -11,6 +11,7 @@
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.0" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.11" />
         <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.10" />
+        <PackageReference Include="Stripe.net" Version="43.1.0-beta.1" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
     </ItemGroup>
 
@@ -21,11 +22,11 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Dtos\" />
+      <ProjectReference Include="..\..\..\Shared\OnlineStudyShared\OnlineStudyShared.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\..\Shared\OnlineStudyShared\OnlineStudyShared.csproj" />
+      <Folder Include="Model\" />
     </ItemGroup>
 
 </Project>

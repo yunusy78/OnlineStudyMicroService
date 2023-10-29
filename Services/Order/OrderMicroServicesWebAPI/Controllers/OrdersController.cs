@@ -24,7 +24,6 @@ namespace OrderMicroServicesWebAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateOrder(CreateOrderCommand createOrderCommand)
         {
-            createOrderCommand.BuyerId = _sharedIdentity.GetUserId;
             var response = await _mediator.Send(createOrderCommand);
             return CreateActionResultInstance(response);
         }

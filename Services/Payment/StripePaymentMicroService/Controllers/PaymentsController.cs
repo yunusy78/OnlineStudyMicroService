@@ -2,6 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using OnlineStudyShared;
 using OnlineStudyShared.Controller;
+using Stripe;
+using Stripe.Checkout;
+using StripePaymentMicroService.Dtos;
+using StripePaymentMicroService.Dtos.PaymentDto;
 
 namespace StripePaymentMicroService.Controllers
 {
@@ -12,7 +16,10 @@ namespace StripePaymentMicroService.Controllers
         [HttpPost]
         public IActionResult ReceivePayment()
         {
-            return CreateActionResultInstance((ResponseDto<NoContent>.Success(200)));
+            var response = CreateActionResultInstance(ResponseDto<NoContent>.Success(200));
+            
+            return response;
+
         }
     }
 }

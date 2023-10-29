@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Dtos.Catalog.Course;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using OnlineStudyShared.Services;
 
@@ -36,7 +37,10 @@ public class CourseController : Controller
     [HttpPost]
     public async Task<IActionResult> Create(CreateCourseDto course)
     {
-        
+        if (!ModelState.IsValid)
+        {
+            return View();
+        }
         course.CourseCreatedDate = DateTime.Now;
         course.UserId = _sharedIdentity.GetUserId;
         await _catalogService.CreateCourseAsync(course);

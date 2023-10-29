@@ -1,0 +1,294 @@
+﻿
+@*
+<section class="w3l-about-breadcrumb text-left">
+	<div class="breadcrumb-bg breadcrumb-bg-about py-sm-5 py-4">
+		<div class="container">
+			<h2 class="title">Sjekk ut </h2>
+			<ul class="breadcrumbs-custom-path mt-2">
+				<li><a href="#url">Bestilling</a></li>
+				<li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> Betaling </li>
+			</ul>
+		</div>
+	</div>
+</section>
+
+<form method="POST">
+	<br />
+	<div class="container">
+		<div class="card">
+			<div class="card-header bg-dark text-light ml-0">
+				<div class=" row container">
+					<div class="col-6">
+						<i class="fa fa-shopping-cart"></i> &nbsp;
+						Bestillingssammendrag
+					</div>
+					<div class="col-6 text-end">
+						<a asp-action="Index" asp-controller="Cart" class="btn btn-outline-info" style="text-align: left">Tilbake til Handlekurv</a>
+					</div>
+				</div>
+			</div>
+			<div class="card-body">
+				<div class="container rounded p-2">
+					<div class="row">
+						<div class="col-12 col-lg-6 pb-4">
+							<div class="row">
+								<h4 class="d-flex justify-content-between align-items-center mb-3">
+									<span class="text-info">Detaljer:</span>
+								</h4>
+							</div>
+							<div class="row my-1">
+									<div class="col-3">
+										<label>E-Post</label>
+										</div>
+								<div class="col-9">
+									<input asp-for="@Model.EmailAddress" class="form-control" />
+									<span asp-validation-for="@Model.EmailAddress" class="text-danger"></span>
+								</div>
+								<div class="col-9">
+									<input asp-for="@Model.Street" class="form-control" />
+								</div>
+								<div class="col-9">
+									<input asp-for="@Model.Line" class="form-control" />
+								</div>
+								<div class="col-9">
+									<input asp-for="@Model.Province" class="form-control" />
+								</div>
+								<div class="col-9">
+									<input asp-for="@Model.District" class="form-control" />
+								</div>
+								
+							</div>
+						</div>
+						<div class="col-12 col-lg-5 offset-lg-1">
+							<h4 class="d-flex justify-content-between align-items-center mb-3">
+								<span class="text-info">Ordresammendrag:</span>
+							</h4>
+							<ul class="list-group mb-3">
+								@foreach(var item in Model.Cart.CartItems)
+								{
+									<li class="list-group-item d-flex justify-content-between">
+										<div>
+											<img src="@item.PictureUrl" class="rounded" width="50px;"/>
+											<h6 class="my-0">@item.CourseName</h6>
+										</div>		
+										<span class="text-muted">@item.GetCurrentPrice NOK</span>
+									</li>
+								}
+								<li class="list-group-item d-flex justify-content-between bg-light">
+									<small class="text-info">Totalt (NOK)</small>
+									<strong class="text-info">@Model.Cart.TotalPrice.ToString("0.00")</strong>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card-footer">
+            				<div class="row">
+	                            <label for="price">Product Price:</label>
+                                    <input type="number" id="price" asp-for="@Model.Cart.TotalPrice" required><br>
+                                    <label for="card_number">Credit Card Number:</label>
+                                    <input type="text" id="card_number" asp-for="CardNumber" required><br>
+                                    <label for="expiry_date">Expiration Month:</label>
+                                    <input type="text" id="expiry_date" asp-for="ExpirationMonth" required><br>
+                                     <label for="expiry_date">Expiration Year:</label>
+                                    <input type="text" id="expiry" asp-for="ExpirationYear" required><br>
+                                    <label for="cvv">CVV:</label>
+                                    <input type="text" id="cvv" asp-for="Cvv" required><br>
+            				</div>
+            			</div>
+            		</div>
+            	</div>
+</form>
+*@
+@model Business.Models.Order.OrderCheckOutInfoInput
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_UserLayout";
+}
+
+<style>
+  .row1 {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin: 0 -16px;
+  }
+
+  .col-26 {
+    -ms-flex: 25%;
+    flex: 25%;
+  }
+
+  .col-51 {
+    -ms-flex: 50%;
+    flex: 50%;
+  }
+
+  .col-76 {
+    -ms-flex: 75%;
+    flex: 75%;
+  }
+
+  .col-26,
+  .col-51,
+  .col-76 {
+    padding: 0 16px;
+  }
+
+  .container1 {
+    background-color: #f2f2f2;
+    padding: 5px 20px 15px 20px;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+  }
+
+  input[type=text] {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+
+  label1 {
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .icon-container1 {
+    margin-bottom: 20px;
+    padding: 7px 0;
+    font-size: 24px;
+  }
+
+  .btn1 {
+    background-color: #04AA6D;
+    color: white;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    width: 100%;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 17px;
+  }
+
+  .btn1:hover {
+    background-color: #45a049;
+  }
+
+  span.price {
+    float: right;
+    color: grey;
+  }
+
+  /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (and change the direction - make the "cart" column go on top) */
+ 
+</style>
+
+<br/><br/><br/><br/>
+
+<section class="w3l-about-breadcrumb text-left">
+    <div class="breadcrumb-bg breadcrumb-bg-about py-sm-5 py-4">
+        <div class="container">
+            <h2 class="title">Sjekk ut</h2>
+            <ul class="breadcrumbs-custom-path mt-2">
+                <li><a href="#url">Bestilling</a></li>
+                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> Betaling </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<div class="row1">
+	<div class="col-76">
+		<div class="container1">
+			<form method="POST" asp-action="Checkout">
+
+				<div class="row1">
+					<div class="col-51">
+						<h3>Billing Address</h3>
+						<label for="email"><i class="fa fa-envelope"></i> Email</label>
+						<input type="text" id="email" placeholder="john@example.com" asp-for="@Model.EmailAddress">
+						<label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
+						<input type="text" id="adr"  placeholder="542 W. 15th Street" asp-for="@Model.Street">
+						<label for="city"><i class="fa fa-institution"></i> City</label>
+						<input type="text" id="city"  placeholder="New York" asp-for="@Model.Province">
+						<div class="row1">
+							<div class="col-51">
+								<label for="state">State</label>
+								<input type="text" id="state"  placeholder="NY" asp-for="@Model.District">
+							</div>
+							<div class="col-51">
+								<label for="zip">Zip</label>
+								<input type="text" id="zip" placeholder="10001" asp-for="@Model.ZipCode">
+							</div>
+							<div class="col-51">
+								<label for="zip">Line</label>
+								<input type="text" id="line" placeholder="10001" asp-for="@Model.Line">
+							</div>
+	                        
+						</div>
+					</div>
+
+					<div class="col-51">
+						<h3>Payment</h3>
+						<label for="fname">Accepted Cards</label>
+						<div class="icon-container1">
+							<i class="fa fa-cc-visa" style="color:navy;"></i>
+							<i class="fa fa-cc-amex" style="color:blue;"></i>
+							<i class="fa fa-cc-mastercard" style="color:red;"></i>
+							<i class="fa fa-cc-discover" style="color:orange;"></i>
+						</div>
+						<label for="cname">Name on Card</label>
+						<input type="text" id="cname"  placeholder="John More Doe" asp-for="@Model.CardHolderName">
+						<label for="ccnum">Credit card number</label>
+						<input type="text" id="ccnum"  placeholder="1111-2222-3333-4444" asp-for="@Model.CardNumber">
+						<label for="expmonth">Exp Month</label>
+						<input type="text" id="expmonth"  placeholder="September" asp-for="@Model.ExpirationMonth">
+
+						<div class="row1">
+							<div class="col-51">
+								<label for="expyear">Exp Year</label>
+								<input type="text" id="expyear" placeholder="2018" asp-for="@Model.ExpirationYear">
+							</div>
+							<div class="col-51">
+								<label for="cvv">CVV</label>
+								<input type="text" id="cvv" placeholder="352" asp-for="@Model.Cvv">
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<label>
+					<input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+				</label>
+				<input type="submit" value="Continue to checkout" class="btn1">
+			</form>
+		</div>
+	</div>
+	
+	<div class="col-26">
+            <div class="container1">
+                <h4>Cart
+                    <span class="price" style="color:black">
+                        <i class="fa fa-shopping-cart"></i>
+                        <b>@Model.Cart.CartItems.Count</b>
+                    </span>
+                </h4>
+                @foreach (var item in Model.Cart.CartItems)
+                {
+                    <p><a href="#">@item.CourseName</a> <span class="price">@item.Price</span></p>
+                }
+                <hr>
+                <p>Total <span class="price" style="color:black"><b>@Model.Cart.TotalPrice</b></span></p>
+            </div>
+        </div>
+
+    
+</div>
+
+<br/><br/><br/><br/><br/><br/><br/><br/><br/>
