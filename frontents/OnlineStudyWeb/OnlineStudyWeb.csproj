@@ -24,13 +24,16 @@
       <Folder Include="Areas\Instructor\Data\" />
       <Folder Include="Areas\Instructor\Models\" />
       <Folder Include="Areas\Instructor\Pages\" />
-      <Folder Include="Pages\" />
+      <Folder Include="Pages\Components\" />
     </ItemGroup>
 
 
 
     <ItemGroup>
+      <PackageReference Include="FluentValidation" Version="11.8.0" />
+      <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
       <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.10" />
+      <PackageReference Include="Stripe.net" Version="43.1.0-beta.1" />
     </ItemGroup>
 
 

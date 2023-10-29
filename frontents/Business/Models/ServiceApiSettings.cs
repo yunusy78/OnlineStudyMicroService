@@ -11,6 +11,11 @@ public class ServiceApiSettings
     
     public ServiceApi Cart { get; set; }
     
+    public ServiceApi Discount { get; set; }
+    
+    public ServiceApi Payment { get; set; }
+    
+    public ServiceApi Order { get; set; }
     
 }
 

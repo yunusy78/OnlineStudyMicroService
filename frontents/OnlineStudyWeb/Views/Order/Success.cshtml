@@ -1,0 +1,79 @@
+﻿@model int
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_UserLayout";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+
+        .success-container {
+            background-color: #fff;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .success-icon {
+            font-size: 80px;
+            color: #27ae60;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            color: #555;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .back-to-home {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<br/><br/><br/><br/><br/><br/><br/><br/>
+<div class="success-container">
+    <i class="fa fa-check-circle success-icon"></i>
+    <br/><br/>
+    <h1>Congratulations!</h1>
+     <br/>
+    <h1>Payment Successful</h1>
+    <br/>
+    <p>Your payment has been successfully processed. Thank you!</p>
+    <br/>
+    <p class="pb-3">We have received your order and hope you enjoy our course.</p>
+    <br/>
+    <h4 class="text-warning pb-3">Order ID - @Model</h4>
+    <br/>
+    <a href="/Home/Index" class="back-to-home">Return to Homepage</a>
+    <br/>
+    <div>
+        <img src="~/starter/assets/images/logo2.png" alt="Success" class="img-fluid mt-3"/>
+    </div>
+</div>
+</body>
+</html>
+<br/><br/><br/><br/><br/><br/>

@@ -45,7 +45,7 @@ public class CartViewModel
 
     public decimal TotalPrice
     {
-        get => CartItems.Sum(x => x.Price);
+        get => CartItems.Sum(x => x.GetCurrentPrice);
     }
     
     public bool HasDiscount
@@ -58,10 +58,10 @@ public class CartViewModel
         DiscountCode = null;
         DiscountRate = null;
     }
-
-    public void ApplyDiscount(string code, int rate)
+    
+    public void ApplyDiscount(string discountCode, int discountRate)
     {
-        DiscountCode = code;
-        DiscountRate = rate;
+        DiscountCode = discountCode;
+        DiscountRate = discountRate;
     }
 }

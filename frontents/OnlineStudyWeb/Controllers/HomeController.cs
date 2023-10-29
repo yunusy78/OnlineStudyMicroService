@@ -10,11 +10,13 @@ public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
     private readonly ICatalogService _catalogService;
+    private readonly ICartService _cartService;
 
-    public HomeController(ILogger<HomeController> logger, ICatalogService catalogService)
+    public HomeController(ILogger<HomeController> logger, ICatalogService catalogService, ICartService cartService)
     {
         _logger = logger;
         _catalogService = catalogService;
+        _cartService = cartService;
     }
    
 

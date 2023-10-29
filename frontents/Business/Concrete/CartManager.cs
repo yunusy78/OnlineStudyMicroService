@@ -11,12 +11,14 @@ public class CartManager : ICartService
 {
     private readonly HttpClient _httpClient;
     private readonly ISharedIdentity _sharedIdentity;
+    private readonly IDiscountService _discountService;
     
-    public CartManager(HttpClient httpClient,ISharedIdentity sharedIdentity )
+    public CartManager(HttpClient httpClient,ISharedIdentity sharedIdentity, IDiscountService discountService)
     {
         _httpClient = httpClient;
         _sharedIdentity = sharedIdentity;
-    }
+        _discountService = discountService;
+    } 
     
     
     public async Task<bool> SaveOrUpdateCart(CartViewModel cartViewModel)
@@ -112,13 +114,35 @@ public class CartManager : ICartService
         return await SaveOrUpdateCart(cart);
     }
 
-    public Task<bool> ApplyDiscount(string discountCode)
+    public async Task<bool> ApplyDiscount(string discountCode)
     {
-        throw new NotImplementedException();
+        await CancelApplyDiscount();
+        var cart = await GetCart();
+        if (cart == null )
+        {
+            return false;
+        }
+        var discount = await _discountService.GetDiscount(discountCode);
+        if (discount == null)
+        {
+            return false;
+        }
+        cart.ApplyDiscount(discount.Code,discount.Rate);
+         await SaveOrUpdateCart(cart);
+         return true;
     }
 
-    public Task<bool> CancelApplyDiscount()
+    public async Task<bool> CancelApplyDiscount()
     {
-        throw new NotImplementedException();
+        var cart = await GetCart();
+        if (cart == null || cart.DiscountCode == null)
+        {
+            return false;
+        }
+        
+        cart.CancelDiscount();
+        await SaveOrUpdateCart(cart);
+        return true;
+        
     }
 }

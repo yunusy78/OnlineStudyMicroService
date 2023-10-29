@@ -4,8 +4,8 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg stroke">
                 <h1>
-                    <a class="navbar-brand" href="~/starter/index.html">
-                        <img class="img-fluid" src="~/starter/assets/images/logo.png" alt=" "> Online Study
+                    <a class="navbar-brand" href="/Home/Index">
+                        <img class="img-fluid" style="width: 125px; height: 125Px;" src="~/starter/assets/images/logo2.png" alt=" ">
                     </a>
                 </h1>
                 <!-- if logo is image enable this   
@@ -22,33 +22,31 @@
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul class="navbar-nav ml-lg-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="/Home/Index">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="/Home/Index">Hjem<span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="~/starter/about.html">About</a>
+                            <a class="nav-link" href="~/starter/about.html">Om Oss</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="~/starter/courses.html">Courses</a>
+                            <a class="nav-link" href="~/starter/courses.html">Kurs</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="~/starter/contact.html">Contact Us</a>
+                            <a class="nav-link" href="~/starter/contact.html">Kontakt Oss</a>
                         </li>
                         <!-- search button -->
                         <div class="search-right">
-                            <a href="#search" class="btn button-style" title="search">Search</a>
+                            <a href="#search" class="btn button-style" title="search">Søk</a>
                             <!-- search popup -->
                             <div id="search" class="pop-overlay">
                                 <div class="popup">
-                                    <h4 class="search-pop-text-w3 text-white text-center mb-4">Search Here Your
-                                        Online Course
-                                    </h4>
+                                    <h4 class="search-pop-text-w3 text-white text-center mb-4">Søk her etter ditt onlinekurs</h4>
                                     <form action="#error" method="GET" class="search-box">
                                         <div class="input-search"> <span class="fa fa-search mr-2"
                                                 aria-hidden="true"></span><input type="search"
                                                 placeholder="Enter Keyword" name="search" required="required"
                                                 autofocus="">
                                         </div>
-                                        <button type="submit" class="btn button-style">Search</button>
+                                        <button type="submit" class="btn button-style">Søk</button>
                                     </form>
                                 </div>
                                 <a class="close" href="#close">×</a>
@@ -60,9 +58,11 @@
                                             @if (User.Identity.IsAuthenticated)
                                             {
                                                 <ul>
-                                                    <li><h6 class="about-block-3">Hei @User.Identity.Name</h6></li>
+                                                    <li><h6 class="about-block-3"> Hei @User.Identity.Name</h6></li>
                                                     
-                                                    <a asp-area="Instructor" asp-controller="Profile" asp-action="Index" class="btn btn-outline-success">Profile</a>
+                                                    <a asp-area="Instructor" asp-controller="Profile" asp-action="Index" class="btn btn-outline-success"> <i class="fas fa-user"></i>  Min Side</a>
+                                                    
+                                                   
                                                     
                                                     <a asp-area="" asp-controller="Auth" asp-action="SignUp" class="btn btn-outline-warning"><i class="fas fa-sign-out-alt"></i> Logout</a>
                                                     
@@ -91,6 +91,9 @@
                     </nav>
                 </div>
                 
+                <li class="nav-item">
+                    <a class="nav-link text-light" asp-area="" asp-controller="Cart" asp-action="Index">@await Component.InvokeAsync("ShoppingCartCount")</a>
+                </li>
                 
                 <!-- //toggle switch for light and dark theme -->
             </nav>

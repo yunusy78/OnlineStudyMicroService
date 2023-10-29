@@ -4,8 +4,11 @@ using Business.Extensions;
 using Business.Handler;
 using Business.Helpers;
 using Business.Models;
+using Business.Validators;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using OnlineStudyShared.Services;
+using StripePaymentMicroService.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +23,7 @@ builder.Services.Configure<ServiceApiSettings>(builder.Configuration.GetSection(
 builder.Services.Configure<ClientSettings>(builder.Configuration.GetSection(nameof(ClientSettings)));
 builder.Services.AddScoped<ISharedIdentity, SharedIdentity>();
 builder.Services.AddScoped<ResourceOwnerPasswordTokenHandler>();
+builder.Services.Configure<StripeService>(builder.Configuration.GetSection("Stripe"));
 builder.Services.AddSingleton<PhotoStockHelper>();
 builder.Services.AddAccessTokenManagement();
 builder.Services.AddScoped<ClientCredentialTokenHandler>();
@@ -33,7 +37,9 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     options.SlidingExpiration = true;
     options.Cookie.Name = "OnlineStudy";
 });
-builder.Services.AddControllersWithViews();
+
+builder.Services.AddControllersWithViews().AddFluentValidation(options =>
+    options.RegisterValidatorsFromAssemblyContaining<CourseCreateInputValidator>());
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
