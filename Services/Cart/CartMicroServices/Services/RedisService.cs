@@ -27,4 +27,11 @@ public class RedisService
     {
         return _connectionMultiplexer.GetDatabase(db);
     }
+    
+    public List<string> GetAllKeys()
+    {
+        var server = _connectionMultiplexer.GetServer($"{_host}:{_port}");
+        var keys = server.Keys(pattern: "*");
+        return keys.Select(key => (string)key).ToList();
+    }
 }

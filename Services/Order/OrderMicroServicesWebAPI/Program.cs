@@ -1,5 +1,6 @@
 using System.Configuration;
 using System.IdentityModel.Tokens.Jwt;
+using MassTransit;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using OnlineStudyShared.Services;
 using OrderApplication.Handlers;
+using OrderApplication1.Consumers;
 using OrderInfrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +19,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
+
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<OrderDbContext>(options =>
@@ -38,6 +43,30 @@ builder.Services.AddControllers(opt=> {
     opt.Filters.Add(new AuthorizeFilter(requireAuthorizePolicy));
 });
 builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddMassTransit(x=> {
+    
+    x.AddConsumer<CreateOrderMessageCommandConsumer>();
+    x.AddConsumer<CourseNameChangeEventConsumer>();
+    x.UsingRabbitMq((context, cfg) =>
+    {
+        cfg.Host(builder.Configuration["RabbitMqUrl"],"/", host =>
+        {
+            host.Username("guest");
+            host.Password("guest");
+        });
+        
+        cfg.ReceiveEndpoint("create-order-service",c=> {
+            c.ConfigureConsumer<CreateOrderMessageCommandConsumer>(context);
+        });
+        
+        cfg.ReceiveEndpoint("course-name-change-event-order-service",c=> {
+            c.ConfigureConsumer<CourseNameChangeEventConsumer>(context);
+        });
+    });
+});
+
+builder.Services.AddMassTransitHostedService();
 
 var app = builder.Build();
 

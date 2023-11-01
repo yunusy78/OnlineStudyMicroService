@@ -1,4 +1,6 @@
 using System.IdentityModel.Tokens.Jwt;
+using MassTransit;
+using MassTransit.MultiBus;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
@@ -16,6 +18,19 @@ var requireAuthorizePolicy = new AuthorizationPolicyBuilder().RequireAuthenticat
 builder.Services.Configure<StripeService>(builder.Configuration.GetSection("Stripe"));
 JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("sub");
 
+builder.Services.AddMassTransit(x=> {
+    
+    //default port: 5672
+    x.UsingRabbitMq((context, cfg) =>
+    {
+        cfg.Host(builder.Configuration["RabbitMqUrl"],"/", host =>
+        {
+            host.Username("guest");
+            host.Password("guest");
+        });
+    });
+});
+builder.Services.AddMassTransitHostedService();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
     options.Authority = builder.Configuration["IdentityServerUrl"];

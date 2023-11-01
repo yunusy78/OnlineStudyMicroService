@@ -40,7 +40,9 @@ public class OrderController : Controller
     [HttpPost]
     public async Task<IActionResult> Checkout(OrderCheckOutInfoInput orderCheckOutInfoInput)
     {
-        var orderStatus = await _orderService.CreateOrder(orderCheckOutInfoInput);
+        // Senkronize olmayan microservislerde bu şekilde yapılabilir.
+        //var orderStatus = await _orderService.CreateOrder(orderCheckOutInfoInput);
+        var orderStatus = await _orderService.SuspectOrder(orderCheckOutInfoInput);
         if (!orderStatus.Success)
         {
             var cart = await _cartService.GetCart();
@@ -49,12 +51,11 @@ public class OrderController : Controller
             return View();
           
         }
-        return RedirectToAction("Success", "Order" , new {orderid= orderStatus.OrderId});
+        return RedirectToAction("Success", "Order" , new {orderid= new Random().Next(1,1000)});
     }
     
     public IActionResult Success(int orderid)
     {
-        ViewBag.orderId = orderid;
-        return View();
+        return View(orderid);
     }
 }

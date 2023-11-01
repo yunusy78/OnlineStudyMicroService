@@ -1,10 +1,13 @@
 using System.IdentityModel.Tokens.Jwt;
+using CartMicroServices.Consumer;
 using CartMicroServices.ContexSettings;
 using CartMicroServices.Services;
+using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Options;
+using OnlineStudyShared.Message.Event;
 using OnlineStudyShared.Services;
 using StackExchange.Redis;
 
@@ -38,9 +41,31 @@ builder.Services.AddControllers(opt=> {
     opt.Filters.Add(new AuthorizeFilter(requireAuthorizePolicy));
 });
 
+builder.Services.AddMassTransit(x=> {
+    
+    x.AddConsumer<CreateCartMessageEventConsumer>();
+    
+    x.UsingRabbitMq((context, cfg) =>
+    {
+        cfg.Host(builder.Configuration["RabbitMqUrl"],"/", host =>
+        {
+            host.Username("guest");
+            host.Password("guest");
+        });
+        
+        cfg.ReceiveEndpoint("course-update--event-cart-service-2",c=> {
+            c.ConfigureConsumer<CreateCartMessageEventConsumer>(context);
+        });
+    });
+});
+
+builder.Services.AddMassTransitHostedService();
+
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ISharedIdentity, SharedIdentity>();
 builder.Services.AddScoped<ICartService, CartManager>();
+
+
 
 var app = builder.Build();
 

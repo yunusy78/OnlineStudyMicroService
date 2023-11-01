@@ -8,6 +8,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="MassTransit.AspNetCore" Version="7.0.0" />
+        <PackageReference Include="MassTransit.RabbitMQ" Version="7.0.0" />
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.0" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.11" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.0">
@@ -25,6 +27,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\..\Shared\OnlineStudyShared\OnlineStudyShared.csproj" />
+      <ProjectReference Include="..\OrderApplication1\OrderApplication1.csproj" />
       <ProjectReference Include="..\OrderApplication\OrderApplication.csproj" />
     </ItemGroup>
 
