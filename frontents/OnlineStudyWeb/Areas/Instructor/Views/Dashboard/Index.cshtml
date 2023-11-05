@@ -1,0 +1,95 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_InstructorLayout";
+}
+
+<div class="content-wrapper">
+    <div class="row" id="proBanner">
+    </div>
+    <div class="page-header">
+        <h3 class="page-title">
+            <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                <i class="mdi mdi-view-dashboard"></i>
+            </span> Dashboard
+        </h3>
+    </div>
+
+            <div class="row">
+              <div class="col-md-4 stretch-card grid-margin">
+                <div class="card bg-gradient-danger card-img-holder text-white">
+                  <div class="card-body">
+                    <img src="~/writerTemplate/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="sirkelbilde" />
+                    <h4 class="font-weight-normal mb-3">Ukentlig Salg <i class="mdi mdi-chart-line mdi-24px float-right"></i>
+                    </h4>
+                    <h2 class="mb-5"> @ViewBag.UkentligSalg NOK</h2>
+                    <h6 class="card-text">
+                      @if (ViewBag.UkentligØkning >= 0)
+                      {
+                        <span class="text-black">Økte med @ViewBag.UkentligØkning %</span>
+                      }
+                      else
+                      {
+                        <span class="text-danger">Minket med @(-ViewBag.UkentligØkning) %</span>
+                      }
+                    </h6>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 stretch-card grid-margin">
+                <div class="card bg-gradient-info card-img-holder text-white">
+                  <div class="card-body">
+                    <img src="~/writerTemplate/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="sirkelbilde" />
+                    <h4 class="font-weight-normal mb-3">Månedlig Ordrer <i class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
+                    </h4>
+                    <h2 class="mb-5">@ViewBag.MånedligSalg</h2>
+                    <h6 class="card-text">
+                      @if (ViewBag.MånedligØkning >= 0)
+                      {
+                        <span class="text-black">Økte med @ViewBag.UkentligØkning %</span>
+                      }
+                      else
+                      {
+                        <span class="text-danger">Minket med @(-ViewBag.UkentligØkning) %</span>
+                      }
+                    </h6>
+                    
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 stretch-card grid-margin">
+                <div class="card bg-gradient-success card-img-holder text-white">
+                  <div class="card-body">
+                    <img src="~/writerTemplate/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="sirkelbilde" />
+                    <h4 class="font-weight-normal mb-3">Besøkende På Nett <i class="mdi mdi-diamond mdi-24px float-right"></i>
+                    </h4>
+                    <h2 class="mb-5">95,5741</h2>
+                    <h6 class="card-text">Økte med 5%</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+<div class="row">
+  <div class="col-md-7 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="clearfix">
+          <h4 class="card-title float-left">Besøks- og Salgsstatistikk</h4>
+          <div id="visit-sale-chart-legend" class="rounded-legend legend-horizontal legend-top-right float-right"></div>
+        </div>
+        <canvas id="visit-sale-chart" class="mt-4"></canvas>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-5 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Trafikkilder</h4>
+        <canvas id="traffic-chart"></canvas>
+        <div id="traffic-chart-legend" class="rounded-legend legend-vertical legend-bottom-left pt-4"></div>
+      </div>
+    </div>
+  </div>
+</div>
+ </div>

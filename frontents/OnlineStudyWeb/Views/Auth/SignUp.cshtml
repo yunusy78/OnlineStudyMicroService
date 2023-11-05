@@ -1,0 +1,41 @@
+﻿@model Frontents.Business.Dtos.Auth.SignUpDto
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_UserLayout";
+}
+
+<div class="container-fluid">
+            <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
+                <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
+                    <div class="bg-light rounded p-4 p-sm-5 my-4 mx-3">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <a href="" class="">
+                                <h3 class="text-warning"><i class="fa fa-book"></i> VirtuellSkoleFjordia</h3>
+                            </a>
+                            <h3 class="text-danger">Melde Deg Inn </h3>
+                            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                        </div>
+                        <form asp-controller="Auth" asp-action="SignUp" asp-area="" method="post">
+                            <div class="form-floating mb-3">
+                                <input type="email" asp-for="Email" class="form-control" id="floatingInput" placeholder="E-postadresse">
+                                <span class="text-danger" asp-validation-for="Email"></span>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" asp-for="UserName" class="form-control" id="floatingInput" placeholder="BrukerNavn">
+                                <span class="text-danger" asp-validation-for="UserName"></span>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" asp-for="City" class="form-control" id="floatingInput" placeholder="By">
+                                <span class="text-danger" asp-validation-for="City"></span>
+                            </div>
+                            <div class="form-floating mb-4">
+                                <input type="password" asp-for="Password" class="form-control" id="floatingPassword" placeholder="Passord">
+                                <span class="text-danger" asp-validation-for="Password"></span>
+                            </div>
+                            <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Meld Deg inn</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>

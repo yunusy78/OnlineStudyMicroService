@@ -21,6 +21,9 @@
 
     <ItemGroup>
       <Folder Include="Areas\" />
+      <Folder Include="Areas\Admin\Data\" />
+      <Folder Include="Areas\Admin\Models\" />
+      <Folder Include="Areas\Admin\Pages\" />
       <Folder Include="Areas\Instructor\Data\" />
       <Folder Include="Areas\Instructor\Models\" />
       <Folder Include="Areas\Instructor\Pages\" />
@@ -34,6 +37,8 @@
       <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
       <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.10" />
       <PackageReference Include="Stripe.net" Version="43.1.0-beta.1" />
+      <PackageReference Include="X.PagedList" Version="9.0.0-prerelease" />
+      <PackageReference Include="X.PagedList.Mvc.Core" Version="9.0.0-prerelease" />
     </ItemGroup>
 
 
@@ -42,6 +47,17 @@
       <_ContentIncludedByDefault Remove="Views\Course\Create.cshtml" />
       <_ContentIncludedByDefault Remove="Views\Course\Index.cshtml" />
       <_ContentIncludedByDefault Remove="Views\Course\Update.cshtml" />
+    </ItemGroup>
+
+
+
+    <ItemGroup>
+      <AdditionalFiles Include="Areas\Admin\Views\AdminPartialView\_FooterPartial.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\AdminPartialView\_HeaderPartial.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\AdminPartialView\_NavbarPartial.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\AdminPartialView\_ScriptPartial.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\AdminPartialView\_SidebarPartial.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Shared\_InstructorLayout.cshtml" />
     </ItemGroup>
 
 </Project>

@@ -1,0 +1,103 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_UserLayout";
+}
+
+ <!-- inner banner -->
+    <div class="inner-banner">
+        <section class="w3l-breadcrumb">
+            <div class="container">
+                <h4 class="inner-text-title font-weight-bold mb-sm-3 mb-2">Kontakt oss </h4>
+                <ul class="breadcrumbs-custom-path">
+                    <li><a href="/Home/Index">Hjem</a></li>
+                    <li class="active"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span> Kontakt oss</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+    <!-- //inner banner -->
+    <!-- contact -->
+    <section class="contact py-5" id="contact">
+        <div class="container py-md-4 py-3">
+            <div class="title-main text-center mx-auto mb-md-4">
+                <h3 class="title-big">Kontakt oss via e-post</h3>
+                <p class="sub-title mt-2">Ta gjerne kontakt med oss via e-post.</p>
+            </div>
+            <div class="main-grid-contact">
+                <div class="row mt-5 mx-0">
+                    <!-- map -->
+                    <div class="col-lg-6 map mt-lg-0 mt-3">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1019.8373983876076!2d8.770442117295232!3d58.46160728155759!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x463a41be1675e5a3%3A0x40327cc16f79512!2sArendal%2C%20Norway!5e0!3m2!1sen!2sin!4v1522474296007"
+                            allowfullscreen></iframe>
+                    </div>
+                    <!-- contact form -->
+                    <div class="col-lg-6 content-form-right p-0">
+                        <div class="form-w3ls p-md-5 p-4">
+                            <h4 class="mb-4 sec-title-w3">Send oss en melding.</h4>
+                            <form method="post" action="https://sendmail.w3layouts.com/submitForm">
+                                <div class="row">
+                                    <div class="col-sm-6 form-group pr-sm-1">
+                                        <input class="form-control" type="text" name="w3lName" id="w3lName" placeholder="Fornavn" required="">
+                                    </div>
+                                    <div class="col-sm-6 form-group pl-sm-1">
+                                        <input class a="form-control" type="text" name="w3lName" id="w3lName" placeholder="Etternavn" required="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" type="email" name="w3lSender" id="w3lSender" placeholder="E-post" required="">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" type="text" name="w3lName" id="w3lName" placeholder="Telefonnummer" required="">
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control" name="w3lMessage" id="w3lMessage" placeholder="Melding" required=""></textarea>
+                                </div>
+                                <div class="input-group1 text-right">
+                                    <button class="btn button-style" type="submit">Send
+                                        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //contact -->
+    <!-- support -->
+    <div class="support py-5" id="support">
+        <div class="container pb-md-5 pb-3">
+            <h3 class="title-w3ls text-center mb-5">Hjelp og Støtte</h3>
+            <div class="row support-bottom text-center mb-5">
+                <div class="col-lg-4 col-sm-6 support-grid">
+                    <span class="fa fa-laptop"></span>
+                    <h5 class="text-uppercase mt-3 mb-2">Nettstøtte</h5>
+                    <p>Å strebe etter å hjelpe selv med de minste problemene, tillater kroppen vår å utføre sitt krevende arbeid.</p>
+                    <a href="#call" class="btn button-style button-2 mt-4">
+                        Ring Nå
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6 support-grid mt-sm-0 mt-4">
+                    <span class="fa fa-comments"></span>
+                    <h5 class="text-uppercase mt-3 mb-2">Døgnåpen Live Chat</h5>
+                    <p>Å strebe etter å hjelpe selv med de minste problemene, tillater kroppen vår å utføre sitt krevende arbeid.</p>
+                    <a href="#chat" class="btn button-style button-2 mt-4">
+                        La oss chatte
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6 support-grid mt-lg-0 mt-4">
+                    <span class="fa fa-question"></span>
+                    <h5 class="text-uppercase mt-3 mb-2">Noen Spørsmål</h5>
+                    <p>Å strebe etter å hjelpe selv med de minste problemene, tillater kroppen vår å utføre sitt krevende arbeid.</p>
+                    <a href="#ask" class="btn button-style button-2 mt-4">
+                        Spør Nå
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- support -->

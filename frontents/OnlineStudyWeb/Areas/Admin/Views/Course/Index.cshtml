@@ -1,0 +1,66 @@
+﻿@model List<Business.Models.Catalog.CourseViewModel>
+@{
+    ViewBag.Title = "title";
+    Layout = "_AdminLayout";
+    int i = 0;
+}
+          <div class="content-wrapper">
+            <div class="row" id="proBanner">
+            </div>
+            <div class="page-header">
+              <h3 class="page-title">
+                <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                  <i class="mdi mdi-school"></i>
+                </span> Kurs
+              </h3>
+            </div>
+            <div class="row">
+              <div class="col-12 grid-margin">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="table-responsive">
+                       @if (Model.Any())
+                              {
+                                  <table class="table">
+                                      <tr>
+                                          <th>#</th>
+                                          <th>Bilde</th>
+                                          <th>Navn</th>
+                                          <th>Prise</th>
+                                          <th>Varighet</th>
+                                          <th>Beskrivelse</th>
+                                          <th>Opprettet dato</th>
+                                      </tr>
+                                      @foreach (var item in Model)
+                                      {
+                                          
+                                          <tr>
+                                              @{i = i + 1;}
+                                              <td>@i</td>
+                                              <td><img src="@item.StockImageUrl" class="rounded-circle" style="max-width: 50px; max-height: 50px;" /></td>
+                                              <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>@item.CourseName</strong></td>
+                                              <td>@item.CoursePrice</td>
+                                              <td>@item.Feature.Duration</td>
+                                              <td><span class="badge bg-label-primary me-1">@item.CourseDescription</span></td>
+                                              <td> @(((DateTime)item.CourseCreatedDate).ToString("dd-MMM-yyyy"))</td>
+                                          </tr>
+                                      }
+                                  </table>
+                                  <br/>
+                                 
+                              }  
+                              else
+                              {
+                                  <div class="alert alert-info">
+                                      Finner ingen post
+                                  </div>
+                              }
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- content-wrapper ends -->
+          <!-- partial:partials/_footer.html -->
+       

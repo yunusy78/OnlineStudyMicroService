@@ -48,7 +48,7 @@ public class OrderManager : IOrderService
         var order =new OrderCreateInput()
         {
             BuyerId = _sharedIdentity.GetUserId,
-            AddressDto = new AddressDto
+            Address = new AddressDto
             {
                 Province = orderCheckOutInfoInput.Province,
                 Street = orderCheckOutInfoInput.Street,
@@ -84,9 +84,60 @@ public class OrderManager : IOrderService
 
     }
 
-    public Task SuspectOrder(OrderCheckOutInfoInput orderCheckOutInfoInput)
+    public async Task<OrderStatusViewModel> SuspectOrder(OrderCheckOutInfoInput orderCheckOutInfoInput)
     {
-        throw new NotImplementedException();
+        var cart = await _cartService.GetCart();
+        
+        var order =new OrderCreateInput()
+        {
+            BuyerId = _sharedIdentity.GetUserId,
+            Address = new AddressDto
+            {
+                Province = orderCheckOutInfoInput.Province,
+                Street = orderCheckOutInfoInput.Street,
+                District = orderCheckOutInfoInput.District,
+                Line = orderCheckOutInfoInput.Line,
+                ZipCode = orderCheckOutInfoInput.ZipCode
+            }
+        };
+        
+        cart.CartItems.ForEach(x =>
+        {
+            var orderItem = new OrderItemViewModel()
+            {
+                ProductId = x.CourseId,
+                ProductName = x.CourseName,
+                Price = x.Price,
+                PictureUrl = x.PictureUrl,
+                Quantity = x.Quantity
+            };
+            order.OrderItems.Add(orderItem);
+                
+        });
+        
+        var payment = new PaymentInfoInput()
+        {
+            CardNumber = orderCheckOutInfoInput.CardNumber,
+            CardHolderName = orderCheckOutInfoInput.CardHolderName,
+            ExpirationMonth = orderCheckOutInfoInput.ExpirationMonth,
+            ExpirationYear = orderCheckOutInfoInput.ExpirationYear,
+            Cvv = orderCheckOutInfoInput.Cvv,
+            TotalPrice = cart.TotalPrice,
+            Order = order
+
+        };
+
+        
+        var paymentResult = await _paymentService.ReceivePayment(payment);
+        if (!paymentResult)
+        {
+            return new OrderStatusViewModel(){error = "Payment is not successful",Success = false};
+        }
+        
+        await _cartService.Delete();
+        return new OrderStatusViewModel(){Success = true}; 
+        
+        
     }
 
     public async Task<List<OrderViewModel>> GetOrders()
@@ -94,5 +145,12 @@ public class OrderManager : IOrderService
         var response = await _httpClient.GetFromJsonAsync<ResponseDto<List<OrderViewModel>>>("orders");
         return response!.Data;
 
+    }
+    
+    public async Task<List<OrderViewModel>> GetAllOrder()
+    {
+        var response = await _httpClient.GetFromJsonAsync<ResponseDto<List<OrderViewModel>>>("orders/GetAllOrders");
+        return response!.Data;
+        
     }
 }

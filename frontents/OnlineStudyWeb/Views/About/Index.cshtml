@@ -1,0 +1,104 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_UserLayout";
+}
+<div class="inner-banner">
+    <section class="w3l-breadcrumb">
+        <div class="container">
+            <h4 class="inner-text-title font-weight-bold mb-sm-3 mb-2">Om Oss</h4>
+            <ul class="breadcrumbs-custom-path">
+                <li><a href="/Home/Index">Hjem</a></li>
+                <li class="active"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span>Om Oss</li>
+            </ul>
+        </div>
+    </section>
+</div>
+<section class="w3l-text-6 py-5" id="about">
+    <div class="text-6-mian py-md-4 py-3">
+        <div class="container">
+            <div class="row top-cont-grid align-items-center">
+                <div class="col-lg-6 left-img pr-lg-4">
+                    <img src="~/starter/assets/images/about.jpg" alt="" class="img-responsive img-fluid" />
+                </div>
+                <div class="col-lg-6 text-6-info mb-lg-0 mb-4 pl-lg-5">
+                    <h6>Nettstudier</h6>
+                    <h2>Velkommen til vår <span>Nettside</span></h2>
+                    <p>Vi tilbyr en bred rekke online studier som gir deg muligheten til å lære og utvikle deg. Velkommen til vår nettside hvor du kan utforske mulighetene vi har å tilby.</p>
+                    <a href="#blog" class="btn button-style mt-sm-5 mt-4">Les Mer<i
+                            class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="about-block-3 py-5">
+    <div class="grids-w3ovt py-md-4 py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-md-0 mb-5">
+                    <div class="bg-color-block-2">
+                        <h6 class="top-grid-text text-uppercase"><label>01.</label>Våre Verdier</h6>
+                        <h3 class="grid-one-text mt-2 mb-4">Våre Kjerneverdier</h3>
+                        <p>Vi er forpliktet til å opprettholde de høyeste standardene for integritet, kvalitet og
+                            innovasjon i alt vi gjør. Våre verdier veileder oss i å gi enestående service til våre kunder.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-md-0 mb-5">
+                    <div class="bg-color-block-2">
+                        <h6 class="top-grid-text text-uppercase"><label>02.</label>Hvem Vi Er</h6>
+                        <h3 class="grid-one-text mt-2 mb-4">Vår Identitet</h3>
+                        <p>Vi er et team av dedikerte fagfolk som jobber sammen for å oppnå felles mål. Bli bedre kjent med oss.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="bg-color-block-2">
+                        <h6 class="top-grid-text text-uppercase"><label>03.</label>Hva Vi Gjør</h6>
+                        <h3 class="grid-one-text mt-2 mb-4">Våre Tjenester</h3>
+                        <p>Vi tilbyr et bredt spekter av tjenester for å møte dine behov. Utforsk våre løsninger og hvordan vi kan hjelpe deg å lykkes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+ <section class="w3_stats py-5" id="stats">
+        <div class="container py-md-5 py-4">
+            <div class="w3-stats">
+                <div class="row text-center">
+                    <div class="col-md-3 col-6">
+                        <div class="counter">
+                            <img src="~/starter/assets/images/stats1.png" alt="" />
+                            <div class="timer count-title count-number" data-to="5100" data-speed="1500"></div>
+                            <p class="count-text">Totalt Antall Kurs</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <div class="counter">
+                            <img src="~/starter/assets/images/stats2.png" alt="" />
+                            <div class="timer count-title count-number" data-to="0" data-speed="1500"></div>
+                            <p class="count-text">Eksperter Lærere</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6 mt-md-0 mt-4">
+                        <div class="counter">
+                            <img src="~/starter/assets/images/stats3.png" alt="" />
+                            <div class="timer count-title count-number" data-to="0" data-speed="1500"></div>
+                            <p class="count-text">Glade Studenter</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6 mt-md-0 mt-4">
+                        <div class="counter">
+                            <img src="~/starter/assets/images/stats4.png" alt="" />
+                            <div class="timer count-title count-number" data-to="0" data-speed="1500"></div>
+                            <p class="count-text">Priser Vunnet</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+@await Html.PartialAsync("~/Views/HomeIndexPartial/SpillAvVideoPartial.cshtml")

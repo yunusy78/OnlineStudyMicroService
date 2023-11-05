@@ -11,7 +11,7 @@ public class OrderCreateInput
 
     public string BuyerId { get; set; }
     
-    public AddressDto AddressDto { get; set; }
+    public AddressDto Address { get; set; }
     
     public List<OrderItemViewModel> OrderItems { get; set; }
 }

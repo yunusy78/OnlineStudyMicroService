@@ -1,4 +1,6 @@
-﻿namespace Business.Models.FakePayment;
+﻿using Business.Models.Order;
+
+namespace Business.Models.FakePayment;
 
 public class PaymentInfoInput
 {
@@ -8,6 +10,8 @@ public class PaymentInfoInput
     public string ExpirationYear { get; set; }
     public string Cvv { get; set; }
     public decimal TotalPrice { get; set; }
+    
+    public OrderCreateInput Order { get; set; }
     
     
 }

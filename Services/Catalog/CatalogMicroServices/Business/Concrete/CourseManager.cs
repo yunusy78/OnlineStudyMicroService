@@ -3,8 +3,10 @@ using CatalogMicroServices.Business.Abstract;
 using CatalogMicroServices.Dtos.Course;
 using CatalogMicroServices.Model;
 using CatalogMicroServices.Settings;
+using MassTransit;
 using MongoDB.Driver;
 using OnlineStudyShared;
+using OnlineStudyShared.Message.Event;
 
 namespace CatalogMicroServices.Business.Concrete;
 
@@ -12,16 +14,17 @@ public class CourseManager : ICourseService
 {
     private readonly IMongoCollection<Course> _courseCollection;
     private readonly IMongoCollection<Category> _categoryCollection;
-
+    private readonly IPublishEndpoint _publishEndpoint;
     private readonly IMapper _mapper;
     
-    public CourseManager(IDatabaseSettings databaseSettings, IMapper mapper)
+    public CourseManager(IDatabaseSettings databaseSettings, IMapper mapper, IPublishEndpoint publishEndpoint)
     {
         var client = new MongoClient(databaseSettings.ConnectionString);
         var database = client.GetDatabase(databaseSettings.DatabaseName);
         _courseCollection = database.GetCollection<Course>(databaseSettings.CourseCollectionName);
         _categoryCollection = database.GetCollection<Category>(databaseSettings.CategoryCollectionName);
         _mapper = mapper;
+        _publishEndpoint = publishEndpoint;
     }
 
     public async Task<ResponseDto<List<CourseDto>>> GetAllAsync()
@@ -96,6 +99,21 @@ public class CourseManager : ICourseService
         {
             return ResponseDto<NoContent>.Fail("Course not found", 404);
         }
+        await _publishEndpoint.Publish<CourseNameChangeEvent>(new
+        {
+            CourseId = updateCourse.CourseId,
+            NewCourseName = updateCourse.CourseName
+        });
+        
+        await _publishEndpoint.Publish<CourseUpdateEvent>(new
+        {
+            CourseId = updateCourse.CourseId,
+            NewCoursePrice = updateCourse.CoursePrice,
+            NewCourseImage = updateCourse.CourseImage,
+            NewCourseName = updateCourse.CourseName
+            
+        });
+        
         return ResponseDto<NoContent>.Success(204);
     }
     

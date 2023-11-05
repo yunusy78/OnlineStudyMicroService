@@ -6,6 +6,8 @@ public class OrderViewModel
     
     public string BuyerId { get; set; }
     
+    public DateTime CreatedTime { get; set; }
+    
     public List<OrderItemViewModel> OrderItems { get; set; }
     
     public decimal TotalPrice { get; set; }

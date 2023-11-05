@@ -8,5 +8,6 @@ public interface ICartService
     Task<ResponseDto<CartDto>> GetCart(string userId);
     Task<ResponseDto<bool>> SaveOrUpdateCart(CartDto cartDto);
     Task<ResponseDto<bool>> DeleteCart(string userId);
+    Task<ResponseDto<CartDto>> GetCart2(string cartKey);
     
 }

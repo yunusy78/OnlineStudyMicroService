@@ -20,10 +20,14 @@ public class HomeController : Controller
     }
    
 
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(string? search)
     {
-        var result = await _catalogService.GetCourseAsync();
-        return View(result);
+        var courses = await _catalogService.GetCourseAsync();
+        if (!string.IsNullOrEmpty(search))
+        {
+            courses = courses.Where(x => x.CourseName.ToLower().Contains(search.ToLower())).ToList();
+        }
+        return View(courses);
     }
     
     public async Task<IActionResult> CourseDetail(string id)

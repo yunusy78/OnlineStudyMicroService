@@ -20,7 +20,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title text-center" >Create Course</h4> <!-- Form başlığı -->
-                    <form asp-controller="Course" asp-action="Create" method="post" enctype="multipart/form-data"> <!-- Form -->
+                    <form asp-controller="Course" asp-action="Create" asp-area="Instructor" method="post" enctype="multipart/form-data"> <!-- Form -->
                         <div asp-validation-summary="ModelOnly"></div>
                         <!-- Course Name -->
                         <div class="mb-3">

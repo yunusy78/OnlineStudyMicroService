@@ -25,6 +25,7 @@ namespace OnlineStudyIdentityServer.Controller
             _userManager = userManager;
         }
         
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> SignUp( SignUpDto signUpDto)
         {

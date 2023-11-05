@@ -11,7 +11,7 @@
               <h3 class="page-title">
                 <span class="page-title-icon bg-gradient-primary text-white mr-2">
                   <i class="mdi mdi-school"></i>
-                </span> Courses
+                </span> Kurs
               </h3>
             </div>
             <div class="row">
@@ -23,15 +23,16 @@
                               {
                                   <table class="table">
                                       <tr>
-                                          <th>#</th>
-                                          <th>Photo</th>
-                                          <th>Name</th>
-                                          <th>Price</th>
-                                          <th>Duration</th>
-                                          <th>Description</th>
-                                          <th>Created Date</th>
-                                          <th>Action</th>
-                                          <th>Action</th>
+                                          <tr>
+                                              <th>#</th>
+                                              <th>Bilde</th>
+                                              <th>Navn</th>
+                                              <th>Prise</th>
+                                              <th>Varighet</th>
+                                              <th>Beskrivelse</th>
+                                              <th>Opprettet dato</th>
+                                          <th>Handling</th>
+                                          <th>Handlig</th>
                                       </tr>
                                       @foreach (var item in Model)
                                       {
@@ -46,24 +47,24 @@
                                               <td><span class="badge bg-label-primary me-1">@item.CourseDescription</span></td>
                                               <td> @(((DateTime)item.CourseCreatedDate).ToString("dd-MMM-yyyy"))</td>
                                               <td>
-                                                  <a asp-action="Update" asp-area="Instructor" asp-controller="Course" asp-route-id="@item.CourseId" class="btn btn-warning"><i class="fa fa-edit"></i> Edit</a>
-                                              </td>
+                                                  <a asp-action="Update" asp-area="Instructor" asp-controller="Course" asp-route-id="@item.CourseId" class="btn btn-warning"><i class="fa fa-edit"></i> Rediger</a></td>
                                               <td>
-                                                  <a asp-action="Delete" asp-area="Instructor" asp-controller="Course" asp-route-id="@item.CourseId" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?')"><i class="fa fa-trash"></i> Delete</a>
+                                                  <a asp-action="Delete" asp-area="Instructor" asp-controller="Course" asp-route-id="@item.CourseId" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?')"><i class="fa fa-trash"></i> Slett</a>
                                               </td>
                                               
                                           </tr>
                                       }
                                   </table>
                                   <br/>
-                                  <a asp-action="Create" asp-area="Instructor" asp-controller="Course" class="btn btn-primary"><i class="mdi mdi-plus"></i> Add New Course</a>
+                                 
                               }  
                               else
                               {
                                   <div class="alert alert-info">
-                                      Can not found any record
+                                      Finner ingen post
                                   </div>
                               }
+                        <a asp-action="Create" asp-area="Instructor" asp-controller="Course" class="btn btn-primary"><i class="mdi mdi-plus"></i> Legg til nytt kurs</a>
                     </div>
                   </div>
                 </div>

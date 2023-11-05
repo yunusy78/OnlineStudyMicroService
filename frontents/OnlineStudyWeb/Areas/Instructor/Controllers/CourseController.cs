@@ -37,10 +37,6 @@ public class CourseController : Controller
     [HttpPost]
     public async Task<IActionResult> Create(CreateCourseDto course)
     {
-        if (!ModelState.IsValid)
-        {
-            return View();
-        }
         course.CourseCreatedDate = DateTime.Now;
         course.UserId = _sharedIdentity.GetUserId;
         await _catalogService.CreateCourseAsync(course);

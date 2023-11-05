@@ -5,13 +5,15 @@
 using System;
 using IdentityServer4.Models;
 using System.Collections.Generic;
+using IdentityModel;
 using IdentityServer4;
+using Microsoft.AspNetCore.Identity;
 
 namespace OnlineStudyIdentityServer
 {
     public static class Config
     {
-        public static IEnumerable<ApiResource> ApiResources =>
+         public static IEnumerable<ApiResource> ApiResources =>
             new ApiResource[]
             {
                 new ApiResource("resource_catalog"){Scopes={"catalog_fullpermission"}},
@@ -68,7 +70,8 @@ namespace OnlineStudyIdentityServer
                     AllowOfflineAccess = true,
                     ClientSecrets = {new Secret("secret".Sha256())},
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
-                    AllowedScopes = {"cart_fullpermission","discount_fullpermission","order_fullpermission","payment_fullpermission","gateway_fullpermission",IdentityServerConstants.LocalApi.ScopeName,IdentityServerConstants.StandardScopes.Email,
+                    AllowedScopes = {"cart_fullpermission","order_fullpermission","gateway_fullpermission",
+                        IdentityServerConstants.LocalApi.ScopeName,IdentityServerConstants.StandardScopes.Email,
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         IdentityServerConstants.StandardScopes.OfflineAccess,"roles"},
@@ -77,7 +80,18 @@ namespace OnlineStudyIdentityServer
                     AbsoluteRefreshTokenLifetime = (int)(DateTime.Now.AddDays(60)-DateTime.Now).TotalSeconds,
                     RefreshTokenUsage = TokenUsage.ReUse,
                     
-                }
+                },
+                
+                new Client ()
+                {
+                    ClientId = "TokenExchangeClient",
+                    ClientName = "Token Exchange Client",
+                    AllowOfflineAccess = true,
+                    AllowedGrantTypes = new [] {"urn:ietf:params:oauth:grant-type:token-exchange"},
+                    ClientSecrets = {new Secret("secret".Sha256())},
+                    AllowedScopes = {"gateway_fullpermission","discount_fullpermission", "payment_fullpermission", 
+                        IdentityServerConstants.StandardScopes.OpenId}
+                },
 
                 
             };

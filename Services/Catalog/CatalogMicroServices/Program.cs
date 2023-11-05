@@ -2,6 +2,7 @@ using System.Configuration;
 using CatalogMicroServices.Business.Abstract;
 using CatalogMicroServices.Business.Concrete;
 using CatalogMicroServices.Settings;
+using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Options;
@@ -27,12 +28,29 @@ if (databaseSettingsSection != null)
     });
 }
 
+
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
     options.Authority = builder.Configuration["IdentityServerUrl"];
     options.Audience = "resource_catalog";
     options.RequireHttpsMetadata = false;
 });
+
+
+builder.Services.AddMassTransit(x=> {
+    
+    //default port: 5672
+    x.UsingRabbitMq((context, cfg) =>
+    {
+        cfg.Host(builder.Configuration["RabbitMqUrl"],"/", host =>
+        {
+            host.Username("guest");
+            host.Password("guest");
+        });
+    });
+});
+builder.Services.AddMassTransitHostedService();
 
 
 builder.Services.AddScoped<ICategoryService, CategoryManager>();
