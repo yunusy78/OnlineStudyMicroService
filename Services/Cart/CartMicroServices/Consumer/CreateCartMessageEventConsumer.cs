@@ -41,7 +41,6 @@ public class CreateCartMessageEventConsumer : IConsumer<CourseUpdateEvent>
                     // Örnek olarak, item'ın ID'si eşleştiği durumda güncelleme yapabilirsiniz.
                     if (item.CourseId == context.Message.CourseId)
                     {
-                        //item.PictureUrl = context.Message.NewCourseImage;
                         item.Price = context.Message.NewCoursePrice;
                         item.CourseName = context.Message.NewCourseName;
                     }

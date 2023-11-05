@@ -40,7 +40,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 5013
+          "Port": 5020
         }
       ],
       "UpstreamPathTemplate": "/services/cart/{everything}",
@@ -63,9 +63,10 @@
       "UpstreamPathTemplate": "/services/discount/{everything}",
       "UpstreamHttpMethod": [ "POST", "PUT", "GET", "DELETE" ],
       "UpstreamScheme": "http",
+      "DelegatingHandlers": ["TokenExchangeDelegateHandler"],
         "AuthenticationOptions": {
-            "AuthenticationProviderKey": "GatewayAuthenticationScheme",
-            "AllowedScopes": ["discount_fullpermission"]
+            "AuthenticationProviderKey": "GatewayAuthenticationScheme"
+            
         }
     },
     {
@@ -97,9 +98,10 @@
       "UpstreamPathTemplate": "/services/payment/{everything}",
       "UpstreamHttpMethod": [ "POST", "PUT", "GET", "DELETE" ],
       "UpstreamScheme": "http",
+      "DelegatingHandlers": ["TokenExchangeDelegateHandler"],
         "AuthenticationOptions": {
-            "AuthenticationProviderKey": "GatewayAuthenticationScheme",
-            "AllowedScopes": ["payment_fullpermission"]
+            "AuthenticationProviderKey": "GatewayAuthenticationScheme"
+            
         }
     }
   ],

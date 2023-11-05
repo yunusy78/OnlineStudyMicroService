@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineStudyShared.Controller;
@@ -28,12 +29,22 @@ namespace OrderMicroServicesWebAPI.Controllers
             return CreateActionResultInstance(response);
         }
         
+        
         [HttpGet]
         public async Task<IActionResult> GetOrders()
         {
             var response = await _mediator.Send(new GetOrdersByUserIdQuery{UserId = _sharedIdentity.GetUserId});
             return CreateActionResultInstance(response);
         }
+        
+      
+        [HttpGet("GetAllOrders")]
+        public async Task<IActionResult> GetAllOrders()
+        {
+            var response = await _mediator.Send(new GetAllOrdersQuery());
+            return CreateActionResultInstance(response);
+        }
+        
         
     }
 }

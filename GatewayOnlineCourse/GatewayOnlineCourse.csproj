@@ -14,8 +14,10 @@
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="IdentityModel" Version="6.2.0" />
       <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.0" />
       <PackageReference Include="Ocelot" Version="19.0.4" />
     </ItemGroup>
+
 
 </Project>

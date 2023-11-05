@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "_AdminLayout";
+}
+
+<style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+<div class="content-wrapper">
+    <div class="row" id="proBanner">
+    </div>
+    <div class="page-header">
+        <h3 class="page-title">
+            <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                <i class="mdi mdi-salesforce"></i>
+            </span> Bestillingshistorikk
+        </h3>
+    </div>
+<div class="container">
+    <div class="card-body">
+        <h2>Kurs Bestilling Liste</h2>
+        <table>
+            <tr>
+                <th>Kurs</th>
+                <th>Bestilling Antall</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Count</td>
+                </tr>
+            }
+            
+        </table>
+    </div>
+
+</div>
+</div>

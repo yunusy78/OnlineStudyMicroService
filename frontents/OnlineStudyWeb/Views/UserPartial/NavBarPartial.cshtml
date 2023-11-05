@@ -25,13 +25,13 @@
                             <a class="nav-link" href="/Home/Index">Hjem<span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="~/starter/about.html">Om Oss</a>
+                            <a class="nav-link" href="/About/Index">Om Oss</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="~/starter/courses.html">Kurs</a>
+                            <a class="nav-link" href="/Courses/Index">Kurs</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="~/starter/contact.html">Kontakt Oss</a>
+                            <a class="nav-link" href="/Contact/Index">Kontakt Oss</a>
                         </li>
                         <!-- search button -->
                         <div class="search-right">
@@ -40,11 +40,10 @@
                             <div id="search" class="pop-overlay">
                                 <div class="popup">
                                     <h4 class="search-pop-text-w3 text-white text-center mb-4">Søk her etter ditt onlinekurs</h4>
-                                    <form action="#error" method="GET" class="search-box">
-                                        <div class="input-search"> <span class="fa fa-search mr-2"
-                                                aria-hidden="true"></span><input type="search"
-                                                placeholder="Enter Keyword" name="search" required="required"
-                                                autofocus="">
+                                    <form asp-controller="Home" asp-action="Index" method="GET" class="search-box">
+                                        <div class="input-search"> <span class="fa fa-search mr-2" aria-hidden="true"></span><input type="search" placeholder="Hva leter du etter?" name="search" required="required"
+                                                                                                          autofocus="">
+                                            
                                         </div>
                                         <button type="submit" class="btn button-style">Søk</button>
                                     </form>
@@ -55,27 +54,28 @@
                         </div>
                         <!-- //search button -->
                         <div>
-                                            @if (User.Identity.IsAuthenticated)
-                                            {
-                                                <ul>
-                                                    <li><h6 class="about-block-3"> Hei @User.Identity.Name</h6></li>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <ul>
+                                    <li class="nav-item"><h6 class="about-block-3"> Hei @User.Identity.Name</h6></li>
+                                    <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Auth" asp-action="SignUp" ><i class="fas fa-sign-out-alt"></i><strong> Logout</strong> </a></li>
+                                    <li class="nav-item"><a class="nav-link" asp-area="Instructor" asp-controller="Profile" asp-action="Index" > <i class="fas fa-user"></i><strong> Min Side</strong>  </a></li>
                                                     
-                                                    <a asp-area="Instructor" asp-controller="Profile" asp-action="Index" class="btn btn-outline-success"> <i class="fas fa-user"></i>  Min Side</a>
-                                                    
-                                                   
-                                                    
-                                                    <a asp-area="" asp-controller="Auth" asp-action="SignUp" class="btn btn-outline-warning"><i class="fas fa-sign-out-alt"></i> Logout</a>
-                                                    
-                                                </ul>
+                                </ul>
                                               
-                                            }
-                                            else
-                                            {
-                                                <a asp-area="" asp-controller="Auth" asp-action="SignIn" class="btn btn-outline-warning"><i class="fas fa-sign-in-alt"></i> Login</a>
-                                            }
-                                        </div>
+                            }
+                            else
+                            {
+                                <li class="nav-item"><a class="nav-link"  asp-area="" asp-controller="Auth" asp-action="SignIn" ><i class="fas fa-sign-in-alt"></i><strong> Logg Inn</strong> </a></li>
+                                <li class="nav-item"><a class="nav-link"  asp-area="" asp-controller="Auth" asp-action="SignUp" ><i class="fas fa-registered"></i><strong> Meld Deg Inn </strong> </a></li>
+                            }
+                        </div>
                     </ul>
                 </div>
+                <li class="nav-item">
+                    <a class="nav-link text-light" asp-area="" asp-controller="Cart" asp-action="Index">@await Component.InvokeAsync("ShoppingCartCount")</a>
+                   
+                </li>
                 <!-- toggle switch for light and dark theme -->
                 <div class="cont-ser-position">
                     <nav class="navigation">
@@ -91,9 +91,7 @@
                     </nav>
                 </div>
                 
-                <li class="nav-item">
-                    <a class="nav-link text-light" asp-area="" asp-controller="Cart" asp-action="Index">@await Component.InvokeAsync("ShoppingCartCount")</a>
-                </li>
+                
                 
                 <!-- //toggle switch for light and dark theme -->
             </nav>

@@ -12,7 +12,7 @@
         <h3 class="page-title">
             <span class="page-title-icon bg-gradient-primary text-white mr-2">
                 <i class="mdi mdi-school"></i>
-            </span> Orders History
+            </span> Bestillingshistorikk
         </h3>
     </div>
     <div class="row">
@@ -26,6 +26,7 @@
                                     <tr>
                                         <th>#</th>
                                         <th>BestillingsNummer</th>
+                                        <th>Dato</th>
                                         <th>Detaljer</th>
                                     </tr>
                                 
@@ -36,12 +37,13 @@
                                                 @{i = i + 1;}
                                                 <td>@i</td>
                                                 <td>@item.Id</td>
+                                                <td>@item.CreatedTime</td>
                                                 <td>
                                                     <table class="table table-success">
                                                         <tr>
-                                                            <th>Photo</th>
-                                                            <th>Name</th>
-                                                            <th>Price</th>
+                                                            <th>Bilde</th>
+                                                            <th>Navn</th>
+                                                            <th>Pris</th>
                                                         </tr>
                                                         @foreach (var orderItem in item.OrderItems)
                                                         {
@@ -62,7 +64,7 @@
                         else
                         {
                             <div class="alert alert-info">
-                                No records found
+                                Ingen data funnet
                             </div>
                         }
                     </div>

@@ -1,8 +1,10 @@
 ﻿using System.Globalization;
+using System.Net.Http.Json;
 using System.Security.Claims;
 using System.Text.Json;
 using Business.Abstract;
 using Business.Models;
+using Frontents.Business.Dtos.Auth;
 using IdentityModel.Client;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -196,6 +198,33 @@ public class IdentityManager : IIdentityService
         };
         
         await _httpClient.RevokeTokenAsync(refreshTokenRequest);
+        
+    }
+    
+    
+    public async Task<ResponseDto<bool>> SignUp (SignUpDto signUpInput)
+    {
+        var user = new SignUpDto
+        {
+            UserName = signUpInput.UserName,
+            Email = signUpInput.Email,
+            Password = signUpInput.Password,
+            City = signUpInput.City
+        };
+        
+        var response = await _httpClient.PostAsJsonAsync<SignUpDto>(_serviceApiSettings.IdentityBaseUri + "/api/User/SignUp", user);
+        
+        if (!response.IsSuccessStatusCode)
+        {
+            var content = await response.Content.ReadAsStringAsync();
+            var errorDto = JsonSerializer.Deserialize<ErrorDto>(content, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+            throw new Exception(errorDto.Errors[0]);
+        }
+        
+        return ResponseDto<bool>.Success(200);
         
     }
 }

@@ -33,7 +33,7 @@ public class CartManager : ICartService
 
         if (response.IsSuccessStatusCode)
         {
-             return response.IsSuccessStatusCode;
+            return response.IsSuccessStatusCode;
         }
         else
         {

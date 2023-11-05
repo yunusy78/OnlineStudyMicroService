@@ -60,10 +60,11 @@ namespace OnlineStudyIdentityServer
                 .AddAspNetIdentity<ApplicationUser>();
 
             builder.AddResourceOwnerValidator<IdentityResourceOwnerPasswordValidator>();
+            builder.AddExtensionGrantValidator<TokenExchangeGrantValidator>();
 
             // not recommended for production - you need to store your key material somewhere secure
             builder.AddDeveloperSigningCredential();
-
+           
             services.AddAuthentication()
                 .AddGoogle(options =>
                 {

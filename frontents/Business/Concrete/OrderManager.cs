@@ -146,4 +146,11 @@ public class OrderManager : IOrderService
         return response!.Data;
 
     }
+    
+    public async Task<List<OrderViewModel>> GetAllOrder()
+    {
+        var response = await _httpClient.GetFromJsonAsync<ResponseDto<List<OrderViewModel>>>("orders/GetAllOrders");
+        return response!.Data;
+        
+    }
 }

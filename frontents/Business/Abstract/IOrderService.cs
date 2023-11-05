@@ -8,6 +8,6 @@ public interface IOrderService
   Task<OrderStatusViewModel> SuspectOrder(OrderCheckOutInfoInput orderCheckOutInfoInput);
   
   Task<List<OrderViewModel>> GetOrders();
-  
+  Task<List<OrderViewModel>> GetAllOrder();
 
 }

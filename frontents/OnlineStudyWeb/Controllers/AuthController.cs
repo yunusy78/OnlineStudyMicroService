@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Models;
+using Frontents.Business.Dtos.Auth;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
@@ -43,7 +44,27 @@ public class AuthController : Controller
     public async Task<IActionResult> SignUp()
     {
         await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-        await _identityService.RevokeRefreshToken();
-        return RedirectToAction("Index", "Home");
+        return View();
+    }
+    
+    
+    
+    [HttpPost]
+    public async Task<IActionResult> SignUp(SignUpDto signUpInput)
+    {
+        if(!ModelState.IsValid)
+            return View();
+        
+        var response = await _identityService.SignUp(signUpInput);
+        if (response.IsSuccess)
+        {
+            return RedirectToAction("SignIn");
+        }
+        else
+        {
+            response.Errors.ForEach(x => ModelState.AddModelError(String.Empty, x));
+            return View();
+        }
+        
     }
 }
