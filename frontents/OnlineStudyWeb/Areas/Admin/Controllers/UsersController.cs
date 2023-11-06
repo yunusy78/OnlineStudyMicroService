@@ -1,12 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Business.Abstract;
+using Frontents.Business.Dtos.Auth;
+using Microsoft.AspNetCore.Mvc;
 
 namespace OnlineStudyWeb.Areas.Admin.Controllers;
-
+[Area("Admin")]
 public class UsersController : Controller
 {
-    // GET
-    public IActionResult Index()
+    private readonly IUserService _identityService;
+    
+    public UsersController(IUserService identityService)
     {
-        return View();
+        _identityService = identityService;
+    }
+    
+    // GET
+    public async Task<IActionResult> Index()
+    {
+        var users = await _identityService.GetAllUser();
+        return View(users);
     }
 }

@@ -1,4 +1,4 @@
-﻿@model dynamic
+﻿@model Business.Dtos.Contact.ContactDto
 
 @{
     ViewBag.Title = "title";
@@ -37,23 +37,20 @@
                     <div class="col-lg-6 content-form-right p-0">
                         <div class="form-w3ls p-md-5 p-4">
                             <h4 class="mb-4 sec-title-w3">Send oss en melding.</h4>
-                            <form method="post" action="https://sendmail.w3layouts.com/submitForm">
+                            <form method="post" asp-action="Create" asp-controller="Contact">
                                 <div class="row">
                                     <div class="col-sm-6 form-group pr-sm-1">
-                                        <input class="form-control" type="text" name="w3lName" id="w3lName" placeholder="Fornavn" required="">
-                                    </div>
-                                    <div class="col-sm-6 form-group pl-sm-1">
-                                        <input class a="form-control" type="text" name="w3lName" id="w3lName" placeholder="Etternavn" required="">
+                                        <input class="form-control" type="text" asp-for="Name" id="w3lName" placeholder="Fornavn" required="">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" type="email" name="w3lSender" id="w3lSender" placeholder="E-post" required="">
+                                    <input class="form-control" type="email" asp-for="Email" id="w3lSender" placeholder="E-post" required="">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" type="text" name="w3lName" id="w3lName" placeholder="Telefonnummer" required="">
+                                    <input class="form-control" type="text" asp-for="Subject" id="w3lName" placeholder="Tema" required="">
                                 </div>
                                 <div class="form-group">
-                                    <textarea class="form-control" name="w3lMessage" id="w3lMessage" placeholder="Melding" required=""></textarea>
+                                    <textarea class="form-control" asp-for="Message" id="w3lMessage" placeholder="Melding" required=""></textarea>
                                 </div>
                                 <div class="input-group1 text-right">
                                     <button class="btn button-style" type="submit">Send

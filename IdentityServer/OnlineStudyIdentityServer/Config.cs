@@ -23,6 +23,7 @@ namespace OnlineStudyIdentityServer
                 new ApiResource("resource_order"){Scopes={"order_fullpermission"}},
                 new ApiResource("resource_payment"){Scopes={"payment_fullpermission"}},
                 new ApiResource("resource_gateway"){Scopes={"gateway_fullpermission"}},
+                new ApiResource("resource_contact"){Scopes={"contact_fullpermission"}},
                 new ApiResource(IdentityServerConstants.LocalApi.ScopeName)
                
             };
@@ -45,6 +46,7 @@ namespace OnlineStudyIdentityServer
                 new ApiScope("order_fullpermission","Access full order API"),
                 new ApiScope("payment_fullpermission","Access full payment API"),
                 new ApiScope("gateway_fullpermission","Access full gateway API"),
+                new ApiScope("contact_fullpermission","Access full contact API"),
                 new ApiScope(IdentityServerConstants.LocalApi.ScopeName),
             };
 
@@ -70,7 +72,7 @@ namespace OnlineStudyIdentityServer
                     AllowOfflineAccess = true,
                     ClientSecrets = {new Secret("secret".Sha256())},
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
-                    AllowedScopes = {"cart_fullpermission","order_fullpermission","gateway_fullpermission",
+                    AllowedScopes = {"cart_fullpermission","order_fullpermission","gateway_fullpermission","contact_fullpermission",
                         IdentityServerConstants.LocalApi.ScopeName,IdentityServerConstants.StandardScopes.Email,
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,

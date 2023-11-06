@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using OnlineStudyShared.Controller;
 using OnlineStudyShared.Services;
 
-namespace DiscountMicroSrvices.Controllers
+namespace DiscountMicroServices.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

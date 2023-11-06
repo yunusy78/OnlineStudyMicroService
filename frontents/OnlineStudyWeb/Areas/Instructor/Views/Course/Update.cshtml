@@ -11,14 +11,14 @@
               <h3 class="page-title">
                 <span class="page-title-icon bg-gradient-warning text-white mr-2">
                   <i class="mdi mdi-school"></i>
-                </span> Update Courses
+                </span> Opdater Kurs
               </h3>
             </div>
     <div class="row justify-content-center">
         <div class="col-lg-6 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title text-center" >Update Course</h4> <!-- Form başlığı -->
+                    <h4 class="card-title text-center" > Oppdater Kurs </h4> <!-- Form başlığı -->
                     <form asp-controller="Course" asp-action="Update" method="post" enctype="multipart/form-data"> <!-- Form -->
                         <div asp-validation-summary="ModelOnly"></div>
                         
@@ -27,38 +27,45 @@
                         <input type="hidden" asp-for="CourseImage"></input>
                         <!-- Course Name -->
                         <div class="mb-3">
-                            <label  class="form-label">Course Name:</label>
+                            <label  class="form-label">Kurs Navn:</label>
                             <input type="text" class="form-control" asp-for="CourseName" >
                             <span class="text-danger" asp-validation-for="CourseName"></span>
                         </div>
                         
+                                                
                         <div class="mb-3">
-                            <label asp-for="CoursePrice" class="form-label">Course Price:</label>
-                            <input type="number" class="form-control" asp-for="CoursePrice" step="0.01" >
+                            <label asp-for="CoursePrice" class="form-label">Kurs Prise:</label>
+                            <input type="number" class="form-control" asp-for="CoursePrice" step="0.00" >
                         </div>
                         
+                                                
                         <div class="mb-3">
-                            <label asp-for="Feature.Duration" class="form-label">Course Duration:</label>
+                            <label asp-for="Feature.Duration" class="form-label">Varighet:</label>
                             <input type="text" class="form-control" asp-for="Feature.Duration">
                         </div>
                         
+                                                
                         <div class="mb-3">
-                            <label asp-for="CourseDescription" class="form-label">Course Description:</label>
+                            <label asp-for="CourseDescription" class="form-label">Beskrivelse:</label>
                             <textarea class="form-control" asp-for="CourseDescription" rows="4"></textarea>
                         </div>
+                        
                         <div class="mb-3">
-                            <label  class="form-label" asp-for="CategoryId">Category:</label>
+                            <label  class="form-label" asp-for="CategoryId">Kategory:</label>
                             <select asp-for="CategoryId" class="form-control" asp-items="@ViewBag.Category">
+                                <option value="">Velg Kategory</option>
                             </select>
                             <span class="text-danger" asp-validation-for="CategoryId"></span>
                         </div>
+                        
                         <div class="mb-3">
-                            <label asp-for="ImageFormFile" class="form-label">Course Image:</label>
+                            <label asp-for="ImageFormFile" class="form-label">Bilde:</label>
                             <input type="file" class="form-control" asp-for="ImageFormFile">
                         </div>
-                         <div class="text-center">
-                             <button type="submit" class="btn btn-warning"> <i class="mdi mdi-update"></i> Update</button> 
-                          </div>
+                        
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary"> <i class="mdi mdi-content-save-edit"></i> Lagre</button> 
+                        </div>
                     </form>
                 </div>
             </div>

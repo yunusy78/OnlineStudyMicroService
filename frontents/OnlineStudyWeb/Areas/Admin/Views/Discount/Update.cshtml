@@ -1,67 +1,61 @@
-﻿@model Business.Dtos.Catalog.Course.UpdateCourseDto
+﻿@model Business.Models.DiscountViewModel.DiscountUpdateViewModel
 
 @{
     ViewBag.Title = "title";
-    Layout = "_InstructorLayout";
+    Layout = "_AdminLayout";
 }
+
  <div class="content-wrapper">
             <div class="row" id="proBanner">
             </div>
             <div class="page-header">
               <h3 class="page-title">
-                <span class="page-title-icon bg-gradient-warning text-white mr-2">
+                <span class="page-title-icon bg-gradient-primary text-white mr-2">
                   <i class="mdi mdi-school"></i>
-                </span> Update Courses
+                </span> Rediger Rabatt
               </h3>
             </div>
+
     <div class="row justify-content-center">
         <div class="col-lg-6 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title text-center" >Update Course</h4> <!-- Form başlığı -->
-                    <form asp-controller="Course" asp-action="Update" method="post" enctype="multipart/form-data"> <!-- Form -->
+                    <h4 class="card-title text-center" >Opprett Rabatt</h4> <!-- Form başlığı -->
+                    <form asp-controller="Discount" asp-action="Update" asp-area="Admin" method="post" > <!-- Form -->
                         <div asp-validation-summary="ModelOnly"></div>
-                        
-                        <input type="hidden" asp-for="CourseId"></input>
-                        <input type="hidden" asp-for="UserId"></input>
-                        <input type="hidden" asp-for="CourseImage"></input>
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="UserId" />
+                        <input type="hidden" asp-for="CreatedTime" />
                         <!-- Course Name -->
                         <div class="mb-3">
-                            <label  class="form-label">Course Name:</label>
-                            <input type="text" class="form-control" asp-for="CourseName" >
-                            <span class="text-danger" asp-validation-for="CourseName"></span>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label asp-for="CoursePrice" class="form-label">Course Price:</label>
-                            <input type="number" class="form-control" asp-for="CoursePrice" step="0.01" >
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label asp-for="Feature.Duration" class="form-label">Course Duration:</label>
-                            <input type="text" class="form-control" asp-for="Feature.Duration">
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label asp-for="CourseDescription" class="form-label">Course Description:</label>
-                            <textarea class="form-control" asp-for="CourseDescription" rows="4"></textarea>
+                            <label  class="form-label">Kode</label>
+                            <input type="text" class="form-control" asp-for="Code" >
+                            <span class="text-danger" asp-validation-for="Code"></span>
                         </div>
                         <div class="mb-3">
-                            <label  class="form-label" asp-for="CategoryId">Category:</label>
-                            <select asp-for="CategoryId" class="form-control" asp-items="@ViewBag.Category">
+                            <label  class="form-label">Prosentdel</label>
+                            <input type="text" class="form-control" asp-for="Rate" >
+                            <span class="text-danger" asp-validation-for="Rate"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label  class="form-label">Status</label>
+                            <input type="text" class="form-control" asp-for="Status" >
+                        <span class="text-danger" asp-validation-for="Status"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label  class="form-label" asp-for="UserId">Bruker</label>
+                            <select asp-for="UserId" class="form-control" asp-items="@ViewBag.Users">
+                                <option value="">Velg Bruker</option>
                             </select>
-                            <span class="text-danger" asp-validation-for="CategoryId"></span>
+                            <span class="text-danger" asp-validation-for="UserId"></span>
                         </div>
-                        <div class="mb-3">
-                            <label asp-for="ImageFormFile" class="form-label">Course Image:</label>
-                            <input type="file" class="form-control" asp-for="ImageFormFile">
-                        </div>
-                         <div class="text-center">
-                             <button type="submit" class="btn btn-warning"> <i class="mdi mdi-update"></i> Update</button> 
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary"> <i class="mdi mdi-content-save"></i>Rediger</button> 
                           </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
+    </div>
