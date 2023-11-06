@@ -17,6 +17,8 @@ public class ServiceApiSettings
     
     public ServiceApi Order { get; set; }
     
+    public ServiceApi Contact { get; set; }
+    
 }
 
 

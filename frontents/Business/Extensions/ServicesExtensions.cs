@@ -27,7 +27,28 @@ public static class ServicesExtensions
             opt.BaseAddress = new Uri($"{serviceApiSettings!.GatewayBaseUri}/{serviceApiSettings.Cart.Path}");
         }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
         
-        services.AddHttpClient<IUserService, UserManager>(opt =>
+        services.AddHttpClient<IContactService, ContactManager>(opt =>
+        {
+            opt.BaseAddress = new Uri($"{serviceApiSettings!.GatewayBaseUri}/{serviceApiSettings.Contact.Path}");
+        }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
+        
+        services.AddHttpClient<IContactService, ContactManager>(opt =>
+        {
+            opt.BaseAddress = new Uri($"{serviceApiSettings!.GatewayBaseUri}/{serviceApiSettings.Contact.Path}");
+        }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
+        
+        services.AddHttpClient<ICommentService, CommentManager>(opt =>
+        {
+            opt.BaseAddress = new Uri($"{serviceApiSettings!.GatewayBaseUri}/{serviceApiSettings.Contact.Path}");
+        }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
+        
+        services.AddHttpClient<ITestimonialService, TestimonialManager>(opt =>
+        {
+            opt.BaseAddress = new Uri($"{serviceApiSettings!.GatewayBaseUri}/{serviceApiSettings.Contact.Path}");
+        }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
+        
+        
+        services.AddHttpClient<IInstructorService, InstructorManager>(opt =>
         {
             opt.BaseAddress = new Uri(configuration.GetSection(nameof(ServiceApiSettings)).Get<ServiceApiSettings>()!
                 .IdentityBaseUri);

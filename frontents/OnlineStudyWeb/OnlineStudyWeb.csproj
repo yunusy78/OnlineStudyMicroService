@@ -8,12 +8,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Content Include="..\.dockerignore">
-            <Link>.dockerignore</Link>
-        </Content>
-    </ItemGroup>
-
-    <ItemGroup>
         <ProjectReference Include="..\Business\Business.csproj" />
     </ItemGroup>
 
@@ -57,7 +51,6 @@
       <AdditionalFiles Include="Areas\Admin\Views\AdminPartialView\_NavbarPartial.cshtml" />
       <AdditionalFiles Include="Areas\Admin\Views\AdminPartialView\_ScriptPartial.cshtml" />
       <AdditionalFiles Include="Areas\Admin\Views\AdminPartialView\_SidebarPartial.cshtml" />
-      <AdditionalFiles Include="Areas\Admin\Views\Shared\_InstructorLayout.cshtml" />
     </ItemGroup>
 
 </Project>

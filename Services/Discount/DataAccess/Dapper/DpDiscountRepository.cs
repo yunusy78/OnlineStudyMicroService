@@ -73,7 +73,6 @@ public class DpDiscountRepository : IDiscountDal
         }
         string sql = "UPDATE discounts SET code=@Code, userId=@UserId, rate=@Rate, createdTime=@CreatedTime, status=@Status WHERE Id = @Id";
         var parameters = new DynamicParameters();
-        parameters.Add("@Id", discount.Id, DbType.Int32);
         parameters.Add("@Code", discount.Code, DbType.String);
         parameters.Add("@UserId", discount.UserId, DbType.String);
         parameters.Add("@Rate", discount.Rate, DbType.Int32);

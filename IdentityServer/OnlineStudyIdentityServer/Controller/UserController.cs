@@ -70,5 +70,24 @@ namespace OnlineStudyIdentityServer.Controller
 
 
         }
+        
+        [HttpGet("GetAllUsers")]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            var users = _userManager.Users;
+            var usersDto = new List<ApplicationUser>();
+            foreach (var user in users)
+            {
+                var userDto = new ApplicationUser()
+                {
+                    UserName = user.UserName,
+                    Email = user.Email,
+                    City = user.City,
+                    Id = user.Id
+                };
+                usersDto.Add(userDto);
+            }
+            return Ok(usersDto);
+        }   
     }
 }
