@@ -1,0 +1,66 @@
+﻿@model Business.Dtos.Catalog.Course.CreateCourseDto
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_InstructorLayout";
+}
+ <div class="content-wrapper">
+            <div class="row" id="proBanner">
+            </div>
+            <div class="page-header">
+              <h3 class="page-title">
+                <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                  <i class="mdi mdi-school"></i>
+                </span> Create Courses
+              </h3>
+            </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title text-center" >Create Course</h4> <!-- Form başlığı -->
+                    <form asp-controller="Course" asp-action="Create" asp-area="Instructor" method="post" enctype="multipart/form-data"> <!-- Form -->
+                        <div asp-validation-summary="ModelOnly"></div>
+                        <!-- Course Name -->
+                        <div class="mb-3">
+                            <label  class="form-label">Course Name:</label>
+                            <input type="text" class="form-control" asp-for="CourseName" >
+                            <span class="text-danger" asp-validation-for="CourseName"></span>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="CoursePrice" class="form-label">Course Price:</label>
+                            <input type="number" class="form-control" asp-for="CoursePrice" step="0.00" >
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="Feature.Duration" class="form-label">Course Duration:</label>
+                            <input type="text" class="form-control" asp-for="Feature.Duration">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="CourseDescription" class="form-label">Course Description:</label>
+                            <textarea class="form-control" asp-for="CourseDescription" rows="4"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label  class="form-label" asp-for="CategoryId">Category:</label>
+                            <select asp-for="CategoryId" class="form-control" asp-items="@ViewBag.Category">
+                                <option value="">Select Category</option>
+                            </select>
+                            <span class="text-danger" asp-validation-for="CategoryId"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="ImageFormFile" class="form-label">Course Image:</label>
+                            <input type="file" class="form-control" asp-for="ImageFormFile">
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary"> <i class="mdi mdi-content-save"></i>Create</button> 
+                          </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
