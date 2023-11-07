@@ -71,6 +71,7 @@ namespace OnlineStudyIdentityServer.Controller
 
         }
         
+        
         [HttpGet("GetAllUsers")]
         public async Task<IActionResult> GetAllUsers()
         {

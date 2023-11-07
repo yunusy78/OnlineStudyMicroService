@@ -1,10 +1,12 @@
 ﻿using Business.Abstract;
 using Business.Models.DiscountViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace OnlineStudyWeb.Areas.Admin.Controllers;
 [Area("Admin")]
+[Authorize(Roles = "Admin")]
 public class DiscountController : Controller
 {
     private readonly IDiscountService _discountService;

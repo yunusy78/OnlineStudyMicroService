@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace OnlineStudyWeb.Areas.Admin.Controllers;
 
 [Area("Admin")]
+[Authorize(Roles = "Admin")]
 public class ChartController : Controller
 {
    private readonly IOrderService _orderService;
@@ -69,6 +70,29 @@ public class ChartController : Controller
         return Json(new { jsonlist = jsonCourses });
 
     }
+
+    public async Task<IActionResult> CategoryChart()
+    {
+        var categories = await _catalogService.GetCategoryAsync();
+        var jsonCategories = new List<object>();
+        
+        foreach (var category in categories)
+        {
+            var courses = await _catalogService.GetCourseAsync();
+            var courseCount = courses.Count(x => x.CategoryId == category.CategoryId);
+            var jsonCategory = new
+            {
+                Name = category.CategoryName,
+                Count = courseCount
+            };
+            jsonCategories.Add(jsonCategory);
+        }
+        
+        return Json(new { jsonlist = jsonCategories });
+        
+    }
+    
+
     
     public async Task<IActionResult> RevenueChart()
     {

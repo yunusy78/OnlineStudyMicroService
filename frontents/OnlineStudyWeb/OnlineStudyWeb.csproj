@@ -47,7 +47,6 @@
 
     <ItemGroup>
       <AdditionalFiles Include="Areas\Admin\Views\AdminPartialView\_FooterPartial.cshtml" />
-      <AdditionalFiles Include="Areas\Admin\Views\AdminPartialView\_HeaderPartial.cshtml" />
       <AdditionalFiles Include="Areas\Admin\Views\AdminPartialView\_NavbarPartial.cshtml" />
       <AdditionalFiles Include="Areas\Admin\Views\AdminPartialView\_ScriptPartial.cshtml" />
       <AdditionalFiles Include="Areas\Admin\Views\AdminPartialView\_SidebarPartial.cshtml" />

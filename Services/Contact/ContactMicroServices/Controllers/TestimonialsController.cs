@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OnlineStudyShared.Controller;
 using OnlineStudyShared.Services;
@@ -38,9 +39,8 @@ namespace ContactMicroServices.Controllers
             return CreateActionResultInstance(response);
         }
         
-        
+        [AllowAnonymous]
         [HttpGet]
-        
         public async Task<IActionResult> GetAll()
         {
             var response = await _testimonialService.GetAllAsync();

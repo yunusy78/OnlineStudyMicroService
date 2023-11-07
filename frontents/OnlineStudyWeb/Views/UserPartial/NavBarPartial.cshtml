@@ -33,6 +33,12 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/Contact/Index">Kontakt Oss</a>
                         </li>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                                  {
+                                    <li class="nav-item">
+                                      <a class="nav-link" href="/Admin/Dashboard/Index/">Admin</a>
+                                    </li>
+                                  }
                         <!-- search button -->
                         <div class="search-right">
                             <a href="#search" class="btn button-style" title="search">Søk</a>

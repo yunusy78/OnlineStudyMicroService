@@ -1,5 +1,7 @@
 ﻿
 
+using Microsoft.AspNetCore.Http;
+
 namespace Business.Dtos.Contact;
 
 public class InstructorDto 
@@ -13,5 +15,7 @@ public class InstructorDto
     public string Title { get; set; }
     public DateTime CreatedDate { get; set; }
     public bool Status { get; set; }
+    
+    public IFormFile ImageFormFile { get; set; }
     
 }

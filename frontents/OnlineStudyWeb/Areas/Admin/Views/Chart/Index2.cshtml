@@ -22,7 +22,10 @@
     </div>
 <!-- Grafik için bir yer belirliyoruz -->
 <div style="float: left; width: 50%; height: 600px;">
-    <div id="chartDiv1" style="width: 100%; height: 100%;"></div>
+    <div id="chartDivOrder" style="width: 100%; height: 100%;"></div>
+</div>
+<div style="float: left; width: 50%; height: 600px;">
+    <div id="chartDivCategory" style="width: 100%; height: 100%;"></div>
 </div>
 <div style="float: left; width: 100%; height: 600px;">
     <div id="revenueChart" style="width: 100%; height: 100%;"></div>
@@ -57,11 +60,44 @@
                                     };
                         
                                  
-                                    var chart = new google.visualization.PieChart(document.getElementById('chartDiv1'));
+                                    var chart = new google.visualization.PieChart(document.getElementById('chartDivOrder'));
                                     chart.draw(data, options);
                                 }
                             });
                         }
+                        google.charts.load('current', {'packages' : ['corechart'] });
+                                google.charts.setOnLoadCallback(DrawPieChart);
+                        
+                                function DrawPieChart(){
+                                    // AJAX ile verileri alıyoruz (örnek olarak bir dizi kullanıyoruz)
+                                    $.ajax({
+                                         type: "GET",
+                                         url: "/Admin/Chart/CategoryChart/",
+                                         success: function(chartsdata) {
+                                           var jsonData = chartsdata.jsonlist;
+                                             console.log(jsonData);
+                                    var data = new google.visualization.DataTable();
+                                    data.addColumn('string', 'name');
+                                    data.addColumn('number','count');
+                        
+                                   
+                                    for (var i = 0; i < jsonData.length; i++){
+                                        data.addRow([jsonData[i].name, jsonData[i].count]);
+                                    }
+                        
+                                    var options = {
+                                        title: "Category Chart",
+                                        position: "top",
+                                        fontSize: "16px"
+                                    };
+                        
+                                    // Pasta grafik oluşturuyoruz
+                                    var chart = new google.visualization.PieChart(document.getElementById('chartDivCategory'));
+                                    chart.draw(data, options);
+                                }
+                            });
+                        }
+                        
                         
                         google.charts.load('current', { 'packages': ['corechart'] });
                                 google.charts.setOnLoadCallback(drawChart3);

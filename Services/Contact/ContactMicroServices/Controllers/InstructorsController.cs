@@ -57,7 +57,13 @@ namespace ContactMicroServices.Controllers
         }
         
         
+        [HttpDelete("{id}")]
         
+        public async Task<IActionResult> Delete(int id)
+        {
+            var response = await _instructorService.DeleteAsync(id);
+            return CreateActionResultInstance(response);
+        }
         
         
     }

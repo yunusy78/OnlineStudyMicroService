@@ -1,0 +1,61 @@
+﻿@model Business.Dtos.Contact.TestimonialDto
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_AdminLayout";
+}
+
+ <div class="content-wrapper">
+            <div class="row" id="proBanner">
+            </div>
+            <div class="page-header">
+              <h3 class="page-title">
+                <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                  <i class="mdi mdi-face-profile"></i>
+                </span> Referanser
+              </h3>
+            </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title text-center" > Opprett Referanse</h4> <!-- Form başlığı -->
+                    <form asp-controller="Testimonials" asp-action="Update" asp-area="Admin" method="post" > <!-- Form -->
+                        <div asp-validation-summary="ModelOnly"></div>
+                        <!-- Course Name -->
+                        <div class="mb-3">
+                            <label  class="form-label">Navn:</label>
+                            <input type="text" class="form-control" asp-for="FullName" >
+                            <span class="text-danger" asp-validation-for="FullName"></span>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label">E-Post:</label>
+                            <input type="email" class="form-control" asp-for="Email"  >
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="City" class="form-label">By:</label>
+                            <input type="text" class="form-control" asp-for="City"  >
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Comment" class="form-label">Kommentar:</label>
+                            <textarea class="form-control" asp-for="Comment" rows="4"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Status</label>
+                            <select class="form-control" asp-for="Status">
+                                <option value="true">True</option>
+                                <option value="false">False</option>
+                            </select>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary"> <i class="mdi mdi-content-save-edit"></i> Rediger</button> 
+                          </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>

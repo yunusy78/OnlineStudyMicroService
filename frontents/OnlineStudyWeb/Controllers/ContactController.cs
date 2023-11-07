@@ -1,9 +1,10 @@
 ﻿using Business.Abstract;
 using Business.Dtos.Contact;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace OnlineStudyWeb.Controllers;
-
+[Authorize]
 public class ContactController : Controller
 {
     public readonly IContactService _contactService;
@@ -25,6 +26,7 @@ public class ContactController : Controller
     public async Task<IActionResult> Create(ContactDto contact)
     {
         contact.CreatedDate = DateTime.UtcNow;
+        contact.Status = true;
         var contactV = await _contactService.AddAsync(contact);
         if (contactV == null)
         {
