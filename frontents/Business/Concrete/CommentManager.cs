@@ -1,4 +1,5 @@
 ﻿using System.Linq.Expressions;
+using System.Net.Http.Json;
 using Business.Abstract;
 using Business.Dtos.Contact;
 using OnlineStudyShared;
@@ -7,33 +8,82 @@ namespace Business.Concrete;
 
 public class CommentManager : ICommentService
 {
-    public Task<ResponseDto<CommentDto>> AddAsync(CommentDto entity)
+    private readonly HttpClient _httpClient;
+    
+    public CommentManager(HttpClient httpClient)
     {
-        throw new NotImplementedException();
+        _httpClient = httpClient;
+    }
+    
+    public async Task<bool> AddAsync(CommentDto entity)
+    {
+        var response = await _httpClient.PostAsJsonAsync("comments", entity);
+        if (!response.IsSuccessStatusCode)
+        {
+            return false;
+        }
+        
+        return true;
     }
 
-    public Task<ResponseDto<CommentDto>> UpdateAsync(CommentDto entity)
+    public async Task<bool> UpdateAsync(CommentDto entity)
     {
-        throw new NotImplementedException();
+        var response = await _httpClient.PutAsJsonAsync("comments", entity);
+        if (!response.IsSuccessStatusCode)
+        {
+            return false;
+        }
+        
+        return true;
     }
 
-    public Task<ResponseDto<CommentDto>> DeleteAsync(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
-        throw new NotImplementedException();
+        var response = await _httpClient.DeleteAsync($"comments/{id}");
+        if (!response.IsSuccessStatusCode)
+        {
+            return false;
+        }
+        
+        return true;
     }
 
-    public Task<ResponseDto<List<CommentDto>>> GetAllAsync()
+    public async Task<ResponseDto<List<CommentDto>>> GetAllAsync()
     {
-        throw new NotImplementedException();
+        var response = await _httpClient.GetAsync("comments");
+        if (!response.IsSuccessStatusCode)
+        {
+            return null!;
+            
+        }
+        
+        var request =  response.Content.ReadFromJsonAsync<ResponseDto<List<CommentDto>>>();
+        
+        return request.Result;
+        
     }
 
-    public Task<ResponseDto<CommentDto>> GetByIdAsync(int id)
+    public async Task<ResponseDto<CommentDto>> GetByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        var response = await _httpClient.GetAsync($"comments/{id}");
+        if (!response.IsSuccessStatusCode)
+        {
+            return null!;
+        }
+        
+        var request =  response.Content.ReadFromJsonAsync<ResponseDto<CommentDto>>();
+        return request.Result;
     }
 
-    public Task<ResponseDto<List<CommentDto>>> GetListByFilterAsync(Expression<Func<CommentDto, bool>> filter)
+    public async Task<ResponseDto<List<CommentDto>>> GetListByFilterAsync(Expression<Func<CommentDto, bool>> filter)
     {
-        throw new NotImplementedException();
+        var response = await _httpClient.GetAsync("comments");
+        if (!response.IsSuccessStatusCode)
+        {
+            return null!;
+        }
+        
+        var request =  response.Content.ReadFromJsonAsync<ResponseDto<List<CommentDto>>>();
+        return request.Result;
     }
 }

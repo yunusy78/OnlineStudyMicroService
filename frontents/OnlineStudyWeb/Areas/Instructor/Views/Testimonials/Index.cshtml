@@ -1,0 +1,77 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_InstructorLayout";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Anmeldelser</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+            font-size: 18px;
+            margin: 20px 0;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="content-wrapper">
+    <div class="row" id="proBanner">
+    </div>
+    <div class="page-header">
+        <h3 class="page-title">
+            <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                <i class="mdi mdi-chart-scatter-plot"></i>
+            </span> Referanser
+        </h3>
+    </div>
+    
+    
+    <div class="container">
+        <div class="card-body">
+            <p>
+                Du kan inspirere andre besøkende ved å dele dine erfaringer med alle. Du kan bruke skjemaet nedenfor for å legge til en referanse på nettstedet ditt.
+            </p>
+                
+            <a href="/Instructor/Testimonials/Create" class="btn btn-primary">Legg til en Referanse</a>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

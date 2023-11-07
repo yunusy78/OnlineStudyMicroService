@@ -1,9 +1,10 @@
 ﻿using Business.Abstract;
 using Business.Dtos.Contact;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace OnlineStudyWeb.Controllers;
-
+[Authorize]
 public class ContactController : Controller
 {
     public readonly IContactService _contactService;

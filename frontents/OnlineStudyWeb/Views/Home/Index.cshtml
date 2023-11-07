@@ -2,6 +2,7 @@
     ViewData["Title"] = "Home Page";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
+@using Business.Dtos.Contact
 @model List<Business.Models.Catalog.CourseViewModel>
 
 @await Html.PartialAsync("~/Views/HomeIndexPartial/HeaderPartial.cshtml")
@@ -51,6 +52,6 @@
     @await Html.PartialAsync("~/Views/HomeIndexPartial/TeachersPartial.cshtml")
 
     <!-- testimonials -->
-    @await Html.PartialAsync("~/Views/HomeIndexPartial/TestimonialsPartial.cshtml")
+@await Component.InvokeAsync("Testimonial")
 
-    @await Html.PartialAsync("~/Views/HomeIndexPartial/ArticlesPartial.cshtml")
+@await Html.PartialAsync("~/Views/HomeIndexPartial/ArticlesPartial.cshtml")

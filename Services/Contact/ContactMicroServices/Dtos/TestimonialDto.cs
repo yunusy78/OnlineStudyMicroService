@@ -9,6 +9,7 @@ public class TestimonialDto
     public string FullName { get; set; }
     public string Email { get; set; }
     public string Comment { get; set; }
+    public string City { get; set; }
     public bool Status { get; set; }
     public DateTime CreatedDate { get; set; }
 }

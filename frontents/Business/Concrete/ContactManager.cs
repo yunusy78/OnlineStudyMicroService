@@ -15,42 +15,39 @@ public class ContactManager : IContactService
         _httpClient = httpClient;
     }
     
-    public async Task<ResponseDto<ContactDto>> AddAsync(ContactDto entity)
+    public async Task<bool> AddAsync(ContactDto entity)
     {
         var response = await _httpClient.PostAsJsonAsync("contacts", entity);
         if (!response.IsSuccessStatusCode)
         {
-            return null!;
+            return false;
         }
         
-        var contact = await response.Content.ReadFromJsonAsync<ResponseDto<ContactDto>>();
-        return contact!;
+        return true;
     }
 
-    public async Task<ResponseDto<ContactDto>> UpdateAsync(ContactDto entity)
+    public async Task<bool> UpdateAsync(ContactDto entity)
     {
         var response = await _httpClient.PutAsJsonAsync("contacts", entity);
         if (!response.IsSuccessStatusCode)
         {
-            return null!;
+            return false;
         }
         
-        var contact = await response.Content.ReadFromJsonAsync<ResponseDto<ContactDto>>();
-        return contact!;
+        return true;
         
     }
 
-    public async Task<ResponseDto<ContactDto>> DeleteAsync(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
         
         var response = await _httpClient.DeleteAsync($"contacts/{id}");
         if (!response.IsSuccessStatusCode)
         {
-            return null!;
+            return false;
         }
         
-        var contact = await response.Content.ReadFromJsonAsync<ResponseDto<ContactDto>>();
-        return contact!;
+        return true;
         
     }
 

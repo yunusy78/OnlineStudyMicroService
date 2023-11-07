@@ -1,0 +1,69 @@
+﻿@model Business.Dtos.Contact.InstructorDto
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_AdminLayout";
+}
+ <div class="content-wrapper">
+            <div class="row" id="proBanner">
+            </div>
+            <div class="page-header">
+              <h3 class="page-title">
+                <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                  <i class="mdi mdi-school"></i>
+                </span> Opprett Instruktør
+              </h3>
+            </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title text-center" > Opprett Instruktør</h4> <!-- Form başlığı -->
+                    <form asp-controller="Instructors" asp-action="Create" asp-area="Admin" method="post" enctype="multipart/form-data"> <!-- Form -->
+                        <div asp-validation-summary="ModelOnly"></div>
+                        <!-- Course Name -->
+                        <div class="mb-3">
+                            <label  class="form-label">Navn:</label>
+                            <input type="text" class="form-control" asp-for="FullName" >
+                            <span class="text-danger" asp-validation-for="FullName"></span>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label  class="form-label">E-Post:</label>
+                            <input type="email" class="form-control" asp-for="Email"  >
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label  class="form-label">TelefonNummer</label>
+                            <input type="text" class="form-control" asp-for="PhoneNumber">
+                        </div>
+                        <div class="mb-3">
+                            <label  class="form-label">Tittel</label>
+                            <input type="text" class="form-control" asp-for="Title">
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Description" class="form-label">Beskrivelse:</label>
+                            <textarea class="form-control" asp-for="Description" rows="4"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="ImageFormFile" class="form-label">Bilde:</label>
+                            <input type="file" class="form-control" asp-for="ImageFormFile">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Status</label>
+                            <select class="form-control" asp-for="Status">
+                                <option value="true">True</option>
+                                <option value="false">False</option>
+                            </select>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary"> <i class="mdi mdi-content-save"></i> Lagre</button> 
+                          </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>

@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Concrete;
+using Business.Dtos.Contact;
 using Business.Handler;
 using Business.Models;
 using Microsoft.Extensions.Configuration;
@@ -32,8 +33,23 @@ public static class ServicesExtensions
             opt.BaseAddress = new Uri($"{serviceApiSettings!.GatewayBaseUri}/{serviceApiSettings.Contact.Path}");
         }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
         
+        services.AddHttpClient<ITestimonialService, TestimonialManager>(opt =>
+        {
+            opt.BaseAddress = new Uri($"{serviceApiSettings!.GatewayBaseUri}/{serviceApiSettings.Contact.Path}");
+        }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
+        
+        services.AddHttpClient<ICommentService, CommentManager>(opt =>
+        {
+            opt.BaseAddress = new Uri($"{serviceApiSettings!.GatewayBaseUri}/{serviceApiSettings.Contact.Path}");
+        }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
         
         services.AddHttpClient<IInstructorService, InstructorManager>(opt =>
+        {
+            opt.BaseAddress = new Uri($"{serviceApiSettings!.GatewayBaseUri}/{serviceApiSettings.Contact.Path}");
+        }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
+        
+        
+        services.AddHttpClient<IUserService, UserManager>(opt =>
         {
             opt.BaseAddress = new Uri(configuration.GetSection(nameof(ServiceApiSettings)).Get<ServiceApiSettings>()!
                 .IdentityBaseUri);

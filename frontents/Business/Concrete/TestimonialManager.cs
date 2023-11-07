@@ -1,39 +1,97 @@
 ﻿using System.Linq.Expressions;
+using System.Net.Http.Json;
 using Business.Abstract;
 using Business.Dtos.Contact;
+using Business.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Configuration;
 using OnlineStudyShared;
 
 namespace Business.Concrete;
 
 public class TestimonialManager : ITestimonialService
 {
-    public Task<ResponseDto<TestimonialDto>> AddAsync(TestimonialDto entity)
+    private readonly HttpClient _httpClient;
+    private readonly IConfiguration _configuration;
+    
+    public TestimonialManager(HttpClient httpClient, IConfiguration configuration)
     {
-        throw new NotImplementedException();
+        _httpClient = httpClient;
+        _configuration = configuration;
+    }
+    
+    public async Task<bool> AddAsync(TestimonialDto entity)
+    {
+        
+        var response = await _httpClient.PostAsJsonAsync("testimonials", entity);
+        if (!response.IsSuccessStatusCode)
+        {
+            return false;
+        }
+        
+        return true;
     }
 
-    public Task<ResponseDto<TestimonialDto>> UpdateAsync(TestimonialDto entity)
+    public async Task<bool> UpdateAsync(TestimonialDto entity)
     {
-        throw new NotImplementedException();
+        var response = await _httpClient.PutAsJsonAsync("testimonials", entity);
+        if (!response.IsSuccessStatusCode)
+        {
+            return false;
+        }
+        
+        return true;
     }
 
-    public Task<ResponseDto<TestimonialDto>> DeleteAsync(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
-        throw new NotImplementedException();
+        var response = await _httpClient.DeleteAsync($"testimonials/{id}");
+        if (!response.IsSuccessStatusCode)
+        {
+            return false;
+        }
+        
+        return true;
     }
 
-    public Task<ResponseDto<List<TestimonialDto>>> GetAllAsync()
+    [AllowAnonymous]
+    public async Task<ResponseDto<List<TestimonialDto>>> GetAllAsync()
     {
-        throw new NotImplementedException();
+        var serviceApiSettings = _configuration.GetSection("ServiceApiSettings").Get<ServiceApiSettings>();
+        var response =  await _httpClient.GetAsync($"{serviceApiSettings!.ContactUri}testimonials");
+        if (!response.IsSuccessStatusCode)
+        {
+            return ResponseDto<List<TestimonialDto>>.Fail("Error", 500);
+        }
+        
+        var responseSuccess = await response.Content.ReadFromJsonAsync<ResponseDto<List<TestimonialDto>>>();
+        return ResponseDto<List<TestimonialDto>>.Success(responseSuccess.Data, 200);
+        
     }
 
-    public Task<ResponseDto<TestimonialDto>> GetByIdAsync(int id)
+    public async Task<ResponseDto<TestimonialDto>> GetByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        var response = await _httpClient.GetFromJsonAsync<ResponseDto<TestimonialDto>>($"testimonials/{id}");
+        if (response!.Data == null)
+        {
+            return ResponseDto<TestimonialDto>.Fail(response.Errors, 500);
+        }
+        
+        var request =  ResponseDto<TestimonialDto>.Success(response.Data, 200);
+        return request;
     }
 
-    public Task<ResponseDto<List<TestimonialDto>>> GetListByFilterAsync(Expression<Func<TestimonialDto, bool>> filter)
+    public async Task<ResponseDto<List<TestimonialDto>>> GetListByFilterAsync(Expression<Func<TestimonialDto, bool>> filter)
     {
-        throw new NotImplementedException();
+        var response = await _httpClient.GetFromJsonAsync<ResponseDto<List<TestimonialDto>>>("testimonials");
+        if (!response.IsSuccess)
+        {
+            return ResponseDto<List<TestimonialDto>>.Fail(response.Errors, 500);
+        }
+        
+        var request =  ResponseDto<List<TestimonialDto>>.Success(response.Data, 200);
+        
+        return request;
+        
     }
 }

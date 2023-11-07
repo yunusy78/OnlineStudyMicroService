@@ -1,39 +1,116 @@
 ﻿using System.Linq.Expressions;
+using System.Net.Http.Json;
 using Business.Abstract;
 using Business.Dtos.Contact;
+using Business.Helpers;
 using OnlineStudyShared;
 
 namespace Business.Concrete;
 
 public class InstructorManager : IInstructorService
 {
-    public Task<ResponseDto<InstructorDto>> AddAsync(InstructorDto entity)
+    private readonly HttpClient _httpClient;
+    private readonly IImageStockService _imageStockService;
+    private readonly PhotoStockHelper _photoStockHelper;
+    
+    public InstructorManager(HttpClient httpClient, IImageStockService imageStockService ,PhotoStockHelper photoStockHelper)
     {
-        throw new NotImplementedException();
+        _httpClient = httpClient;
+        _imageStockService = imageStockService;
+        _photoStockHelper = photoStockHelper;
+    }
+    
+    
+    
+    public async Task<bool> AddAsync(InstructorDto entity)
+    {
+        var imageResult = await _imageStockService.UploadImageCourseAsync(entity.ImageFormFile);
+        if (imageResult != null)
+        {
+            entity.ImageUrl= imageResult.Url;
+        }
+        
+        var response = await _httpClient.PostAsJsonAsync("instructors", entity);
+        if (!response.IsSuccessStatusCode)
+        {
+            return false;
+        }
+        
+        return true;
+        
     }
 
-    public Task<ResponseDto<InstructorDto>> UpdateAsync(InstructorDto entity)
+    public async Task<bool> UpdateAsync(InstructorDto entity)
     {
-        throw new NotImplementedException();
+        var imageResult = await _imageStockService.UploadImageCourseAsync(entity.ImageFormFile);
+        if (imageResult != null)
+        {
+            entity.ImageUrl= imageResult.Url;
+        }
+        var response = await _httpClient.PutAsJsonAsync("instructors", entity);
+        if (!response.IsSuccessStatusCode)
+        {
+            return false;
+        }
+        
+        return true;
     }
 
-    public Task<ResponseDto<InstructorDto>> DeleteAsync(int id)
+    
+    public async Task<bool> DeleteAsync(int id)
     {
-        throw new NotImplementedException();
+        var response = await _httpClient.DeleteAsync($"instructors/{id}");
+        if (!response.IsSuccessStatusCode)
+        {
+            return false;
+        }
+        
+        return true;
     }
 
-    public Task<ResponseDto<List<InstructorDto>>> GetAllAsync()
+    public async Task<ResponseDto<List<InstructorDto>>> GetAllAsync()
     {
-        throw new NotImplementedException();
+        var response = await _httpClient.GetAsync("instructors");
+        if (!response.IsSuccessStatusCode)
+        {
+            return null!;
+        }
+        
+        var instructors = await response.Content.ReadFromJsonAsync<ResponseDto<List<InstructorDto>>>();
+        instructors!.Data.ForEach(x =>
+        {
+            x.ImageUrl = _photoStockHelper.GetPhotoStockUrl(x.ImageUrl);
+        });
+        return instructors!;
     }
 
-    public Task<ResponseDto<InstructorDto>> GetByIdAsync(int id)
+    public async Task<ResponseDto<InstructorDto>> GetByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        var response = await _httpClient.GetAsync($"instructors/{id}");
+        if (!response.IsSuccessStatusCode)
+        {
+            return null!;
+        }
+        
+        var instructor = await response.Content.ReadFromJsonAsync<ResponseDto<InstructorDto>>();
+        instructor!.Data.ImageUrl= _photoStockHelper.GetPhotoStockUrl(instructor.Data.ImageUrl);
+        return instructor!;
     }
 
-    public Task<ResponseDto<List<InstructorDto>>> GetListByFilterAsync(Expression<Func<InstructorDto, bool>> filter)
+    public async Task<ResponseDto<List<InstructorDto>>> GetListByFilterAsync(Expression<Func<InstructorDto, bool>> filter)
     {
-        throw new NotImplementedException();
+        var response = await _httpClient.GetAsync("instructors");
+        if (!response.IsSuccessStatusCode)
+        {
+            return null!;
+        }
+        
+        var instructors = await response.Content.ReadFromJsonAsync<ResponseDto<List<InstructorDto>>>();
+        instructors!.Data.ForEach(x =>
+        {
+            x.ImageUrl = _photoStockHelper.GetPhotoStockUrl(x.ImageUrl);
+        });
+        return instructors!;
+       
     }
 }
