@@ -40,8 +40,11 @@
                             <form method="post" asp-action="Create" asp-controller="Contact">
                                 <div class="row">
                                     <div class="col-sm-6 form-group pr-sm-1">
-                                        <input class="form-control" type="text" asp-for="Name" id="w3lName" placeholder="Fornavn" required="">
+                                        <input class="form-control" type="text" asp-for="FirstName" id="w3lName" placeholder="Fornavn" required="">
                                     </div>
+                                    <div class="col-sm-6 form-group pl-sm-1">
+                                        <input class="form-control" type="text" asp-for="LastName" id="w3lName" placeholder="Etternavn" required="">
+                                       </div> 
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" type="email" asp-for="Email" id="w3lSender" placeholder="E-post" required="">

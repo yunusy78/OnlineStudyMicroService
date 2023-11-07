@@ -25,6 +25,7 @@ public class ContactController : Controller
     public async Task<IActionResult> Create(ContactDto contact)
     {
         contact.CreatedDate = DateTime.UtcNow;
+        contact.Status = true;
         var contactV = await _contactService.AddAsync(contact);
         if (contactV == null)
         {
