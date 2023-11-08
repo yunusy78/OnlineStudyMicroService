@@ -31,7 +31,6 @@ namespace ContactMicroServices.Controllers
         }
         
         [HttpGet("{id}")]
-        
         public async Task<IActionResult> GetById(int id)
         {
             var response = await _commentService.GetByIdAsync(id);
@@ -40,7 +39,6 @@ namespace ContactMicroServices.Controllers
         
         
         [HttpGet]
-        
         public async Task<IActionResult> GetAll()
         {
             var response = await _commentService.GetAllAsync();
@@ -49,7 +47,6 @@ namespace ContactMicroServices.Controllers
         
         
         [HttpPut]
-        
         public async Task<IActionResult> Update(Comment comment)
         {
             var response = await _commentService.UpdateAsync(comment);
@@ -58,7 +55,6 @@ namespace ContactMicroServices.Controllers
         
         
         [HttpDelete("{id}")]
-        
         public async Task<IActionResult> Delete(int id)
         {
             var response = await _commentService.DeleteAsync(id);

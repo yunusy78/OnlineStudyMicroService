@@ -3,6 +3,8 @@ using System.Net.Http.Json;
 using Business.Abstract;
 using Business.Dtos.Contact;
 using Business.Helpers;
+using Business.Models;
+using Microsoft.Extensions.Configuration;
 using OnlineStudyShared;
 
 namespace Business.Concrete;
@@ -12,12 +14,16 @@ public class InstructorManager : IInstructorService
     private readonly HttpClient _httpClient;
     private readonly IImageStockService _imageStockService;
     private readonly PhotoStockHelper _photoStockHelper;
+    private readonly IConfiguration _configuration;
     
-    public InstructorManager(HttpClient httpClient, IImageStockService imageStockService ,PhotoStockHelper photoStockHelper)
+    public InstructorManager(HttpClient httpClient,
+        IImageStockService imageStockService ,
+        PhotoStockHelper photoStockHelper, IConfiguration configuration)
     {
         _httpClient = httpClient;
         _imageStockService = imageStockService;
         _photoStockHelper = photoStockHelper;
+        _configuration = configuration;
     }
     
     
@@ -70,7 +76,8 @@ public class InstructorManager : IInstructorService
 
     public async Task<ResponseDto<List<InstructorDto>>> GetAllAsync()
     {
-        var response = await _httpClient.GetAsync("instructors");
+        var serviceApiSettings = _configuration.GetSection("ServiceApiSettings").Get<ServiceApiSettings>();
+        var response = await _httpClient.GetAsync($"{serviceApiSettings!.ContactUri}instructors");
         if (!response.IsSuccessStatusCode)
         {
             return null!;

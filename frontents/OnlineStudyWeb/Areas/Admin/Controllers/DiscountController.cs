@@ -77,7 +77,7 @@ public class DiscountController : Controller
         var discount = await _discountService.GetAllDiscount();
         if (discount == null)
         {
-            return NotFound();
+            return RedirectToAction("Index", "Dashboard");
         }
         return View(discount);
     }

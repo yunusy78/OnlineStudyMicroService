@@ -14,7 +14,7 @@
       "UpstreamScheme": "http",
         "AuthenticationOptions": {
             "AuthenticationProviderKey": "GatewayAuthenticationScheme",
-            "AllowedScopes": ["catalog_fullpermission"]
+            "AllowedScopes": ["catalog_fullPermission"]
         }
     },
     {
@@ -31,7 +31,7 @@
       "UpstreamScheme": "http",
         "AuthenticationOptions": {
             "AuthenticationProviderKey": "GatewayAuthenticationScheme",
-            "AllowedScopes": ["photo_stock_fullpermission"]
+            "AllowedScopes": ["photo_stock_fullPermission"]
         }
     },
     {
@@ -48,7 +48,7 @@
       "UpstreamScheme": "http",
         "AuthenticationOptions": {
             "AuthenticationProviderKey": "GatewayAuthenticationScheme",
-            "AllowedScopes": ["cart_fullpermission"]
+            "AllowedScopes": ["cart_fullPermission"]
         }
     },
     {
@@ -83,7 +83,7 @@
       "UpstreamScheme": "http",
         "AuthenticationOptions": {
             "AuthenticationProviderKey": "GatewayAuthenticationScheme",
-            "AllowedScopes": ["order_fullpermission"]
+            "AllowedScopes": ["order_fullPermission"]
         }
     },
     {
@@ -118,7 +118,7 @@
       "UpstreamScheme": "http",
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "GatewayAuthenticationScheme",
-        "AllowedScopes": ["contact_fullpermission"]
+        "AllowedScopes": ["contact_fullPermission"]
       }
     }
   ],

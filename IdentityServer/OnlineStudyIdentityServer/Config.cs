@@ -16,14 +16,14 @@ namespace OnlineStudyIdentityServer
          public static IEnumerable<ApiResource> ApiResources =>
             new ApiResource[]
             {
-                new ApiResource("resource_catalog"){Scopes={"catalog_fullpermission"}},
-                new ApiResource("resource_photo_stock"){Scopes={"photo_stock_fullpermission"}},
-                new ApiResource("resource_cart"){Scopes={"cart_fullpermission"}},
-                new ApiResource("resource_discount"){Scopes={"discount_fullpermission"}},
-                new ApiResource("resource_order"){Scopes={"order_fullpermission"}},
-                new ApiResource("resource_payment"){Scopes={"payment_fullpermission"}},
-                new ApiResource("resource_gateway"){Scopes={"gateway_fullpermission"}},
-                new ApiResource("resource_contact"){Scopes={"contact_fullpermission"}},
+                new ApiResource("resource_catalog"){Scopes={"catalog_fullPermission"}},
+                new ApiResource("resource_photo_stock"){Scopes={"photo_stock_fullPermission"}},
+                new ApiResource("resource_cart"){Scopes={"cart_fullPermission"}},
+                new ApiResource("resource_discount"){Scopes={"discount_fullPermission"}},
+                new ApiResource("resource_order"){Scopes={"order_fullPermission"}},
+                new ApiResource("resource_payment"){Scopes={"payment_fullPermission"}},
+                new ApiResource("resource_gateway"){Scopes={"gateway_fullPermission"}},
+                new ApiResource("resource_contact"){Scopes={"contact_fullPermission"}},
                 new ApiResource(IdentityServerConstants.LocalApi.ScopeName)
                
             };
@@ -39,14 +39,14 @@ namespace OnlineStudyIdentityServer
         public static IEnumerable<ApiScope> ApiScopes =>
             new ApiScope[]
             {
-                new ApiScope("catalog_fullpermission","Access full catalog API"),
-                new ApiScope("photo_stock_fullpermission","Access full photo stock API"),
-                new ApiScope("cart_fullpermission","Access full cart API"),
-                new ApiScope("discount_fullpermission","Access full discount API"),
-                new ApiScope("order_fullpermission","Access full order API"),
-                new ApiScope("payment_fullpermission","Access full payment API"),
-                new ApiScope("gateway_fullpermission","Access full gateway API"),
-                new ApiScope("contact_fullpermission","Access full contact API"),
+                new ApiScope("catalog_fullPermission","Access full catalog API"),
+                new ApiScope("photo_stock_fullPermission","Access full photo stock API"),
+                new ApiScope("cart_fullPermission","Access full cart API"),
+                new ApiScope("discount_fullPermission","Access full discount API"),
+                new ApiScope("order_fullPermission","Access full order API"),
+                new ApiScope("payment_fullPermission","Access full payment API"),
+                new ApiScope("gateway_fullPermission","Access full gateway API"),
+                new ApiScope("contact_fullPermission","Access full contact API"),
                 new ApiScope(IdentityServerConstants.LocalApi.ScopeName),
             };
 
@@ -60,7 +60,7 @@ namespace OnlineStudyIdentityServer
                     ClientName = "Client",
                     ClientSecrets = {new Secret("secret".Sha256())},
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
-                    AllowedScopes = {"catalog_fullpermission","photo_stock_fullpermission", "gateway_fullpermission",
+                    AllowedScopes = {"catalog_fullPermission","photo_stock_fullPermission", "gateway_fullPermission",
                         IdentityServerConstants.LocalApi.ScopeName}
                 },
                 // interactive client using code flow + pkce
@@ -72,7 +72,7 @@ namespace OnlineStudyIdentityServer
                     AllowOfflineAccess = true,
                     ClientSecrets = {new Secret("secret".Sha256())},
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
-                    AllowedScopes = {"cart_fullpermission","order_fullpermission","gateway_fullpermission","contact_fullpermission",
+                    AllowedScopes = {"cart_fullPermission","order_fullPermission","gateway_fullPermission","contact_fullPermission",
                         IdentityServerConstants.LocalApi.ScopeName,IdentityServerConstants.StandardScopes.Email,
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
@@ -91,7 +91,7 @@ namespace OnlineStudyIdentityServer
                     AllowOfflineAccess = true,
                     AllowedGrantTypes = new [] {"urn:ietf:params:oauth:grant-type:token-exchange"},
                     ClientSecrets = {new Secret("secret".Sha256())},
-                    AllowedScopes = {"gateway_fullpermission","discount_fullpermission", "payment_fullpermission", 
+                    AllowedScopes = {"gateway_fullPermission","discount_fullPermission", "payment_fullPermission", 
                         IdentityServerConstants.StandardScopes.OpenId}
                 },
 
