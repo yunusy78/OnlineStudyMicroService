@@ -45,7 +45,7 @@ public class InstructorsController : Controller
     public async Task<IActionResult> Update(int id)
     {
         var instructor = await _instructorService.GetByIdAsync(id);
-        if (!instructor.IsSuccess)
+        if (instructor.Data == null)
         {
             return NotFound();
         }
@@ -54,18 +54,12 @@ public class InstructorsController : Controller
     }
     
     [HttpPost]
-    
     public async Task<IActionResult> Update(InstructorDto instructorDto)
     {
-        if (!ModelState.IsValid)
-        {
-            return View(instructorDto);
-        }
-
         var response = await _instructorService.UpdateAsync(instructorDto);
         if (response)
         {
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Instructors", new {area = "Admin"});
         }
         
         return View(instructorDto);
@@ -82,6 +76,8 @@ public class InstructorsController : Controller
 
         return RedirectToAction("Index", "Instructors", new {area = "Admin"});
     }
+    
+    
     
     
 }

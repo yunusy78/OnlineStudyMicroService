@@ -47,11 +47,13 @@
 
 
 
-    @await Html.PartialAsync("~/Views/HomeIndexPartial/AboutUsPartial.cshtml")
+@await Html.PartialAsync("~/Views/HomeIndexPartial/AboutUsPartial.cshtml")
     
-    @await Html.PartialAsync("~/Views/HomeIndexPartial/TeachersPartial.cshtml")
+@*  @await Html.PartialAsync("~/Views/HomeIndexPartial/TeachersPartial.cshtml")*@
 
-    <!-- testimonials -->
+@await Component.InvokeAsync("Instructor")
+
+<!-- testimonials -->
 @await Component.InvokeAsync("Testimonial")
 
 @await Html.PartialAsync("~/Views/HomeIndexPartial/ArticlesPartial.cshtml")

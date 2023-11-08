@@ -20,7 +20,7 @@
              <div class="card">
                  <div class="card-body">
                      <h4 class="card-title text-center" > Oppdater Instruktør</h4> <!-- Form başlığı -->
-                     <form asp-controller="Instructors" asp-action="Create" asp-area="Admin" method="post" enctype="multipart/form-data"> <!-- Form -->
+                     <form asp-controller="Instructors" asp-action="Update" asp-area="Admin" method="post" enctype="multipart/form-data"> <!-- Form -->
                          <div asp-validation-summary="ModelOnly"></div>
                          <input type="hidden" class="form-control" asp-for="Id" >
                          <input type="hidden" class="form-control" asp-for="CreatedDate" >
@@ -49,7 +49,7 @@
                          </div>
                          <div class="mb-3">
                              <label asp-for="ImageUrl" class="form-label">Bilde:</label>
-                             <input type="file" class="form-control" asp-for="ImageUrl">
+                             <input type="file" class="form-control" asp-for="ImageFormFile">
                          </div>
                        <div class="mb-3">
                            <label class="form-label">Status</label>
