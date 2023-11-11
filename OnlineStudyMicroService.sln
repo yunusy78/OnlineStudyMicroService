@@ -68,6 +68,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "Services\Cont
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityLayer", "Services\Contact\EntityLayer\EntityLayer.csproj", "{20A15A19-A0C5-4626-9385-5CD1DC1C353D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestCart", "Services\Cart\UnitTestCart\UnitTestCart.csproj", "{C9DBCBCF-B7B4-42A8-B803-DAC54D258A12}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -103,6 +105,7 @@ Global
 		{05CA4429-D23B-4F84-AD8F-8373030C500D} = {22781A58-E21D-4E31-ADCC-3509E7E361EE}
 		{81D5ADCD-6514-4332-83D4-312D57A0A8F7} = {22781A58-E21D-4E31-ADCC-3509E7E361EE}
 		{20A15A19-A0C5-4626-9385-5CD1DC1C353D} = {22781A58-E21D-4E31-ADCC-3509E7E361EE}
+		{C9DBCBCF-B7B4-42A8-B803-DAC54D258A12} = {8A20DEC0-21ED-433C-9805-A8B55680139B}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{4AF23CB8-B3D7-42A7-B94A-AE2ABDA04F10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -193,5 +196,9 @@ Global
 		{20A15A19-A0C5-4626-9385-5CD1DC1C353D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20A15A19-A0C5-4626-9385-5CD1DC1C353D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20A15A19-A0C5-4626-9385-5CD1DC1C353D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9DBCBCF-B7B4-42A8-B803-DAC54D258A12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9DBCBCF-B7B4-42A8-B803-DAC54D258A12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9DBCBCF-B7B4-42A8-B803-DAC54D258A12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9DBCBCF-B7B4-42A8-B803-DAC54D258A12}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

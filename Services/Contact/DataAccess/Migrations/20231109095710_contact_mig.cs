@@ -7,7 +7,7 @@ using MySql.EntityFrameworkCore.Metadata;
 namespace DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class migcontact : Migration
+    public partial class contactmig : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -43,7 +43,8 @@ namespace DataAccess.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(type: "longtext", nullable: false),
+                    FirstName = table.Column<string>(type: "longtext", nullable: false),
+                    LastName = table.Column<string>(type: "longtext", nullable: false),
                     Email = table.Column<string>(type: "longtext", nullable: false),
                     Subject = table.Column<string>(type: "longtext", nullable: false),
                     Message = table.Column<string>(type: "longtext", nullable: false),
@@ -86,6 +87,7 @@ namespace DataAccess.Migrations
                     FullName = table.Column<string>(type: "longtext", nullable: false),
                     Email = table.Column<string>(type: "longtext", nullable: false),
                     Comment = table.Column<string>(type: "longtext", nullable: false),
+                    City = table.Column<string>(type: "longtext", nullable: false),
                     Status = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },

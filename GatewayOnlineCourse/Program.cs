@@ -10,7 +10,7 @@ builder.Services.AddHttpClient<TokenExchangeDelegateHandler>();
 
 builder.Services.AddAuthentication().AddJwtBearer("GatewayAuthenticationScheme", options =>
 {
-    options.Authority = builder.Configuration["IdentityServerUrl"];
+    options.Authority = builder.Configuration["IdentityServerURL"];
     options.Audience = "resource_gateway";
     options.RequireHttpsMetadata = false;
 });

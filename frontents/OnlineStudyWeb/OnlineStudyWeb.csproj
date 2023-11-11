@@ -4,7 +4,7 @@
         <TargetFramework>net7.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
-        <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 
     <ItemGroup>
@@ -50,6 +50,14 @@
       <AdditionalFiles Include="Areas\Admin\Views\AdminPartialView\_NavbarPartial.cshtml" />
       <AdditionalFiles Include="Areas\Admin\Views\AdminPartialView\_ScriptPartial.cshtml" />
       <AdditionalFiles Include="Areas\Admin\Views\AdminPartialView\_SidebarPartial.cshtml" />
+    </ItemGroup>
+
+
+
+    <ItemGroup>
+      <Content Include="..\..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
     </ItemGroup>
 
 </Project>

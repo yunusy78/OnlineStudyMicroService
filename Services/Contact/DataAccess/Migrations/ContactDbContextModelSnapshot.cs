@@ -76,11 +76,15 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Message")
+                    b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Message")
                         .IsRequired()
                         .HasColumnType("longtext");
 
@@ -142,6 +146,10 @@ namespace DataAccess.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Comment")
                         .IsRequired()

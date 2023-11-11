@@ -1,0 +1,178 @@
+version: "3.8"
+services:
+  coursedb:
+    container_name: coursedb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - catalogdb_volume:/data/db
+  cartdb:
+    container_name: cartdb
+    restart: always
+    ports:
+      - "6379:6379"
+  discountdb:
+    container_name: discountdb
+    restart: always
+    ports:
+      - "5433:5432"
+    volumes:
+      - discount_volume:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=Password1234.
+      - POSTGRES_DB=discountdb
+  identitydb:
+    container_name: identitydb
+    restart: always
+    ports:
+      - "1434:1433"
+    volumes:
+      - identitydb_volume:/var/opt/mssql
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Password1234.
+
+  orderdb:
+    container_name: orderdb
+    restart: always
+    ports:
+      - "3308:3306"
+    volumes:
+      - orderdb_volume:/var/opt/mysql
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+
+  contactdb:
+    container_name: contactdb
+    restart: always
+    ports:
+      - "3307:3306"
+    volumes:
+      - contactdb_volume:/var/opt/mysql
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+
+  rabbitmq:
+    container_name: rabbitmq
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  catalogmicroservices:
+    container_name: catalogmicroservices
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - RabbitMQUrl=rabbitmq
+      - IdentityServerURL=http://onlinestudyidentityserver
+      - DatabaseSettings:ConnectionString=mongodb://coursedb:27017
+    ports:
+      - "5011:80"
+    depends_on:
+      - coursedb
+  onlinestudyidentityserver:
+    container_name: onlinestudyidentityserver
+    restart: on-failure
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:DefaultConnection=Server=identitydb,1433;Database=IdentityDb; User=sa; Password=Password1234."
+    ports:
+      - "5001:80"
+    depends_on:
+      - identitydb
+  cartmicroservices:
+    container_name: cartmicroservices
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - IdentityServerURL=http://onlinestudyidentityserver
+      - RedisSettings:Port=6379
+      - RedisSettings:Host=cartdb
+    ports:
+      - "5020:80"
+    depends_on:
+      - cartdb
+  photostockmicroservices:
+    container_name: photostockmicroservices
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - IdentityServerURL=http://onlinestudyidentityserver
+    ports:
+      - "5012:80"
+    volumes:
+      - type: bind
+        source: C:/Users/yunus/Desktop/photos
+        target: /app/wwwroot/images
+
+  discountmicroservices:
+    container_name: discountmicroservices
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - IdentityServerURL=http://onlinestudyidentityserver
+      - "ConnectionStrings:DefaultConnection=User ID=admin; Password=Password1234.; Server=discountdb; Port=5433;Database=discountdb;Integrated Security=true;Pooling=true"
+    ports:
+      - "5014:80"
+    depends_on:
+      - discountdb
+
+  stripepaymentmicroservice:
+    container_name: stripepaymentmicroservice
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - IdentityServerURL=http://onlinestudyidentityserver
+      - RabbitMQUrl=rabbitmq
+    ports:
+      - "5016:80"
+  ordermicroserviceswebapi:
+    container_name: ordermicroserviceswebapi
+    restart: on-failure
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - IdentityServerURL=http://onlinestudyidentityserver
+      - RabbitMQUrl=rabbitmq
+      - "ConnectionStrings:DefaultConnection=Server=orderdb,Port=3306;Database=OrderDb; User Id=root;"
+    ports:
+      - "5015:80"
+    depends_on:
+      - orderdb
+
+  contactmicroservices:
+    container_name: contactmicroservices
+    restart: on-failure
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - IdentityServerURL=http://onlinestudyidentityserver
+      - "ConnectionStrings:DefaultConnection=Server=contactdb;Port=3306;Database=ContactDb; User Id=root;"
+    ports:
+      - "5021:80"
+    depends_on:
+      - contactdb
+
+  gatewayonlinecourse:
+    container_name: gatewayonlinecourse
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - IdentityServerURL=http://onlinestudyidentityserver
+    ports:
+      - "5000:80"
+
+  onlinestudyweb:
+    container_name: onlinestudyweb
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ServiceApiSettings:IdentityBaseUri=http://onlinestudyidentityserver
+      - ServiceApiSettings:GatewayBaseUri=http://gatewayonlinecourse
+      - ServiceApiSettings:ContactUri=http://contactmicroservices
+    ports:
+      - "5010:80"
+    depends_on:
+      - gatewayonlinecourse
+      - onlinestudyidentityserver
+      - catalogmicroservices
+      - cartmicroservices
+      - discountmicroservices
+      - ordermicroserviceswebapi
+      - contactmicroservices
+      - photostockmicroservices
+      - stripepaymentmicroservice

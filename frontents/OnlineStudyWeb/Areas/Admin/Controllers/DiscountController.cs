@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace OnlineStudyWeb.Areas.Admin.Controllers;
 [Area("Admin")]
-[Authorize(Roles = "Admin")]
 public class DiscountController : Controller
 {
     private readonly IDiscountService _discountService;

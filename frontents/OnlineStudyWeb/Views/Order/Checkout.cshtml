@@ -113,88 +113,88 @@
 				</div>
 			</div>
 <div class="row1">
-	<div class="col-76">
-		<div class="container1">
-			<form method="POST" asp-action="Checkout">
-				<div class="row1">
-					<div class="col-51">
-						<br/>
-						<h3>Billing Address</h3>
-						<br/>
-						<label for="email"><i class="fa fa-envelope"></i> Email</label>
-						<input type="text" id="email" placeholder="john@example.com" asp-for="@Model.EmailAddress">
-						<label for="adr"><i class="fa fa-street-view"></i> Street</label>
-						<input type="text" id="adr" placeholder="542 W. 15th Street" asp-for="@Model.Street">
-						<label for="zip"><i class="fa fa-building"></i> Line</label>
-						<input type="text" id="line" placeholder="10001" asp-for="@Model.Line">
-						<label for="city"><i class="fa fa-institution"></i> Province</label>
-						<input type="text" id="city" placeholder="New York" asp-for="@Model.Province">
-						<div class="row1">
-							<div class="col-51">
-								<label for="state"><i class="fa fa-autocont-ser"></i> State</label>
-								<input type="text" id="state" placeholder="NY" asp-for="@Model.District">
-							</div>
-							<div class="col-51">
-								<label for="zip"><i class="fa fa-address-card"></i> Zip</label>
-								<input type="text" id="zip" placeholder="10001" asp-for="@Model.ZipCode">
-							</div>
-						</div>
-					</div>
-					<div class="col-51">
-							<br/>
-							<h3>Payment</h3>
-								<br/>
-						<label for="fname">Accepted Cards</label>
-						<div class="icon-container1">
-							<i class="fa fa-credit-card" style="color:navy;"></i>
-							<i class="fa fa-cc-mastercard" style="color:red;"></i>
-						</div>
-						<label for="cname">Name on Card</label>
-						<input type="text" id="cname" placeholder="John More Doe" asp-for="@Model.CardHolderName">
-						<label for="ccnum">Credit card number</label>
-						<input type="text" id="ccnum" placeholder="1111-2222-3333-4444" asp-for="@Model.CardNumber">
-						<label for="expmonth">Exp Month</label>
-						<input type="text" id="expmonth" placeholder="September" asp-for="@Model.ExpirationMonth">
+    <div class="col-76">
+        <div class="container1">
+            <form method="POST" asp-action="Checkout">
+                <div class="row1">
+                    <div class="col-51">
+                        <br/>
+                        <h3>Faktureringsadresse</h3>
+                        <br/>
+                        <label for="email"><i class="fa fa-envelope"></i> E-post</label>
+                        <input type="text" id="email" placeholder="john@example.com" asp-for="@Model.EmailAddress">
+                        <label for="adr"><i class="fa fa-street-view"></i> Gateadresse</label>
+                        <input type="text" id="adr" placeholder="542 W. 15th Street" asp-for="@Model.Street">
+                        <label for="line"><i class="fa fa-building"></i> Linje</label>
+                        <input type="text" id="line" placeholder="10001" asp-for="@Model.Line">
+                        <label for="city"><i class="fa fa-institution"></i> By</label>
+                        <input type="text" id="city" placeholder="New York" asp-for="@Model.Province">
+                        <div class="row1">
+                            <div class="col-51">
+                                <label for="state"><i class="fa fa-autocont-ser"></i> Fylke</label>
+                                <input type="text" id="state" placeholder="NY" asp-for="@Model.District">
+                            </div>
+                            <div class="col-51">
+                                <label for="zip"><i class="fa fa-address-card"></i> Postnummer</label>
+                                <input type="text" id="zip" placeholder="10001" asp-for="@Model.ZipCode">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-51">
+                        <br/>
+                        <h3>Betaling</h3>
+                        <br/>
+                        <label for="fname">Godkjente Kort</label>
+                        <div class="icon-container1">
+                            <i class="fa fa-credit-card" style="color:navy;"></i>
+                            <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                        </div>
+                        <label for="cname">Navn på Kortet</label>
+                        <input type="text" id="cname" placeholder="John More Doe" asp-for="@Model.CardHolderName">
+                        <label for="ccnum">Kredittkortnummer</label>
+                        <input type="text" id="ccnum" placeholder="1111-2222-3333-4444" asp-for="@Model.CardNumber">
+                        <label for="expmonth">Utløpsmåned</label>
+                        <input type="text" id="expmonth" placeholder="September" asp-for="@Model.ExpirationMonth">
 
-						<div class="row1">
-							<div class="col-51">
-								<label for="expyear">Exp Year</label>
-								<input type="text" id="expyear" placeholder="2018" asp-for="@Model.ExpirationYear">
-							</div>
-							<div class="col-51">
-								<label for="cvv">CVV</label>
-								<input type="text" id="cvv" placeholder="352" asp-for="@Model.Cvv">
-							</div>
-						</div>
-					</div>
+                        <div class="row1">
+                            <div class="col-51">
+                                <label for="expyear">Utløpsår</label>
+                                <input type="text" id="expyear" placeholder="2018" asp-for="@Model.ExpirationYear">
+                            </div>
+                            <div class="col-51">
+                                <label for="cvv">CVV</label>
+                                <input type="text" id="cvv" placeholder="352" asp-for="@Model.Cvv">
+                            </div>
+                        </div>
+                    </div>
 
-				</div>
-				<input type="submit" value="Continue to checkout" class="btn1">
-			</form>
-		</div>
-	</div>
-	
-	<div class="col-26">
-		<div class="container1">
-			<br/>
-			<h4>Cart
-				<span class="price" style="color:orangered">
-					<i class="fa fa-shopping-cart"></i>
-					<b>@Model.Cart.CartItems.Count</b>
-				</span>
-			</h4>
-			<br/>
-			@foreach (var item in Model.Cart.CartItems)
-			{
-				<p><a href="#">@item.CourseName</a> <span class="price">@item.GetCurrentPrice</span></p>
-			}
-			<hr>
-			<p>Total <span class="price" style="color:black"><b>@Model.Cart.TotalPrice</b></span></p>
-		</div>
-	</div>
+                </div>
+                <input type="submit" value="Fortsett til utsjekking" class="btn1">
+            </form>
+        </div>
+    </div>
 
-    
+    <div class="col-26">
+        <div class="container1">
+            <br/>
+            <h4>Handlekurv
+                <span class="price" style="color:orangered">
+                    <i class="fa fa-shopping-cart"></i>
+                    <b>@Model.Cart.CartItems.Count</b>
+                </span>
+            </h4>
+            <br/>
+            @foreach (var item in Model.Cart.CartItems)
+            {
+                <p><a href="#">@item.CourseName</a> <span class="price">@item.GetCurrentPrice</span></p>
+            }
+            <hr>
+            <p>Totalt <span class="price" style="color:black"><b>@Model.Cart.TotalPrice</b></span></p>
+        </div>
+    </div>
 </div>
+
+
 		</div>
     
         

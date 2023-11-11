@@ -18,21 +18,17 @@ builder.Services.AddControllers(opt=> {
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(Program));
-var databaseSettingsSection = builder.Configuration.GetSection("DatabaseSettings");
-if (databaseSettingsSection != null)
-{
-    builder.Services.Configure<DatabaseSettings>(databaseSettingsSection);
-    builder.Services.AddSingleton<IDatabaseSettings>(sp =>
-    {
-        return sp.GetRequiredService<IOptions<DatabaseSettings>>().Value;
-    });
-}
+builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("DatabaseSettings"));
 
+builder.Services.AddSingleton<IDatabaseSettings>(sp =>
+{
+    return sp.GetRequiredService<IOptions<DatabaseSettings>>().Value;
+});
 
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
-    options.Authority = builder.Configuration["IdentityServerUrl"];
+    options.Authority = builder.Configuration["IdentityServerURL"];
     options.Audience = "resource_catalog";
     options.RequireHttpsMetadata = false;
 });
