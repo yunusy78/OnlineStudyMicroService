@@ -33,7 +33,7 @@ JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("sub");
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
-    options.Authority = builder.Configuration["IdentityServerUrl"];
+    options.Authority = builder.Configuration["IdentityServerURL"];
     options.Audience = "resource_cart";
     options.RequireHttpsMetadata = false;
 });

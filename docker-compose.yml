@@ -1,0 +1,83 @@
+version: "3.8"
+services:
+  coursedb:
+    image: mongo
+  cartdb:
+    image: redis
+  discountdb:
+    image: postgres
+  identitydb:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+  orderdb:
+    image: mysql:8.2.0
+  contactdb:
+    image: mysql:8.2.0
+  rabbitmq:
+    image: rabbitmq:3.12.8-management
+
+  onlinestudyweb:
+    image: onlinestudyweb
+    build:
+      context: .
+      dockerfile: frontents/OnlineStudyWeb/Dockerfile
+
+  gatewayonlinecourse:
+    image: gatewayonlinecourse
+    build:
+      context: .
+      dockerfile: GatewayOnlineCourse/Dockerfile
+
+  onlinestudyidentityserver:
+    image: onlinestudyidentityserver
+    build:
+      context: .
+      dockerfile: IdentityServer/OnlineStudyIdentityServer/Dockerfile
+
+  cartmicroservices:
+    image: cartmicroservices
+    build:
+      context: .
+      dockerfile: Services/Cart/CartMicroServices/Dockerfile
+
+  catalogmicroservices:
+    image: catalogmicroservices
+    build:
+      context: .
+      dockerfile: Services/Catalog/CatalogMicroServices/Dockerfile
+
+  contactmicroservices:
+    image: contactmicroservices
+    build:
+      context: .
+      dockerfile: Services/Contact/ContactMicroServices/Dockerfile
+
+  discountmicroservices:
+    image: discountmicroservices
+    build:
+      context: .
+      dockerfile: Services/Discount/DiscountMicroServices/Dockerfile
+
+  ordermicroserviceswebapi:
+    image: ordermicroserviceswebapi
+    build:
+      context: .
+      dockerfile: Services/Order/OrderMicroServicesWebAPI/Dockerfile
+
+  stripepaymentmicroservice:
+    image: stripepaymentmicroservice
+    build:
+      context: .
+      dockerfile: Services/Payment/StripePaymentMicroService/Dockerfile
+
+  photostockmicroservices:
+    image: photostockmicroservices
+    build:
+      context: .
+      dockerfile: Services/PhotoStock/PhotoStockMicroServices/Dockerfile
+
+volumes:
+  catalogdb_volume:
+  discount_volume:
+  identitydb_volume:
+  orderdb_volume:
+  contactdb_volume:

@@ -11,8 +11,8 @@ using OrderInfrastructure;
 namespace OrderInfrastructure.Migrations
 {
     [DbContext(typeof(OrderDbContext))]
-    [Migration("20231005175532_orders")]
-    partial class orders
+    [Migration("20231109095915_order_mig")]
+    partial class ordermig
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

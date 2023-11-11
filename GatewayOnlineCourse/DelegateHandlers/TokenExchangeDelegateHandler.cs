@@ -22,7 +22,7 @@ public class TokenExchangeDelegateHandler : DelegatingHandler
         
         var disco = await _httpClient.GetDiscoveryDocumentAsync(new DiscoveryDocumentRequest()
         {
-            Address = _configuration["IdentityServerUrl"],
+            Address = _configuration["IdentityServerURL"],
             Policy = new DiscoveryPolicy { RequireHttps = false }
             
         });

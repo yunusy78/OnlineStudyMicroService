@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Migrations.Operations.Builders;
 using Microsoft.OpenApi.Models;
 using OnlineStudyShared.Services;
 using OrderApplication.Handlers;
@@ -81,7 +82,13 @@ builder.Services.AddMassTransit(x=> {
     });
 });
 
+
+
+
 builder.Services.AddMassTransitHostedService();
+
+
+
 
 var app = builder.Build();
 

@@ -7,7 +7,7 @@ using MySql.EntityFrameworkCore.Metadata;
 namespace OrderInfrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class orders : Migration
+    public partial class ordermig : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
