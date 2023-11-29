@@ -42,16 +42,28 @@ public class OrderController : Controller
     {
         // Senkronize olmayan microservislerde bu şekilde yapılabilir.
         //var orderStatus = await _orderService.CreateOrder(orderCheckOutInfoInput);
-        var orderStatus = await _orderService.SuspectOrder(orderCheckOutInfoInput);
-        if (!orderStatus.Success)
+        
+        try
         {
-            var cart = await _cartService.GetCart();
-            ViewBag.Cart= cart;
-            ViewBag.ErrorMessage = orderStatus.error;
-            return View();
+            var orderStatus = await _orderService.SuspectOrder(orderCheckOutInfoInput);
+            if (!orderStatus.Success)
+            {
+                var cart = await _cartService.GetCart();
+                ViewBag.Cart= cart;
+                ViewBag.ErrorMessage = orderStatus.error;
+                return RedirectToAction("Error2", "Home");
           
+            }
+            return RedirectToAction("Success", "Order" , new {orderid= new Random().Next(1,1000)});
+            
         }
-        return RedirectToAction("Success", "Order" , new {orderid= new Random().Next(1,1000)});
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return RedirectToAction("Error2", "Home");
+        }
+        
+       
     }
     
     public IActionResult Success(int orderid)

@@ -142,8 +142,16 @@ public class OrderManager : IOrderService
 
     public async Task<List<OrderViewModel>> GetOrders()
     {
-        var response = await _httpClient.GetFromJsonAsync<ResponseDto<List<OrderViewModel>>>("orders");
-        return response!.Data;
+        try
+        {
+            var response = await _httpClient.GetFromJsonAsync<ResponseDto<List<OrderViewModel>>>("orders");
+            return response!.Data;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return  new List<OrderViewModel>();
+        }
 
     }
     

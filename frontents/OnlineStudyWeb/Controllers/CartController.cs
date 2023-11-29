@@ -30,6 +30,11 @@ public class CartController : Controller
     public async Task<IActionResult> Index()
     {
         var result = await _cartService.GetCart();
+
+        if (result==null)
+        {
+            return RedirectToAction("Error2", "Home");
+        }
         return View(result);
     }
 
@@ -39,7 +44,7 @@ public class CartController : Controller
         var course = await _catalogService.GetCourseByIdAsync(courseId);
         if (course == null)
         {
-            return NotFound();
+            return RedirectToAction("Index", "Home");
         }
 
         var cartItemViewModel = new CartItemViewModel
@@ -51,9 +56,18 @@ public class CartController : Controller
 
             Quantity = 1
         };
-        await _cartService.AddItem(cartItemViewModel);
 
-        return RedirectToAction("Index");
+        try
+        {
+            await _cartService.AddItem(cartItemViewModel);
+            return RedirectToAction("Index");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return RedirectToAction("Error2", "Home");
+        }
+        
     }
 
     public async Task<IActionResult> RemoveCartItem(string courseId)

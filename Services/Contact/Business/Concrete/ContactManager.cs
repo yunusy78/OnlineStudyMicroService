@@ -46,4 +46,6 @@ public class ContactManager : IContactService
     {
         return await _contactDal.GetListByFilterAsync(filter);
     }
+
+    
 }

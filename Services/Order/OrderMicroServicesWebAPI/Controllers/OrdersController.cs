@@ -34,6 +34,10 @@ namespace OrderMicroServicesWebAPI.Controllers
         public async Task<IActionResult> GetOrders()
         {
             var response = await _mediator.Send(new GetOrdersByUserIdQuery{UserId = _sharedIdentity.GetUserId});
+            if (!response.IsSuccess)
+            {
+                return BadRequest(response);
+            }
             return CreateActionResultInstance(response);
         }
         
