@@ -25,8 +25,9 @@ namespace ContactMicroServices.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateOrder(Instructor instructor)
         {
+            var response2 = await _instructorService.GetAllAsync();
             var response = await _instructorService.AddAsync(instructor);
-            return CreateActionResultInstance(response);
+            return CreateActionResultInstance(response2);
             
         }
         

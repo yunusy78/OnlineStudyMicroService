@@ -14,12 +14,12 @@ namespace ContactMicroServices.Controllers
     public class ContactsController : CustomBaseController
     {
         
-        private readonly ISharedIdentity _sharedIdentity;
+       
         private readonly IContactService _contactService;
         
-        public ContactsController(ISharedIdentity sharedIdentity, IContactService contactService)
+        public ContactsController(IContactService contactService)
         {
-            _sharedIdentity = sharedIdentity;
+            
             _contactService = contactService;
         }
         
@@ -54,6 +54,7 @@ namespace ContactMicroServices.Controllers
         
         public async Task<IActionResult> Update(Contact contact)
         {
+           
             var response = await _contactService.UpdateAsync(contact);
             return CreateActionResultInstance(response);
         }

@@ -16,6 +16,11 @@ public class OrderController : Controller
     public async Task<IActionResult> Index()
     {
         var result = await _orderService.GetOrders();
+        if (result == null)
+        {
+            RedirectToAction("error2", "Home");
+        }
+        
         return View(result);
     }
 }
