@@ -5,5 +5,12 @@
     &lt;ProjectFile&gt;B33D39B7-0995-44C9-9DF5-E3B449794A8C/d:System/d:Controller/f:CommentControllerUnitTest.cs&lt;/ProjectFile&gt;&#xD;
     &lt;ProjectFile&gt;B33D39B7-0995-44C9-9DF5-E3B449794A8C/d:System/d:Controller/f:InstructorControllerUnitTest.cs&lt;/ProjectFile&gt;&#xD;
     &lt;ProjectFile&gt;B33D39B7-0995-44C9-9DF5-E3B449794A8C/d:System/d:Controller/f:TestimonialControllerUnitTest.cs&lt;/ProjectFile&gt;&#xD;
+    &lt;TestAncestor&gt;&#xD;
+      &lt;TestId&gt;xUnit::1317A43C-AEA9-453F-B504-5186653C3B71::net7.0::CatalogTestProject.System.Controller.CourseControllerUnitTest.GetAll_ReturnsOkObjectResult_WhenCoursesExist&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;xUnit::1317A43C-AEA9-453F-B504-5186653C3B71::net7.0::CatalogTestProject.System.Controller.CourseControllerUnitTest.GetById_ReturnsOkObjectResult_WhenCourseExists&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;xUnit::1317A43C-AEA9-453F-B504-5186653C3B71::net7.0::CatalogTestProject.System.Controller.CategoryControllerUnitTest.Create_ReturnsCreatedAtActionResult_WhenCategoryCreated&lt;/TestId&gt;&#xD;
+    &lt;/TestAncestor&gt;&#xD;
+    &lt;ProjectFile&gt;1317A43C-AEA9-453F-B504-5186653C3B71/d:System/d:Controller/f:CourseControllerUnitTest.cs&lt;/ProjectFile&gt;&#xD;
+    &lt;ProjectFile&gt;1317A43C-AEA9-453F-B504-5186653C3B71/d:System/d:Controller/f:CategoryControllerUnitTest.cs&lt;/ProjectFile&gt;&#xD;
   &lt;/Or&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
