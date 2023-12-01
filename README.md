@@ -90,8 +90,6 @@ Feel free to copy and paste this extended template into your README.md file and 
 
 ![Diagram](frontents/OnlineStudyWeb/wwwroot/Project/Diagram.jpg))
 
-![Database](frontents/OnlineStudyWeb/wwwroot/Project/database.png)
-
 ![Microservices](frontents/OnlineStudyWeb/wwwroot/Project/project.png)
 
 ![DDD](frontents/OnlineStudyWeb/wwwroot/Project/ddd.png)
