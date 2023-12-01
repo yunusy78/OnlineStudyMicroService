@@ -9,8 +9,15 @@
       &lt;TestId&gt;xUnit::1317A43C-AEA9-453F-B504-5186653C3B71::net7.0::CatalogTestProject.System.Controller.CourseControllerUnitTest.GetAll_ReturnsOkObjectResult_WhenCoursesExist&lt;/TestId&gt;&#xD;
       &lt;TestId&gt;xUnit::1317A43C-AEA9-453F-B504-5186653C3B71::net7.0::CatalogTestProject.System.Controller.CourseControllerUnitTest.GetById_ReturnsOkObjectResult_WhenCourseExists&lt;/TestId&gt;&#xD;
       &lt;TestId&gt;xUnit::1317A43C-AEA9-453F-B504-5186653C3B71::net7.0::CatalogTestProject.System.Controller.CategoryControllerUnitTest.Create_ReturnsCreatedAtActionResult_WhenCategoryCreated&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;xUnit::1317A43C-AEA9-453F-B504-5186653C3B71::net7.0::CatalogTestProject.System.Controller.CategoryControllerIntegrationTests.CreateCategory_ReturnsCreatedAtActionResult&lt;/TestId&gt;&#xD;
     &lt;/TestAncestor&gt;&#xD;
     &lt;ProjectFile&gt;1317A43C-AEA9-453F-B504-5186653C3B71/d:System/d:Controller/f:CourseControllerUnitTest.cs&lt;/ProjectFile&gt;&#xD;
     &lt;ProjectFile&gt;1317A43C-AEA9-453F-B504-5186653C3B71/d:System/d:Controller/f:CategoryControllerUnitTest.cs&lt;/ProjectFile&gt;&#xD;
+    &lt;ProjectFile&gt;1317A43C-AEA9-453F-B504-5186653C3B71/d:System/d:Controller/f:CategoryControllerIntegrationTests.cs&lt;/ProjectFile&gt;&#xD;
+    &lt;ProjectFile&gt;B33D39B7-0995-44C9-9DF5-E3B449794A8C/d:System/d:IntegrationTesting/f:ContactControllerIntegrationTesting.cs&lt;/ProjectFile&gt;&#xD;
+    &lt;Project Location="C:\Users\yunus\Desktop\universietet\internettjenester_Prosject\OnlineStudyMicroService\Services\Catalog\CatalogTestProject" Presentation="&amp;lt;Services&amp;gt;\&amp;lt;Catalog&amp;gt;\&amp;lt;CatalogTestProject&amp;gt;" /&gt;&#xD;
+    &lt;ProjectFile&gt;B33D39B7-0995-44C9-9DF5-E3B449794A8C/d:System/d:IntegrationTesting/f:IntegrationTestin.cs&lt;/ProjectFile&gt;&#xD;
+    &lt;ProjectFile&gt;B8EC8153-0A1C-4202-92E4-355C3974FF62/f:UnitTest1.cs&lt;/ProjectFile&gt;&#xD;
   &lt;/Or&gt;&#xD;
-&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
+&lt;/SessionState&gt;</s:String>
+	</wpf:ResourceDictionary>

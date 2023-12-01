@@ -59,7 +59,7 @@ public class ContactControllerUnitTest
         mockDiscountService.Setup(service => service.AddAsync(It.IsAny<Contact>())).ReturnsAsync(responseDto);
 
         // Act
-        var result = await controller.CreateOrder(It.IsAny<Contact>());
+        var result = await controller.CreateContact(It.IsAny<Contact>());
 
         // Assert
         Assert.IsAssignableFrom<ObjectResult>(result);
