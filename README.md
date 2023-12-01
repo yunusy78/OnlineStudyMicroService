@@ -88,7 +88,7 @@ Feel free to copy and paste this extended template into your README.md file and 
 
 ## Images
 
-![MVC](frontents/OnlineStudyWeb/wwwroot/Project/diagram.jpg)
+![Diagram](frontents/OnlineStudyWeb/wwwroot/Project/Diagram.jpg))
 
 ![Database](frontents/OnlineStudyWeb/wwwroot/Project/database.png)
 
