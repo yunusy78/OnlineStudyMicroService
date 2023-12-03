@@ -135,6 +135,7 @@ Feel free to copy and paste this extended template into your README.md file and 
 
 ![Database](frontents/OnlineStudyWeb/wwwroot/Project/search.png)
 
-![Microservices](frontents/OnlineStudyWeb/wwwroot/Project/success.png)
+![Microservices](frontents/OnlineStudyWeb/wwwroot/Project/CQRS.jpg)
+![Microservices](frontents/OnlineStudyWeb/wwwroot/Project/ddd.jpg)
 
 
